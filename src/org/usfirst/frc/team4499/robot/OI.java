@@ -27,6 +27,16 @@ public class OI {
 	
 	public static JoystickButton closeIntake = new JoystickButton(joyStickTwo, 6);
 	public static JoystickButton openIntake = new JoystickButton(joyStickTwo, 5);
+	
+	public static Joystick dial = new Joystick(2);
+	public static JoystickButton dialOne = new JoystickButton(dial,1);
+	public static JoystickButton dialTwo = new JoystickButton(dial,2);
+	public static JoystickButton dialThree = new JoystickButton(dial,3);
+	public static JoystickButton dialFour = new JoystickButton(dial,4);
+	public static JoystickButton dialFive = new JoystickButton(dial,5);
+	public static JoystickButton switchOne = new JoystickButton(dial, 6);
+	public static JoystickButton switchTwo = new JoystickButton(dial, 7);
+	public static JoystickButton switchThree = new JoystickButton(dial, 8);
 	//// CREATING BUTTONS
 	// One type of button is a joystick button which is any button on a
 	//// joystick.

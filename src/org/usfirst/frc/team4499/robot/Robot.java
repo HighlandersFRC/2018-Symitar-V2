@@ -8,6 +8,7 @@
 package org.usfirst.frc.team4499.robot;
 
 import edu.wpi.cscore.UsbCamera;
+import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.DigitalInput;
 
@@ -18,7 +19,9 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
+import org.usfirst.frc.team4499.robot.autocommands.BasicAuto;
 import org.usfirst.frc.team4499.robot.autocommands.DriveForward;
+import org.usfirst.frc.team4499.robot.autocommands.navxTurn;
 import org.usfirst.frc.team4499.robot.commands.TeleopArm;
 import org.usfirst.frc.team4499.robot.commands.TeleopDriving;
 import org.usfirst.frc.team4499.robot.commands.TeleopGrabber;
@@ -31,10 +34,8 @@ import org.usfirst.frc.team4499.robot.subsystems.ExampleSubsystem;
  * creating this project, you must also update the build.properties file in the
  * project.
  */
-public class Robot extends TimedRobot {
-	
-	public OI m_oi;
-	
+public class Robot extends TimedRobot {	
+	public OI m_oi;	
 	public RobotConfig config;
 	public TeleopDriving drive;
     public TeleopGrabber grabber;
@@ -42,6 +43,8 @@ public class Robot extends TimedRobot {
 	public SendableChooser<Command> m_chooser;
 	public TeleopArm arm;
 	public DriveForward driveForward;
+	public BasicAuto basicAuto;
+	public navxTurn turn;
 
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -54,6 +57,8 @@ public class Robot extends TimedRobot {
 		grabber = new TeleopGrabber();
 		arm = new TeleopArm();
 		driveForward = new DriveForward();
+		basicAuto = new BasicAuto();
+		turn = new navxTurn(90, 0.75f);
 		m_oi = new OI();
 		m_chooser = new SendableChooser<>();
 		UsbCamera camera1 = CameraServer.getInstance().startAutomaticCapture(0);
@@ -95,13 +100,22 @@ public class Robot extends TimedRobot {
 	public void autonomousInit() {
 		m_autonomousCommand = m_chooser.getSelected();
         config.autoConfig();
+        if(OI.switchOne.get()) {
+        	RobotConfig.robotStartPosition = 'L';
+        }
+        else if(OI.switchTwo.get()) {
+        	RobotConfig.robotStartPosition = 'C';
+        }
+        else if(OI.switchThree.get()) {
+        	RobotConfig.robotStartPosition = 'R';
+        }
 		/*
 		 * String autoSelected = SmartDashboard.getString("Auto Selector",
 		 * "Default"); switch(autoSelected) { case "My Auto": autonomousCommand
 		 * = new MyAutoCommand(); break; case "Default Auto": default:
 		 * autonomousCommand = new ExampleCommand(); break; }
 		 */
-
+         turn.start();
 		// schedule the autonomous command (example)
 		if (m_autonomousCommand != null) {
 			m_autonomousCommand.start();

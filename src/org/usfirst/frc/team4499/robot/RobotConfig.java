@@ -97,8 +97,8 @@ public class RobotConfig {
 	public void teleopConfig() {
 		RobotMap.leftDriveLead.enableVoltageCompensation(false);
 		RobotMap.rightDriveLead.enableVoltageCompensation(false);
-		RobotMap.rightDriveLead.configOpenloopRamp(1.0, 0);
-    	RobotMap.leftDriveLead.configOpenloopRamp(1.0, 0);
+		RobotMap.rightDriveLead.configOpenloopRamp(0.3, 0);
+    	RobotMap.leftDriveLead.configOpenloopRamp(0.3, 0);
 		
 	}
 }
