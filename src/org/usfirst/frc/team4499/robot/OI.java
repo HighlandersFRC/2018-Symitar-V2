@@ -16,9 +16,17 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
  */
 public class OI {
 	public static Joystick joyStickOne = new Joystick(0);
-	
+	public static Joystick joyStickTwo = new Joystick(1);
 	public static JoystickButton shiftDown = new JoystickButton(joyStickOne,5);
 	public static JoystickButton shiftUp = new JoystickButton(joyStickOne,6);
+	
+	public static JoystickButton armForwardIntake = new JoystickButton(joyStickTwo,4);
+	public static JoystickButton armReverseIntake = new JoystickButton(joyStickTwo,1);
+	public static JoystickButton armForwardShoot = new JoystickButton(joyStickTwo, 2);
+	public static JoystickButton armReverseShoot = new JoystickButton(joyStickTwo, 3);
+	
+	public static JoystickButton closeIntake = new JoystickButton(joyStickTwo, 6);
+	public static JoystickButton openIntake = new JoystickButton(joyStickTwo, 5);
 	//// CREATING BUTTONS
 	// One type of button is a joystick button which is any button on a
 	//// joystick.

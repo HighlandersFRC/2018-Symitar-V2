@@ -23,6 +23,7 @@ public class RobotConfig {
 	public static int armStartEncoderTicks = -722;
 	public static char robotStartPosition = 'R';
 	public static String fieldPositions;
+	public static double driverDeadZone = 0.15;
 	
 	public static int timeOut = 4; 						//Milliseconds
 	
@@ -45,7 +46,10 @@ public class RobotConfig {
     	RobotMap.rightDriveFollowerTwo.setInverted(true);
     	
     	//TODO This particular motor runs backwards. If hardware changes this will need to be changed also.
-    	RobotMap.leftDriveFollowerTwo.setInverted(true);
+    	RobotMap.leftDriveFollowerTwo.setInverted(true);//Runs backwards for Practice bot, change to false for comp
+    	RobotMap.leftDriveFollowerOne.setInverted(false);
+    	RobotMap.leftDriveLead.setInverted(false);
+    	
     	
     	//Setup and Enable current limiting for all drive motors
     	for(TalonSRX talon:RobotMap.driveMotors) {

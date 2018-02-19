@@ -11,6 +11,7 @@ import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.wpilibj.Compressor;
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.I2C;
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
@@ -40,7 +41,7 @@ public class RobotMap {
 	public static int armStartingPositionTicks=-681;
 	public static int maxArmPositionTicks=-2013;
 	
-	
+	public static DigitalInput grabberLimit = new DigitalInput(0);
 	//Initialize all TalonsSRX
 	public static TalonSRX rightDriveLead = new TalonSRX(rightDriveLeadID);
 	public static TalonSRX leftDriveLead = new TalonSRX(leftDriveLeadID);
@@ -58,20 +59,20 @@ public class RobotMap {
 	
 	
 	
-	//public static AHRS navx = new AHRS(I2C.Port.kMXP);
+	public static AHRS navx = new AHRS(I2C.Port.kMXP);
 
 	//Initialize all pneumatic Actuators, predefine actuation directions
 	public static DoubleSolenoid shifters = new DoubleSolenoid(0,1);
 	public static DoubleSolenoid.Value lowGear = DoubleSolenoid.Value.kForward;
 	public static DoubleSolenoid.Value highGear = DoubleSolenoid.Value.kReverse;
 	
-	//public static DoubleSolenoid brake = new DoubleSolenoid(4,5);
-	//public static DoubleSolenoid.Value releaseBrake = DoubleSolenoid.Value.kForward;
-	//public static DoubleSolenoid.Value setBrake = DoubleSolenoid.Value.kReverse;
+	public static DoubleSolenoid brake = new DoubleSolenoid(4,5);
+	public static DoubleSolenoid.Value releaseBrake = DoubleSolenoid.Value.kForward;
+	public static DoubleSolenoid.Value setBrake = DoubleSolenoid.Value.kReverse;
 	
-	//public static DoubleSolenoid intake = new DoubleSolenoid(2,3);
-	//public static DoubleSolenoid.Value openIntake = DoubleSolenoid.Value.kForward;
-	//public static DoubleSolenoid.Value closeIntake = DoubleSolenoid.Value.kReverse;
+	public static DoubleSolenoid intake = new DoubleSolenoid(2,3);
+	public static DoubleSolenoid.Value openIntake = DoubleSolenoid.Value.kForward;
+	public static DoubleSolenoid.Value closeIntake = DoubleSolenoid.Value.kReverse;
 	
 	//Array of drive motors to simplify configuration
 	public static TalonSRX driveMotors[] = {
