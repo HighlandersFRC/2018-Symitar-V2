@@ -7,6 +7,7 @@
 
 package org.usfirst.frc.team4499.robot;
 
+import com.ctre.phoenix.CANifier;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 import com.kauailabs.navx.frc.AHRS;
@@ -82,4 +83,5 @@ public class RobotMap {
 			  RobotMap.leftDriveFollowerTwo,
 			  RobotMap.rightDriveFollowerOne,
 			  RobotMap.rightDriveFollowerTwo};
+	public static CANifier canifier = new CANifier(0);
 }

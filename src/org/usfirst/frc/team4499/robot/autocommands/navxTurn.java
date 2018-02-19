@@ -74,6 +74,7 @@ public class navxTurn extends Command {
     
     	RobotMap.leftDriveLead.set(com.ctre.phoenix.motorcontrol.ControlMode.PercentOutput, 0);
     	RobotMap.rightDriveLead.set(com.ctre.phoenix.motorcontrol.ControlMode.PercentOutput, 0);
+    	orientation.setSetPoint(RobotMap.navx.getAngle());
     	
 
   	

@@ -46,9 +46,10 @@ public class RobotConfig {
     	RobotMap.rightDriveFollowerTwo.setInverted(true);
     	
     	//TODO This particular motor runs backwards. If hardware changes this will need to be changed also.
-    	RobotMap.leftDriveFollowerTwo.setInverted(true);//Runs backwards for Practice bot, change to false for comp
+    	RobotMap.leftDriveLead.setInverted(true);//runs backwards for comp, change to false for practice
+    	RobotMap.leftDriveFollowerTwo.setInverted(false);//Runs backwards for Practice bot, change to false for comp
     	RobotMap.leftDriveFollowerOne.setInverted(false);
-    	RobotMap.leftDriveLead.setInverted(false);
+    	
     	
     	
     	//Setup and Enable current limiting for all drive motors
@@ -97,8 +98,8 @@ public class RobotConfig {
 	public void teleopConfig() {
 		RobotMap.leftDriveLead.enableVoltageCompensation(false);
 		RobotMap.rightDriveLead.enableVoltageCompensation(false);
-		RobotMap.rightDriveLead.configOpenloopRamp(0.3, 0);
-    	RobotMap.leftDriveLead.configOpenloopRamp(0.3, 0);
+		RobotMap.rightDriveLead.configOpenloopRamp(0.5, 0);
+    	RobotMap.leftDriveLead.configOpenloopRamp(0.5, 0);
 		
 	}
 }

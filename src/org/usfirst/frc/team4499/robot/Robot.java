@@ -20,12 +20,16 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team4499.robot.autocommands.BasicAuto;
+import org.usfirst.frc.team4499.robot.autocommands.DoNothing;
 import org.usfirst.frc.team4499.robot.autocommands.DriveForward;
 import org.usfirst.frc.team4499.robot.autocommands.navxTurn;
 import org.usfirst.frc.team4499.robot.commands.TeleopArm;
 import org.usfirst.frc.team4499.robot.commands.TeleopDriving;
 import org.usfirst.frc.team4499.robot.commands.TeleopGrabber;
 import org.usfirst.frc.team4499.robot.subsystems.ExampleSubsystem;
+
+
+import com.ctre.phoenix.CANifier;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -45,6 +49,7 @@ public class Robot extends TimedRobot {
 	public DriveForward driveForward;
 	public BasicAuto basicAuto;
 	public navxTurn turn;
+	public DoNothing nothing;
 
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -59,8 +64,13 @@ public class Robot extends TimedRobot {
 		driveForward = new DriveForward();
 		basicAuto = new BasicAuto();
 		turn = new navxTurn(90, 0.75f);
+		nothing = new DoNothing();
 		m_oi = new OI();
 		m_chooser = new SendableChooser<>();
+		RobotMap.canifier.setLEDOutput(0,CANifier.LEDChannel.LEDChannelA);
+		RobotMap.canifier.setLEDOutput(1,CANifier.LEDChannel.LEDChannelB);
+		RobotMap.canifier.setLEDOutput(0,CANifier.LEDChannel.LEDChannelC);
+
 		UsbCamera camera1 = CameraServer.getInstance().startAutomaticCapture(0);
 	    UsbCamera camera2 = CameraServer.getInstance().startAutomaticCapture(1);
 		//TODO change this to drive forward
@@ -115,7 +125,6 @@ public class Robot extends TimedRobot {
 		 * = new MyAutoCommand(); break; case "Default Auto": default:
 		 * autonomousCommand = new ExampleCommand(); break; }
 		 */
-         turn.start();
 		// schedule the autonomous command (example)
 		if (m_autonomousCommand != null) {
 			m_autonomousCommand.start();
@@ -152,6 +161,7 @@ public class Robot extends TimedRobot {
 	 */
 	@Override
 	public void teleopPeriodic() {
+
 		Scheduler.getInstance().run();
 	}
 
