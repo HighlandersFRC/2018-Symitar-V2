@@ -8,6 +8,7 @@
 package org.usfirst.frc.team4499.robot;
 
 import edu.wpi.cscore.UsbCamera;
+
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.DigitalInput;
@@ -26,10 +27,12 @@ import org.usfirst.frc.team4499.robot.autocommands.navxTurn;
 import org.usfirst.frc.team4499.robot.commands.TeleopArm;
 import org.usfirst.frc.team4499.robot.commands.TeleopDriving;
 import org.usfirst.frc.team4499.robot.commands.TeleopGrabber;
+import org.usfirst.frc.team4499.robot.commands.MPArm;
 import org.usfirst.frc.team4499.robot.subsystems.ExampleSubsystem;
 
 
 import com.ctre.phoenix.CANifier;
+import com.ctre.phoenix.motorcontrol.ControlMode;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -70,7 +73,8 @@ public class Robot extends TimedRobot {
 		RobotMap.canifier.setLEDOutput(0,CANifier.LEDChannel.LEDChannelA);
 		RobotMap.canifier.setLEDOutput(1,CANifier.LEDChannel.LEDChannelB);
 		RobotMap.canifier.setLEDOutput(0,CANifier.LEDChannel.LEDChannelC);
-
+		RobotMap.brake.set(RobotMap.setBrake);
+		RobotMap.intake.set(RobotMap.closeIntake);
 		UsbCamera camera1 = CameraServer.getInstance().startAutomaticCapture(0);
 	    UsbCamera camera2 = CameraServer.getInstance().startAutomaticCapture(1);
 		//TODO change this to drive forward
@@ -108,6 +112,10 @@ public class Robot extends TimedRobot {
 	 */
 	@Override
 	public void autonomousInit() {
+		RobotMap.brake.set(RobotMap.setBrake);
+		RobotMap.intake.set(RobotMap.closeIntake);
+
+
 		m_autonomousCommand = m_chooser.getSelected();
         config.autoConfig();
         if(OI.switchOne.get()) {
@@ -141,6 +149,10 @@ public class Robot extends TimedRobot {
 
 	@Override
 	public void teleopInit() {
+		RobotMap.brake.set(RobotMap.setBrake);
+		RobotMap.intake.set(RobotMap.closeIntake);
+
+
 		// This makes sure that the autonomous stops running when
 		// teleop starts running. If you want the autonomous to
 		// continue until interrupted by another command, remove
@@ -152,7 +164,7 @@ public class Robot extends TimedRobot {
 		config.teleopConfig();
 		drive.start();
 		grabber.start();
-		arm.start();
+		//arm.start();
 
 	}
 
@@ -161,7 +173,19 @@ public class Robot extends TimedRobot {
 	 */
 	@Override
 	public void teleopPeriodic() {
+		System.out.println(RobotMap.armMaster.getSensorCollection().getQuadraturePosition());
+		if(Math.abs(OI.joyStickTwo.getRawAxis(5))>0.15) {
+			RobotMap.armMaster.set(ControlMode.PercentOutput, 0.2*OI.joyStickTwo.getRawAxis(5));
+			RobotMap.brake.set(RobotMap.releaseBrake);
+		}
+		else {
+			RobotMap.brake.set(RobotMap.setBrake);
+			RobotMap.armMaster.set(ControlMode.PercentOutput, 0);
+		}
+		System.out.println(RobotMap.armMaster.getSensorCollection().isFwdLimitSwitchClosed() + "rev");
+		System.out.println(RobotMap.armMaster.getSensorCollection().isRevLimitSwitchClosed() + "fwd");
 
+	
 		Scheduler.getInstance().run();
 	}
 

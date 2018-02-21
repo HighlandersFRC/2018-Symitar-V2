@@ -30,8 +30,8 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 public class TeleopGrabber extends Command {
 OpenAndPrepToGrabCrate openAndPrepToGrabCrate = new OpenAndPrepToGrabCrate();
 CloseAndGrabCrate closeAndGrabCrate = new CloseAndGrabCrate();
-//ShootCrate shootCrate = new ShootCrate();
-//OutTakeCrate outTakeCrate = new OutTakeCrate();
+ShootCrate shootCrate = new ShootCrate();
+OutTakeCrate outTakeCrate = new OutTakeCrate();
     public TeleopGrabber() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
@@ -51,10 +51,10 @@ CloseAndGrabCrate closeAndGrabCrate = new CloseAndGrabCrate();
     		openAndPrepToGrabCrate.start();
     	}
     	else if(OI.joyStickTwo.getRawAxis(3)>=0.15) {
-    		//shootCrate.start();
+    		shootCrate.start();
     	}
     	else if(OI.joyStickTwo.getRawAxis(2)>=0.15) {
-    		//outTakeCrate.start();
+    		outTakeCrate.start();
     		
     	}
     }

@@ -15,7 +15,7 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class MPArm extends Command {
 	private double endpoint;
-	private double currentAngle;
+	public static double currentAngle;
 	private double startingAngle;
 	private int run;
 	private int angleTolerance;
