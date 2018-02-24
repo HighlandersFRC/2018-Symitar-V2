@@ -20,7 +20,6 @@ import org.usfirst.frc.team4499.robot.RobotMap;
 
 //import org.usfirst.frc.team4499.robot.commands.MoveArm;
 //import org.usfirst.frc.team4499.robot.commands.TeleopDrive;
-import org.usfirst.frc.team4499.robot.subsystems.ExampleSubsystem;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 
@@ -34,6 +33,7 @@ OutTakeCrate outTakeCrate = new OutTakeCrate();
     public TeleopGrabber() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
+    
     }
 
     // Called just before this Command runs the first time
@@ -52,13 +52,13 @@ OutTakeCrate outTakeCrate = new OutTakeCrate();
     		GrabCrate.start();
     		
     	}
-        if(OI.joyStickTwo.getRawAxis(3)>=0.15) {
+        if(OI.joyStickTwo.getRawAxis(2)>=0.15) {
     		RobotMap.leftIntakePiston.set(RobotMap.openLeftIntake);
     	}
     	else{   		
     		RobotMap.leftIntakePiston.set(RobotMap.closeLeftIntake);
     	}
-        if(OI.joyStickTwo.getRawAxis(2)>=0.15) {
+        if(OI.joyStickTwo.getRawAxis(3)>=0.15) {
     		RobotMap.rightIntakePiston.set(RobotMap.openRightIntake);
     		
     	}

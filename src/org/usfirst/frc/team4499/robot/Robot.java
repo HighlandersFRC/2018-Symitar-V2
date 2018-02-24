@@ -9,6 +9,7 @@ package org.usfirst.frc.team4499.robot;
 
 import edu.wpi.cscore.UsbCamera;
 
+
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.DigitalInput;
@@ -27,8 +28,8 @@ import org.usfirst.frc.team4499.robot.autocommands.navxTurn;
 import org.usfirst.frc.team4499.robot.commands.TeleopArm;
 import org.usfirst.frc.team4499.robot.commands.TeleopDriving;
 import org.usfirst.frc.team4499.robot.commands.TeleopGrabber;
+import org.usfirst.frc.team4499.robot.subsystems.GrabberSubSystem;
 import org.usfirst.frc.team4499.robot.commands.MPArm;
-import org.usfirst.frc.team4499.robot.subsystems.ExampleSubsystem;
 
 
 import com.ctre.phoenix.CANifier;
@@ -53,13 +54,14 @@ public class Robot extends TimedRobot {
 	public BasicAuto basicAuto;
 	public navxTurn turn;
 	public DoNothing nothing;
+	public static GrabberSubSystem grabberSub = new GrabberSubSystem();
 
 	/**
 	 * This function is run when the robot is first started up and should be
 	 * used for any initialization code.
 	 */
 	@Override
-	public void robotInit() {
+	public void robotInit() {		
 		config = new RobotConfig();
 		drive = new TeleopDriving();
 		grabber = new TeleopGrabber();

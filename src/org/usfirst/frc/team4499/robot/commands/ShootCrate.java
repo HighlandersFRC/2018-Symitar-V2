@@ -1,8 +1,10 @@
 package org.usfirst.frc.team4499.robot.commands;
 
+import org.usfirst.frc.team4499.robot.Robot;
 import org.usfirst.frc.team4499.robot.RobotMap;
-
+import org.usfirst.frc.team4499.robot.subsystems.GrabberSubSystem;
 import com.ctre.phoenix.motorcontrol.ControlMode;
+
 
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
@@ -16,6 +18,7 @@ public class ShootCrate extends Command {
     public ShootCrate() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
+    	requires(Robot.grabberSub);
     }
 
     // Called just before this Command runs the first time
@@ -23,8 +26,6 @@ public class ShootCrate extends Command {
     	startTime= Timer.getFPGATimestamp();
     	RobotMap.armMaster.set(ControlMode.PercentOutput, 0);
     	RobotMap.brake.set(RobotMap.setBrake);
-    	RobotMap.leftIntakePiston.set(RobotMap.closeLeftIntake);
-    	RobotMap.rightIntakePiston.set(RobotMap.closeRightIntake);
     	RobotMap.intakeLeft.set(ControlMode.PercentOutput, 1);
     	RobotMap.intakeRight.set(ControlMode.PercentOutput, 1);
 
@@ -52,6 +53,6 @@ public class ShootCrate extends Command {
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-    	this.end();
+    	end();
     }
 }
