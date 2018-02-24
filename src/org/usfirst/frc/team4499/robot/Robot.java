@@ -74,7 +74,8 @@ public class Robot extends TimedRobot {
 		RobotMap.canifier.setLEDOutput(1,CANifier.LEDChannel.LEDChannelB);
 		RobotMap.canifier.setLEDOutput(0,CANifier.LEDChannel.LEDChannelC);
 		RobotMap.brake.set(RobotMap.setBrake);
-		RobotMap.intake.set(RobotMap.closeIntake);
+		RobotMap.leftIntakePiston.set(RobotMap.closeLeftIntake);
+    	RobotMap.rightIntakePiston.set(RobotMap.closeRightIntake);
 		UsbCamera camera1 = CameraServer.getInstance().startAutomaticCapture(0);
 	    UsbCamera camera2 = CameraServer.getInstance().startAutomaticCapture(1);
 		//TODO change this to drive forward
@@ -113,7 +114,9 @@ public class Robot extends TimedRobot {
 	@Override
 	public void autonomousInit() {
 		RobotMap.brake.set(RobotMap.setBrake);
-		RobotMap.intake.set(RobotMap.closeIntake);
+		RobotMap.leftIntakePiston.set(RobotMap.closeLeftIntake);
+    	RobotMap.rightIntakePiston.set(RobotMap.closeRightIntake);
+
 
 
 		m_autonomousCommand = m_chooser.getSelected();
@@ -150,7 +153,9 @@ public class Robot extends TimedRobot {
 	@Override
 	public void teleopInit() {
 		RobotMap.brake.set(RobotMap.setBrake);
-		RobotMap.intake.set(RobotMap.closeIntake);
+		RobotMap.leftIntakePiston.set(RobotMap.closeLeftIntake);
+    	RobotMap.rightIntakePiston.set(RobotMap.closeRightIntake);
+
 
 
 		// This makes sure that the autonomous stops running when

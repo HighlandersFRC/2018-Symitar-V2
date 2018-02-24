@@ -1,43 +1,31 @@
 package org.usfirst.frc.team4499.robot.commands;
 
-import edu.wpi.first.wpilibj.command.Command;
-
-
-import edu.wpi.first.wpilibj.CameraServer;
-
-import edu.wpi.first.wpilibj.SerialPort;
-import edu.wpi.first.wpilibj.TimedRobot;
-import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.command.Scheduler;
-import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-
-
-
 import org.usfirst.frc.team4499.robot.OI;
 import org.usfirst.frc.team4499.robot.RobotMap;
 
-
-import org.usfirst.frc.team4499.robot.subsystems.ExampleSubsystem;
-
 import com.ctre.phoenix.motorcontrol.ControlMode;
+
+import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  */
-public class OpenAndPrepToGrabCrate extends Command {
+public class GrabCrate extends Command {
+	public double startTime;
 
-    public OpenAndPrepToGrabCrate() {
+    public GrabCrate() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	RobotMap.intake.set(RobotMap.openIntake);
+    	startTime = Timer.getFPGATimestamp();
+    	
+    
     	RobotMap.intakeLeft.set(ControlMode.PercentOutput, -0.4);
     	RobotMap.intakeRight.set(ControlMode.PercentOutput, -0.4);
-    	
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -46,7 +34,7 @@ public class OpenAndPrepToGrabCrate extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	if(OI.closeIntake.get()) {
+    	if(!OI.intake.get()) {
     		return true;
     	}
         return false;

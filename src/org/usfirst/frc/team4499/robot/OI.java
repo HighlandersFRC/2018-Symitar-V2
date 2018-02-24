@@ -25,8 +25,10 @@ public class OI {
 	public static JoystickButton armForwardShoot = new JoystickButton(joyStickTwo, 4);
 	public static JoystickButton armReverseShoot = new JoystickButton(joyStickTwo, 1);
 	
-	public static JoystickButton closeIntake = new JoystickButton(joyStickTwo, 6);
-	public static JoystickButton openIntake = new JoystickButton(joyStickTwo, 5);
+	public static JoystickButton hardOuttake = new JoystickButton(joyStickTwo, 6);
+	public static JoystickButton softOuttake = new JoystickButton(joyStickTwo, 5);
+	
+	public static JoystickButton intake = new JoystickButton(joyStickTwo,9);
 	
 	public static Joystick dial = new Joystick(2);
 	public static JoystickButton dialOne = new JoystickButton(dial,1);

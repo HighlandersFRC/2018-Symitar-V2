@@ -23,7 +23,8 @@ public class ShootCrate extends Command {
     	startTime= Timer.getFPGATimestamp();
     	RobotMap.armMaster.set(ControlMode.PercentOutput, 0);
     	RobotMap.brake.set(RobotMap.setBrake);
-    	RobotMap.intake.set(RobotMap.closeIntake);
+    	RobotMap.leftIntakePiston.set(RobotMap.closeLeftIntake);
+    	RobotMap.rightIntakePiston.set(RobotMap.closeRightIntake);
     	RobotMap.intakeLeft.set(ControlMode.PercentOutput, 1);
     	RobotMap.intakeRight.set(ControlMode.PercentOutput, 1);
 
@@ -51,5 +52,6 @@ public class ShootCrate extends Command {
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+    	this.end();
     }
 }

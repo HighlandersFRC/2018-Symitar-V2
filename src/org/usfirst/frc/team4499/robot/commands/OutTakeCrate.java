@@ -1,6 +1,7 @@
 package org.usfirst.frc.team4499.robot.commands;
 
 import org.usfirst.frc.team4499.robot.RobotMap;
+import org.usfirst.frc.team4499.robot.subsystems.GrabberSubSystem;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 
@@ -13,6 +14,7 @@ import edu.wpi.first.wpilibj.command.Command;
 public class OutTakeCrate extends Command {
     public double startTime;
     public OutTakeCrate() {
+    	//requires(GrabberSubSystem);
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     }
@@ -23,7 +25,8 @@ public class OutTakeCrate extends Command {
         startTime= Timer.getFPGATimestamp();
         RobotMap.armMaster.set(ControlMode.PercentOutput, 0);
         RobotMap.brake.set(RobotMap.setBrake);
-        RobotMap.intake.set(RobotMap.closeIntake);
+        RobotMap.leftIntakePiston.set(RobotMap.closeLeftIntake);
+    	RobotMap.rightIntakePiston.set(RobotMap.closeRightIntake);
         RobotMap.intakeLeft.set(ControlMode.PercentOutput, 0.3);
         RobotMap.intakeRight.set(ControlMode.PercentOutput, 0.3);
     }

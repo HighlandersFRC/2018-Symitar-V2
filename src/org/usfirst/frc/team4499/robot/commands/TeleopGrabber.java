@@ -28,8 +28,7 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
  *
  */
 public class TeleopGrabber extends Command {
-OpenAndPrepToGrabCrate openAndPrepToGrabCrate = new OpenAndPrepToGrabCrate();
-CloseAndGrabCrate closeAndGrabCrate = new CloseAndGrabCrate();
+GrabCrate GrabCrate = new GrabCrate();
 ShootCrate shootCrate = new ShootCrate();
 OutTakeCrate outTakeCrate = new OutTakeCrate();
     public TeleopGrabber() {
@@ -43,20 +42,29 @@ OutTakeCrate outTakeCrate = new OutTakeCrate();
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	if(OI.closeIntake.get()) {
-    		closeAndGrabCrate.start();
+    	if(OI.softOuttake.get()) {
+    	 outTakeCrate.start();
+    	}
+    	else if(OI.hardOuttake.get()) {
+    	    shootCrate.start();
+    	}
+    	else if(OI.intake.get()){
+    		GrabCrate.start();
     		
     	}
-    	else if(OI.openIntake.get()) {
-    		openAndPrepToGrabCrate.start();
+        if(OI.joyStickTwo.getRawAxis(3)>=0.15) {
+    		RobotMap.leftIntakePiston.set(RobotMap.openLeftIntake);
     	}
-    	else if(OI.joyStickTwo.getRawAxis(3)>=0.15) {
-    		shootCrate.start();
+    	else{   		
+    		RobotMap.leftIntakePiston.set(RobotMap.closeLeftIntake);
     	}
-    	else if(OI.joyStickTwo.getRawAxis(2)>=0.15) {
-    		outTakeCrate.start();
+        if(OI.joyStickTwo.getRawAxis(2)>=0.15) {
+    		RobotMap.rightIntakePiston.set(RobotMap.openRightIntake);
     		
     	}
+        else{
+    		RobotMap.rightIntakePiston.set(RobotMap.closeRightIntake);
+        }
     	
     	
     }
@@ -67,11 +75,15 @@ OutTakeCrate outTakeCrate = new OutTakeCrate();
     }
 
     // Called once after isFinished returns true
-    protected void end() {
+    protected void end()
+    {
+    	
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
-    protected void interrupted() {
+    protected void interrupted() 
+    {
+    	this.end();
     }
 }
