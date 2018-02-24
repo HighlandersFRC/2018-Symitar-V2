@@ -36,7 +36,7 @@ public class OpenAndPrepToGrabCrate extends Command {
     protected void initialize() {
     	RobotMap.intake.set(RobotMap.openIntake);
     	RobotMap.intakeLeft.set(ControlMode.PercentOutput, -0.4);
-    	RobotMap.intakeRight.set(ControlMode.PercentOutput, 0.4);
+    	RobotMap.intakeRight.set(ControlMode.PercentOutput, -0.4);
     	
     }
 

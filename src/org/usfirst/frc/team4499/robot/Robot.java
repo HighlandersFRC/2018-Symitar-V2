@@ -164,7 +164,7 @@ public class Robot extends TimedRobot {
 		config.teleopConfig();
 		drive.start();
 		grabber.start();
-		//arm.start();
+		arm.start();
 
 	}
 
@@ -173,18 +173,8 @@ public class Robot extends TimedRobot {
 	 */
 	@Override
 	public void teleopPeriodic() {
-		System.out.println(RobotMap.armMaster.getSensorCollection().getQuadraturePosition());
-		if(Math.abs(OI.joyStickTwo.getRawAxis(5))>0.15) {
-			RobotMap.armMaster.set(ControlMode.PercentOutput, 0.2*OI.joyStickTwo.getRawAxis(5));
-			RobotMap.brake.set(RobotMap.releaseBrake);
-		}
-		else {
-			RobotMap.brake.set(RobotMap.setBrake);
-			RobotMap.armMaster.set(ControlMode.PercentOutput, 0);
-		}
-		System.out.println(RobotMap.armMaster.getSensorCollection().isFwdLimitSwitchClosed() + "rev");
-		System.out.println(RobotMap.armMaster.getSensorCollection().isRevLimitSwitchClosed() + "fwd");
-
+		
+		
 	
 		Scheduler.getInstance().run();
 	}

@@ -33,8 +33,8 @@ public class RobotMap {
 	public static int leftDriveFollowerOneID = 7;
 	public static int leftDriveFollowerTwoID = 8;
 	
-	public static int armMasterID = 4;
-	public static int armFollowerID = 5;
+	public static int armMasterID = 5;
+	public static int armFollowerID = 4;
 	
 	
 	public static int intakeLeftID = 9;
@@ -68,12 +68,12 @@ public class RobotMap {
 	public static DoubleSolenoid.Value highGear = DoubleSolenoid.Value.kReverse;
 	
 	public static DoubleSolenoid brake = new DoubleSolenoid(4,5);
-	public static DoubleSolenoid.Value releaseBrake = DoubleSolenoid.Value.kReverse;
-	public static DoubleSolenoid.Value setBrake = DoubleSolenoid.Value.kForward;//Different For Practice Bot
+	public static DoubleSolenoid.Value releaseBrake = DoubleSolenoid.Value.kForward;
+	public static DoubleSolenoid.Value setBrake = DoubleSolenoid.Value.kReverse;//Different For Practice Bot
 	
 	public static DoubleSolenoid intake = new DoubleSolenoid(2,3);
-	public static DoubleSolenoid.Value openIntake = DoubleSolenoid.Value.kReverse;
-	public static DoubleSolenoid.Value closeIntake = DoubleSolenoid.Value.kForward;
+	public static DoubleSolenoid.Value openIntake = DoubleSolenoid.Value.kForward;
+	public static DoubleSolenoid.Value closeIntake = DoubleSolenoid.Value.kReverse;
 	
 	//Array of drive motors to simplify configuration
 	public static TalonSRX driveMotors[] = {

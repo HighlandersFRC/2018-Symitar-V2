@@ -25,7 +25,7 @@ public class OutTakeCrate extends Command {
         RobotMap.brake.set(RobotMap.setBrake);
         RobotMap.intake.set(RobotMap.closeIntake);
         RobotMap.intakeLeft.set(ControlMode.PercentOutput, 0.3);
-        RobotMap.intakeRight.set(ControlMode.PercentOutput, -0.3);
+        RobotMap.intakeRight.set(ControlMode.PercentOutput, 0.3);
     }
 
     // Called repeatedly when this Command is scheduled to run

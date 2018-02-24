@@ -2,7 +2,11 @@ package org.usfirst.frc.team4499.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc.team4499.robot.commands.MPArm;
+
+import com.ctre.phoenix.motorcontrol.ControlMode;
+
 import org.usfirst.frc.team4499.robot.OI;
+import org.usfirst.frc.team4499.robot.RobotMap;
 
 /**
  *
@@ -23,11 +27,11 @@ public class TeleopArm extends Command {
     protected void execute() {
     	if(!mpArm.isRunning()) {
     		if(OI.armForwardIntake.get()) {
-    			mpArm= new MPArm(0, 0);
+    			mpArm= new MPArm(-5, 0);
     			mpArm.start();
     		}
     		if(OI.armReverseIntake.get()) {
-    			mpArm= new MPArm(174, 0);
+    			mpArm= new MPArm(182, 0);
     			mpArm.start();
     		}
     		if(OI.armForwardShoot.get()) {
@@ -38,6 +42,11 @@ public class TeleopArm extends Command {
     			mpArm= new MPArm(110, 10);
     			mpArm.start();
     		}
+    		if(Math.abs(OI.joyStickTwo.getRawAxis(5))>0.15) {
+        		RobotMap.brake.set(RobotMap.releaseBrake);
+        		RobotMap.armMaster.set(ControlMode.PercentOutput, 0.15*OI.joyStickTwo.getRawAxis(5));
+        	    mpArm.currentAngle=-(RobotMap.armMaster.getSensorCollection().getQuadraturePosition()/2048.0)*180;
+        	}
     	}
     	
     }

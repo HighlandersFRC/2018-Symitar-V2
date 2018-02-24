@@ -46,8 +46,8 @@ public class RobotConfig {
     	RobotMap.rightDriveFollowerTwo.setInverted(true);
     	
     	//TODO This particular motor runs backwards. If hardware changes this will need to be changed also.
-    	RobotMap.leftDriveLead.setInverted(true);//runs backwards for comp, change to false for practice
-    	RobotMap.leftDriveFollowerTwo.setInverted(false);//Runs backwards for Practice bot, change to false for comp
+    	RobotMap.leftDriveLead.setInverted(false);//runs backwards for comp, change to false for practice
+    	RobotMap.leftDriveFollowerTwo.setInverted(true);//Runs backwards for Practice bot, change to false for comp
     	RobotMap.leftDriveFollowerOne.setInverted(false);
     	
     	
@@ -69,7 +69,6 @@ public class RobotConfig {
     	RobotMap.armMaster.configSelectedFeedbackSensor(com.ctre.phoenix.motorcontrol.FeedbackDevice.QuadEncoder, 0, 0);
 		RobotMap.armMaster.setSelectedSensorPosition(0, 0, 0);
 		RobotMap.armMaster.getSensorCollection().setAnalogPosition(0, 0);
-		RobotMap.armMaster.getSensorCollection().setQuadraturePosition(armStartEncoderTicks, 0);
 		RobotMap.armMaster.setSensorPhase(true);
 		
 	//.armMaster.getSensorCollection().setQuadraturePosition(this.armStartEncoderTicks, 0);

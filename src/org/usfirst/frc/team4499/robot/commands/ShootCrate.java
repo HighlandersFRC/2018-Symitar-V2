@@ -25,7 +25,7 @@ public class ShootCrate extends Command {
     	RobotMap.brake.set(RobotMap.setBrake);
     	RobotMap.intake.set(RobotMap.closeIntake);
     	RobotMap.intakeLeft.set(ControlMode.PercentOutput, 1);
-    	RobotMap.intakeRight.set(ControlMode.PercentOutput, -1);
+    	RobotMap.intakeRight.set(ControlMode.PercentOutput, 1);
 
     }
 

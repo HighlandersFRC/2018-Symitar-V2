@@ -20,10 +20,10 @@ public class OI {
 	public static JoystickButton shiftDown = new JoystickButton(joyStickOne,5);
 	public static JoystickButton shiftUp = new JoystickButton(joyStickOne,6);
 	
-	public static JoystickButton armForwardIntake = new JoystickButton(joyStickTwo,4);
-	public static JoystickButton armReverseIntake = new JoystickButton(joyStickTwo,1);
-	public static JoystickButton armForwardShoot = new JoystickButton(joyStickTwo, 2);
-	public static JoystickButton armReverseShoot = new JoystickButton(joyStickTwo, 3);
+	public static JoystickButton armForwardIntake = new JoystickButton(joyStickTwo,3);
+	public static JoystickButton armReverseIntake = new JoystickButton(joyStickTwo,2);
+	public static JoystickButton armForwardShoot = new JoystickButton(joyStickTwo, 4);
+	public static JoystickButton armReverseShoot = new JoystickButton(joyStickTwo, 1);
 	
 	public static JoystickButton closeIntake = new JoystickButton(joyStickTwo, 6);
 	public static JoystickButton openIntake = new JoystickButton(joyStickTwo, 5);
