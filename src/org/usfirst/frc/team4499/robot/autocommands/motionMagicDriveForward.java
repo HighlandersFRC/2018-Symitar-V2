@@ -63,8 +63,8 @@ public class motionMagicDriveForward extends Command {
     //then, do ([PercentOutput] *1023)/Native units per 100ms;
     //find this on https://github.com/CrossTheRoadElec/Phoenix-Documentation/blob/master/README.md
    
-    fGainLeft = 0.122404f;// + 0.0127f;
-    fGainRight = fGainLeft -0.001f;
+    fGainLeft = 0.132404f;//0.122404f;// + 0.0127f;
+    fGainRight = fGainLeft-0.0185f;// -0.001f;
     pGainLeft = 0;
     pGainRight= 0;
         

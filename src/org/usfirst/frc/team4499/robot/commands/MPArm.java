@@ -48,15 +48,15 @@ public class MPArm extends Command {
     currentAngle=-(RobotMap.armMaster.getSensorCollection().getQuadraturePosition()/2048.0)*180;
    
     if(RobotMap.grabberLimit.get()) {
-    	crateMultiplier = 0.65;
+    	crateMultiplier = 0.75;
     
     }
     else {
-    	crateMultiplier= 1.35;
+    	crateMultiplier= 1.40;
     }
     if(startingAngle<endpoint) {
     if(currentAngle + angleTolerance<endpoint) {
-    	RobotMap.armMaster.set(ControlMode.PercentOutput, -0.200  + crateMultiplier*(-0.162*Math.cos((-currentAngle*Math.PI)/180))); 	
+    	RobotMap.armMaster.set(ControlMode.PercentOutput, -0.240  + crateMultiplier*(-0.162*Math.cos((-currentAngle*Math.PI)/180))); 	
     }
     else {
 
@@ -67,7 +67,7 @@ public class MPArm extends Command {
     }
     else if(startingAngle>endpoint) {
     	if(currentAngle-angleTolerance>endpoint) {
-        	RobotMap.armMaster.set(ControlMode.PercentOutput, +0.200  +crateMultiplier*(-0.162*Math.cos((-currentAngle*Math.PI)/180)));
+        	RobotMap.armMaster.set(ControlMode.PercentOutput, +0.240  +crateMultiplier*(-0.162*Math.cos((-currentAngle*Math.PI)/180)));
         }
         else {
          	run++;

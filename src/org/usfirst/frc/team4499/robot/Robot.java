@@ -7,13 +7,16 @@
 
 package org.usfirst.frc.team4499.robot;
 
+import edu.wpi.cscore.CvSink;
+import edu.wpi.cscore.CvSource;
+import edu.wpi.cscore.MjpegServer;
 import edu.wpi.cscore.UsbCamera;
-
-
+import edu.wpi.cscore.VideoMode.PixelFormat;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.wpilibj.CameraServer;
-import edu.wpi.first.wpilibj.DigitalInput;
 
+import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.TimedRobot;
 
 import edu.wpi.first.wpilibj.command.Command;
@@ -22,6 +25,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team4499.robot.autocommands.BasicAuto;
+import org.usfirst.frc.team4499.robot.autocommands.CenterLeftBasicAuto;
 import org.usfirst.frc.team4499.robot.autocommands.DoNothing;
 import org.usfirst.frc.team4499.robot.autocommands.DriveForward;
 import org.usfirst.frc.team4499.robot.autocommands.navxTurn;
@@ -54,7 +58,11 @@ public class Robot extends TimedRobot {
 	public BasicAuto basicAuto;
 	public navxTurn turn;
 	public DoNothing nothing;
+	public CenterLeftBasicAuto centerLeftBasicAuto;
 	public static GrabberSubSystem grabberSub = new GrabberSubSystem();
+	public static double angleDif;
+	public static double startingAngle;
+	
 
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -70,6 +78,7 @@ public class Robot extends TimedRobot {
 		basicAuto = new BasicAuto();
 		turn = new navxTurn(90, 0.75f);
 		nothing = new DoNothing();
+	    centerLeftBasicAuto = new CenterLeftBasicAuto();
 		m_oi = new OI();
 		m_chooser = new SendableChooser<>();
 		RobotMap.canifier.setLEDOutput(0,CANifier.LEDChannel.LEDChannelA);
@@ -79,8 +88,36 @@ public class Robot extends TimedRobot {
 		RobotMap.leftIntakePiston.set(RobotMap.closeLeftIntake);
     	RobotMap.rightIntakePiston.set(RobotMap.closeRightIntake);
 		UsbCamera camera1 = CameraServer.getInstance().startAutomaticCapture(0);
+    	
+    	//UsbCamera camera1 = CameraServer.getInstance().addCamera("Cam0",80);
+		
+    	
+    //	UsbCamera camera1 = new UsbCamera("USBCam 0",0);
+    //	MjpegServer mjpegserver1 = new MjpegServer("serv_USBCam0",1181);
+    //	mjpegserver1.setSource(camera1);
+    	
+    	//UsbCamera camera2 = new UsbCamera("USBCam 1",1);
+    	///MjpegServer mjpegserver2 = new MjpegServer("serv_USBCam1",1182);
+    	//mjpegserver2.setSource(camera2);
+    	
+    	
+		
+		
+    	
+    	
+    	//CvSink cvsink = new CvSink("CvSink_Cam0");
+    	//cvsink.setSource(camera1);
+    	//CvSource outputstream = new CvSource("blur",PixelFormat.kMJPEG,320,240,20);
+    	//MjpegServer mjpegserver2 = new MjpegServer("serv_Blur",1182);
+    	//mjpegserver2.setSource(outputstream);
+    	
+    
+    	
+    	
+    	
 	    UsbCamera camera2 = CameraServer.getInstance().startAutomaticCapture(1);
-		//TODO change this to drive forward
+		
+	    //TODO change this to drive forward
 		m_chooser.addDefault("Default Auto", driveForward);
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		//TODO update SmartDashboard with current auto from digikey
@@ -118,11 +155,13 @@ public class Robot extends TimedRobot {
 		RobotMap.brake.set(RobotMap.setBrake);
 		RobotMap.leftIntakePiston.set(RobotMap.closeLeftIntake);
     	RobotMap.rightIntakePiston.set(RobotMap.closeRightIntake);
-
-
-
+        startingAngle = RobotMap.navx.getAngle();
+        RobotConfig.fieldPositions = DriverStation.getInstance().getGameSpecificMessage();
+        
 		m_autonomousCommand = m_chooser.getSelected();
         config.autoConfig();
+    	this.centerLeftBasicAuto.start();
+
         if(OI.switchOne.get()) {
         	RobotConfig.robotStartPosition = 'L';
         }
@@ -149,6 +188,7 @@ public class Robot extends TimedRobot {
 	 */
 	@Override
 	public void autonomousPeriodic() {
+        angleDif=RobotMap.navx.getAngle()-startingAngle;
 		Scheduler.getInstance().run();
 	}
 

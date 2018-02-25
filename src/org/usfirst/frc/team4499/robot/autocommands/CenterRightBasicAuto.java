@@ -1,18 +1,13 @@
 package org.usfirst.frc.team4499.robot.autocommands;
 
-import org.usfirst.frc.team4499.robot.Robot;
-import org.usfirst.frc.team4499.robot.RobotMap;
-
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 /**
  *
  */
-public class LeftTurnAuto extends CommandGroup {
+public class CenterRightBasicAuto extends CommandGroup {
 
-    public LeftTurnAuto() {
-    	addSequential(new motionMagicDriveForward(100, RobotMap.navx.getAngle(), 1100, 1500));
-        addSequential(new navxTurn(-90.0 + Robot.angleDif,0.75f));	
+    public CenterRightBasicAuto() {
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());
