@@ -44,7 +44,7 @@ public class TeleopArm extends Command {
     		}
     		if(Math.abs(OI.joyStickTwo.getRawAxis(5))>0.15) {
         		RobotMap.brake.set(RobotMap.releaseBrake);
-        		RobotMap.armMaster.set(ControlMode.PercentOutput, 0.15*OI.joyStickTwo.getRawAxis(5));
+        		RobotMap.armMaster.set(ControlMode.PercentOutput, 0.20*OI.joyStickTwo.getRawAxis(5));
         	    mpArm.currentAngle=-(RobotMap.armMaster.getSensorCollection().getQuadraturePosition()/2048.0)*180;
         	}
     		else{

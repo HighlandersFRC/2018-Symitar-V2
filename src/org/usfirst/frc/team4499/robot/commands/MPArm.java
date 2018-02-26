@@ -1,5 +1,6 @@
 package org.usfirst.frc.team4499.robot.commands;
 
+import org.usfirst.frc.team4499.robot.OI;
 import org.usfirst.frc.team4499.robot.RobotConfig;
 
 import org.usfirst.frc.team4499.robot.RobotMap;
@@ -84,7 +85,10 @@ public class MPArm extends Command {
     	if(RobotMap.armMaster.getMotorOutputPercent()==0 && run!=0) {
     		return true;
     	}
-    	if(Math.abs(Timer.getFPGATimestamp()-startTime)>3.0) {
+    	if(Math.abs(Timer.getFPGATimestamp()-startTime)>5.00) {
+    		return true;
+    	}
+    	if((OI.armForwardIntake.get()||OI.armReverseIntake.get()||OI.armReverseShoot.get()||OI.armForwardShoot.get()||Math.abs(OI.joyStickTwo.getRawAxis(5))>0.15)&&Math.abs(Timer.getFPGATimestamp()-startTime)>0.25){
     		return true;
     	}
         return false;

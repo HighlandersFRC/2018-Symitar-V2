@@ -26,8 +26,8 @@ public class OutTakeCrate extends Command {
         startTime= Timer.getFPGATimestamp();
         RobotMap.armMaster.set(ControlMode.PercentOutput, 0);
         RobotMap.brake.set(RobotMap.setBrake);
-        RobotMap.intakeLeft.set(ControlMode.PercentOutput, 0.3);
-        RobotMap.intakeRight.set(ControlMode.PercentOutput, 0.3);
+        RobotMap.intakeLeft.set(ControlMode.PercentOutput, 0.4);
+        RobotMap.intakeRight.set(ControlMode.PercentOutput, 0.4);
     }
 
     // Called repeatedly when this Command is scheduled to run

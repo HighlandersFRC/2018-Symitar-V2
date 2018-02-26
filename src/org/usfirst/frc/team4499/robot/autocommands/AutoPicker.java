@@ -20,6 +20,8 @@ public class AutoPicker extends Command {
     DriveForward driveForward = new DriveForward();
     LeftTurnAuto leftTurnAuto = new LeftTurnAuto();
     RightTurnAuto rightTurnAuto = new RightTurnAuto();
+    CenterChooserAuto centerChooser;
+
     public AutoPicker() {
     	
         // Use requires() here to declare subsystem dependencies
@@ -28,10 +30,8 @@ public class AutoPicker extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	if(OI.switchTwo.get()) {
-    		doNothing.start();
-    	}
-    	else if(OI.dialOne.get()) {
+    
+    	 if(OI.dialOne.get()) {
     		driveForward.start();
     		return;
     	}
@@ -43,7 +43,33 @@ public class AutoPicker extends Command {
     			driveForward.start();
     		}
     		return;  		
-    	}   	
+    	}
+    	else if(OI.dialThree.get()){
+    		if(RobotConfig.fieldPositions.charAt(0)=='L'&&RobotConfig.robotStartPosition=='L'){
+    			rightTurnAuto.start();
+    		}
+    		else if(RobotConfig.fieldPositions.charAt(0)=='R'&&RobotConfig.robotStartPosition=='R'){
+    			rightTurnAuto.start();
+    		}
+    		else{
+    			driveForward.start();
+    		}
+    	}
+    	else if(OI.dialFour.get()){
+    		if(RobotConfig.robotStartPosition =='C'){
+    			if(RobotConfig.fieldPositions.charAt(0)=='L'){
+    				centerChooser = new CenterChooserAuto('L');
+                 	centerChooser.start();
+    			}
+    			else if(RobotConfig.fieldPositions.charAt(0)=='R'){
+    				centerChooser = new CenterChooserAuto('R');
+    				centerChooser.start();
+    			}
+    			else{
+    				driveForward.start();
+    			}
+    		}
+    	}
     /*	else if(fieldPos.isEmpty()) {
     		doNothing.start();	
     	return;

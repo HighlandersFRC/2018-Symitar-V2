@@ -8,6 +8,7 @@
 package org.usfirst.frc.team4499.robot;
 
 import edu.wpi.cscore.CvSink;
+
 import edu.wpi.cscore.CvSource;
 import edu.wpi.cscore.MjpegServer;
 import edu.wpi.cscore.UsbCamera;
@@ -24,8 +25,8 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
+import org.usfirst.frc.team4499.robot.autocommands.AutoPicker;
 import org.usfirst.frc.team4499.robot.autocommands.BasicAuto;
-import org.usfirst.frc.team4499.robot.autocommands.CenterLeftBasicAuto;
 import org.usfirst.frc.team4499.robot.autocommands.DoNothing;
 import org.usfirst.frc.team4499.robot.autocommands.DriveForward;
 import org.usfirst.frc.team4499.robot.autocommands.navxTurn;
@@ -58,7 +59,7 @@ public class Robot extends TimedRobot {
 	public BasicAuto basicAuto;
 	public navxTurn turn;
 	public DoNothing nothing;
-	public CenterLeftBasicAuto centerLeftBasicAuto;
+	public AutoPicker auto;
 	public static GrabberSubSystem grabberSub = new GrabberSubSystem();
 	public static double angleDif;
 	public static double startingAngle;
@@ -69,7 +70,7 @@ public class Robot extends TimedRobot {
 	 * used for any initialization code.
 	 */
 	@Override
-	public void robotInit() {		
+	public void robotInit() {
 		config = new RobotConfig();
 		drive = new TeleopDriving();
 		grabber = new TeleopGrabber();
@@ -78,7 +79,7 @@ public class Robot extends TimedRobot {
 		basicAuto = new BasicAuto();
 		turn = new navxTurn(90, 0.75f);
 		nothing = new DoNothing();
-	    centerLeftBasicAuto = new CenterLeftBasicAuto();
+		auto = new AutoPicker();
 		m_oi = new OI();
 		m_chooser = new SendableChooser<>();
 		RobotMap.canifier.setLEDOutput(0,CANifier.LEDChannel.LEDChannelA);
@@ -156,11 +157,10 @@ public class Robot extends TimedRobot {
 		RobotMap.leftIntakePiston.set(RobotMap.closeLeftIntake);
     	RobotMap.rightIntakePiston.set(RobotMap.closeRightIntake);
         startingAngle = RobotMap.navx.getAngle();
-        RobotConfig.fieldPositions = DriverStation.getInstance().getGameSpecificMessage();
+        //RobotConfig.fieldPositions = DriverStation.getInstance().getGameSpecificMessage();
         
 		m_autonomousCommand = m_chooser.getSelected();
         config.autoConfig();
-    	this.centerLeftBasicAuto.start();
 
         if(OI.switchOne.get()) {
         	RobotConfig.robotStartPosition = 'L';
@@ -171,6 +171,7 @@ public class Robot extends TimedRobot {
         else if(OI.switchThree.get()) {
         	RobotConfig.robotStartPosition = 'R';
         }
+        auto.start();
 		/*
 		 * String autoSelected = SmartDashboard.getString("Auto Selector",
 		 * "Default"); switch(autoSelected) { case "My Auto": autonomousCommand

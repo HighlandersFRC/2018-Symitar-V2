@@ -21,8 +21,8 @@ public class RobotConfig {
 	public static boolean enableDriveCurrentLimit = true;
 	public static int armMaxEncoderTicks = -2014;
 	public static int armStartEncoderTicks = -722;
-	public static char robotStartPosition = 'R';
-	public static String fieldPositions;
+	public static char robotStartPosition = 'U'; //U = unnasigned
+	public static String fieldPositions="LRL";
 	public static double driverDeadZone = 0.15;
 	
 	public static int timeOut = 4; 						//Milliseconds
@@ -71,7 +71,7 @@ public class RobotConfig {
 		RobotMap.armMaster.getSensorCollection().setAnalogPosition(0, 0);
 		RobotMap.armMaster.setSensorPhase(true);
 		
-	//.armMaster.getSensorCollection().setQuadraturePosition(this.armStartEncoderTicks, 0);
+	    RobotMap.armMaster.getSensorCollection().setQuadraturePosition(this.armStartEncoderTicks, 0);
 		//Setup follower can Talon
 		RobotMap.armFollower.set(ControlMode.Follower, RobotMap.armMasterID);
 		RobotMap.armMaster.setInverted(false);

@@ -20,8 +20,8 @@ public class navxTurn extends Command {
 	private double speed = 0;
 	private double time;
 	private double desiredAngle;
-	private double kp = 0.00025;
-	private double ki = 0.0001400;
+	private double kp = 0.00035;
+	private double ki = 0.0002400;
 	private double kd = 0;
 	private PID orientation; 
 	private double startAngle;
@@ -61,7 +61,7 @@ public class navxTurn extends Command {
     // Make this return true whcccen this Command no longer needs to run execute()
     protected boolean isFinished() {
     
-    	if(Math.abs(RobotMap.navx.getAngle() -(startAngle + this.desiredAngle)) <=0.5) {
+    	if(Math.abs(RobotMap.navx.getAngle() -(startAngle + this.desiredAngle)) <=2) {
    
     		return true;
     	}

@@ -3,22 +3,29 @@ package org.usfirst.frc.team4499.robot.autocommands;
 import org.usfirst.frc.team4499.robot.Robot;
 import org.usfirst.frc.team4499.robot.RobotMap;
 import org.usfirst.frc.team4499.robot.commands.OutTakeCrate;
+import org.usfirst.frc.team4499.robot.commands.Wait;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 /**
  *
  */
-public class CenterLeftBasicAuto extends CommandGroup {
+public class CenterChooserAuto extends CommandGroup {
 
-    public CenterLeftBasicAuto() {
-    	addSequential(new motionMagicDriveForward(10, RobotMap.navx.getAngle(), 1100, 1500));
-        addSequential(new navxTurn(-45.0 + Robot.angleDif,0.75f));	
-    	addSequential(new motionMagicDriveForward(100, RobotMap.navx.getAngle(), 1100, 1500));
+    public CenterChooserAuto(char dir) {
+    	addSequential(new motionMagicDriveForward(5, RobotMap.navx.getAngle(), 1100, 1500));
+    	if(dir=='R'){
+    		addSequential(new navxTurn(-20.0 - Robot.angleDif,0.75f));
+    	}
+    	else if(dir=='L'){
+            addSequential(new navxTurn(20.0 - Robot.angleDif,0.75f));
+    	}
+        addSequential(new Wait(0.1));
+    	addSequential(new motionMagicDriveForward(103, RobotMap.navx.getAngle(), 1100, 1500));
         addSequential(new OutTakeCrate());
 
-
-
+    	//addSequential(new motionMagicDriveForward(40, RobotMap.navx.getAngle(), 1100, 1500));
+      //  addSequential(new OutTakeCrate());
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());
