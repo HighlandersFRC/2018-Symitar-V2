@@ -21,8 +21,8 @@ public class RobotConfig {
 	public static boolean enableDriveCurrentLimit = true;
 	public static int armMaxEncoderTicks = -2014;
 	public static int armStartEncoderTicks = -722;
-	public static char robotStartPosition = 'U'; //U = unnasigned
-	public static String fieldPositions="LRL";
+	public static char robotStartPosition; //U = unnasigned
+	public static String fieldPositions="";
 	public static double driverDeadZone = 0.15;
 	
 	public static int timeOut = 4; 						//Milliseconds
@@ -33,6 +33,18 @@ public class RobotConfig {
 		
 	}
 	public void setStartingConfig() {
+		 if(OI.switchOne.get()) {
+	        	RobotConfig.robotStartPosition = 'L';
+	        }
+	        else if(OI.switchTwo.get()) {
+	        	RobotConfig.robotStartPosition = 'C';
+	        }
+	        else if(OI.switchThree.get()) {
+	        	RobotConfig.robotStartPosition = 'R';
+	        }
+	        else {
+	        	RobotConfig.robotStartPosition = 'U';
+	        }
 		System.out.println("Initializing Talons");
 		//Setup follower can talons
     	RobotMap.rightDriveFollowerOne.set(ControlMode.Follower, RobotMap.rightDriveLeadID);

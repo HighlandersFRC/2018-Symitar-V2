@@ -11,6 +11,8 @@ import com.ctre.phoenix.CANifier;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 import com.kauailabs.navx.frc.AHRS;
+
+import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
@@ -42,6 +44,7 @@ public class RobotMap {
 	public static int armStartingPositionTicks=-722;
 	public static int maxArmPositionTicks=-2013;
 	
+	public static AnalogInput analog = new AnalogInput(0);
 	public static DigitalInput grabberLimit = new DigitalInput(0);
 	//Initialize all TalonsSRX
 	public static TalonSRX rightDriveLead = new TalonSRX(rightDriveLeadID);

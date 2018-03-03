@@ -48,12 +48,13 @@ public class MPArm extends Command {
     protected void execute() {
     currentAngle=-(RobotMap.armMaster.getSensorCollection().getQuadraturePosition()/2048.0)*180;
    
-    if(RobotMap.grabberLimit.get()) {
+    //If distance is far away from object
+    if(RobotMap.analog.getValue()>240) {
     	crateMultiplier = 0.75;
     
     }
     else {
-    	crateMultiplier= 1.40;
+    	crateMultiplier= 1.30;
     }
     if(startingAngle<endpoint) {
     if(currentAngle + angleTolerance<endpoint) {

@@ -13,16 +13,21 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class CenterChooserAuto extends CommandGroup {
 
     public CenterChooserAuto(char dir) {
-    	addSequential(new motionMagicDriveForward(5, RobotMap.navx.getAngle(), 1100, 1500));
+    	
     	if(dir=='R'){
-    		addSequential(new navxTurn(-20.0 - Robot.angleDif,0.75f));
+    		addSequential(new motionMagicDriveForward(102, RobotMap.navx.getAngle(), 1100, 1500));
     	}
     	else if(dir=='L'){
-            addSequential(new navxTurn(20.0 - Robot.angleDif,0.75f));
+    		addSequential(new motionMagicDriveForward(3, RobotMap.navx.getAngle(), 1100, 1500));
+    		addSequential(new Wait(0.1));
+    		addSequential(new navxTurn(37,0.75f));
+    		 addSequential(new Wait(0.1));
+    		addSequential(new motionMagicDriveForward(113, RobotMap.navx.getAngle(), 1100, 1500));
+
+
     	}
         addSequential(new Wait(0.1));
-    	addSequential(new motionMagicDriveForward(103, RobotMap.navx.getAngle(), 1100, 1500));
-        addSequential(new OutTakeCrate());
+        addSequential(new OutTakeCrate(0.2,0.5));
 
     	//addSequential(new motionMagicDriveForward(40, RobotMap.navx.getAngle(), 1100, 1500));
       //  addSequential(new OutTakeCrate());

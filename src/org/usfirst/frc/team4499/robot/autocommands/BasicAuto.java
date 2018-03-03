@@ -12,8 +12,8 @@ import org.usfirst.frc.team4499.robot.commands.OutTakeCrate;
 public class BasicAuto extends CommandGroup {
 
     public BasicAuto() {
-	addSequential(new motionMagicDriveForward(100, RobotMap.navx.getAngle(), 1100, 1500));
-    addSequential(new OutTakeCrate());
+	addSequential(new motionMagicDriveForward(102, RobotMap.navx.getAngle(), 1100, 1500));
+    addSequential(new OutTakeCrate(0.4,0.4));
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());

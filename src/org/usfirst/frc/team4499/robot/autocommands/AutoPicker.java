@@ -18,8 +18,8 @@ public class AutoPicker extends Command {
 	DoNothing doNothing= new DoNothing();
 	BasicAuto basicAuto = new BasicAuto();
     DriveForward driveForward = new DriveForward();
-    LeftTurnAuto leftTurnAuto = new LeftTurnAuto();
-    RightTurnAuto rightTurnAuto = new RightTurnAuto();
+   
+    NinteyDegreeTurnAuto ninteyDegreeTurnAuto = new NinteyDegreeTurnAuto('L');
     CenterChooserAuto centerChooser;
 
     public AutoPicker() {
@@ -40,18 +40,21 @@ public class AutoPicker extends Command {
     			basicAuto.start();
     		}
     		else {
+    			System.out.println("doingNothing");
     			driveForward.start();
     		}
     		return;  		
     	}
     	else if(OI.dialThree.get()){
     		if(RobotConfig.fieldPositions.charAt(0)=='L'&&RobotConfig.robotStartPosition=='L'){
-    			rightTurnAuto.start();
+    			ninteyDegreeTurnAuto.start();
     		}
     		else if(RobotConfig.fieldPositions.charAt(0)=='R'&&RobotConfig.robotStartPosition=='R'){
-    			rightTurnAuto.start();
+    			ninteyDegreeTurnAuto.start();
     		}
-    		else{
+    		else{    			
+    			System.out.println("doingNothing");
+
     			driveForward.start();
     		}
     	}

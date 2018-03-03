@@ -14,8 +14,13 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class OutTakeCrate extends Command {
     public double startTime;
-    public OutTakeCrate() {
+    private double leftPower;
+    private double rightPower;
+    public OutTakeCrate(double powerL, double powerR) {
     	requires(Robot.grabberSub);
+    	leftPower = powerL;
+    	rightPower = powerR;
+    	
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     }
@@ -26,8 +31,8 @@ public class OutTakeCrate extends Command {
         startTime= Timer.getFPGATimestamp();
         RobotMap.armMaster.set(ControlMode.PercentOutput, 0);
         RobotMap.brake.set(RobotMap.setBrake);
-        RobotMap.intakeLeft.set(ControlMode.PercentOutput, 0.4);
-        RobotMap.intakeRight.set(ControlMode.PercentOutput, 0.4);
+        RobotMap.intakeLeft.set(ControlMode.PercentOutput, leftPower);
+        RobotMap.intakeRight.set(ControlMode.PercentOutput, rightPower);
     }
 
     // Called repeatedly when this Command is scheduled to run

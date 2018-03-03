@@ -89,16 +89,16 @@ public class Robot extends TimedRobot {
 		RobotMap.leftIntakePiston.set(RobotMap.closeLeftIntake);
     	RobotMap.rightIntakePiston.set(RobotMap.closeRightIntake);
 		UsbCamera camera1 = CameraServer.getInstance().startAutomaticCapture(0);
-    	
-    	//UsbCamera camera1 = CameraServer.getInstance().addCamera("Cam0",80);
+	    UsbCamera camera2 = CameraServer.getInstance().startAutomaticCapture(1);
+		//UsbCamera camera2 = CameraServer.getInstance().addCamera("Cam0",80);
 		
     	
-    //	UsbCamera camera1 = new UsbCamera("USBCam 0",0);
-    //	MjpegServer mjpegserver1 = new MjpegServer("serv_USBCam0",1181);
-    //	mjpegserver1.setSource(camera1);
+        //UsbCamera camera1 = new UsbCamera("USBCam 0",0);
+    	//MjpegServer mjpegserver1 = new MjpegServer("serv_USBCam0",1181);
+    	//mjpegserver1.setSource(camera1);
     	
     	//UsbCamera camera2 = new UsbCamera("USBCam 1",1);
-    	///MjpegServer mjpegserver2 = new MjpegServer("serv_USBCam1",1182);
+    	//MjpegServer mjpegserver2 = new MjpegServer("serv_USBCam1",1182);
     	//mjpegserver2.setSource(camera2);
     	
     	
@@ -116,10 +116,10 @@ public class Robot extends TimedRobot {
     	
     	
     	
-	    UsbCamera camera2 = CameraServer.getInstance().startAutomaticCapture(1);
+
 		
 	    //TODO change this to drive forward
-		m_chooser.addDefault("Default Auto", driveForward);
+		m_chooser.addDefault("Default Auto", nothing);
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		//TODO update SmartDashboard with current auto from digikey
 		SmartDashboard.putData("Auto mode", m_chooser);
@@ -157,7 +157,7 @@ public class Robot extends TimedRobot {
 		RobotMap.leftIntakePiston.set(RobotMap.closeLeftIntake);
     	RobotMap.rightIntakePiston.set(RobotMap.closeRightIntake);
         startingAngle = RobotMap.navx.getAngle();
-        //RobotConfig.fieldPositions = DriverStation.getInstance().getGameSpecificMessage();
+        RobotConfig.fieldPositions = DriverStation.getInstance().getGameSpecificMessage();
         
 		m_autonomousCommand = m_chooser.getSelected();
         config.autoConfig();
@@ -189,6 +189,8 @@ public class Robot extends TimedRobot {
 	 */
 	@Override
 	public void autonomousPeriodic() {
+		System.out.println(RobotConfig.robotStartPosition+ "startposition");
+		System.out.println(RobotConfig.fieldPositions + "field");
         angleDif=RobotMap.navx.getAngle()-startingAngle;
 		Scheduler.getInstance().run();
 	}

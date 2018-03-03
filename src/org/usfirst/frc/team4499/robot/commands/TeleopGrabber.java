@@ -29,7 +29,8 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 public class TeleopGrabber extends Command {
 GrabCrate GrabCrate = new GrabCrate();
 ShootCrate shootCrate = new ShootCrate();
-OutTakeCrate outTakeCrate = new OutTakeCrate();
+OutTakeCrate outTakeCrate = new OutTakeCrate(0.4,0.4);
+;
     public TeleopGrabber() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
@@ -43,7 +44,7 @@ OutTakeCrate outTakeCrate = new OutTakeCrate();
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	if(OI.softOuttake.get()) {
-    	 outTakeCrate.start();
+    	    outTakeCrate.start();
     	}
     	else if(OI.hardOuttake.get()) {
     	    shootCrate.start();
