@@ -10,7 +10,8 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class DriveForward extends CommandGroup {
 
     public DriveForward() {
-    	addSequential(new motionMagicDriveForward(100, RobotMap.navx.getAngle(), 1100, 1500));
+    	//basic drive forward to make sure our team gets the rp
+    	addSequential(new motionMagicDriveForward(101, RobotMap.navx.getAngle(), 1100, 1500));
 
         // Add Commands here:
         // e.g. addSequential(new Command1());

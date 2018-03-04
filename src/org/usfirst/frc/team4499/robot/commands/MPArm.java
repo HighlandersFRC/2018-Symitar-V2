@@ -23,13 +23,12 @@ public class MPArm extends Command {
 	private int angleTolerance;
 	private double crateMultiplier;
 	private double startTime;
-	private double minPower=0.240;
-	private double cosMultiplier = 0.162;
+	private double minPower=0.430;
+	private double cosMultiplier = 0.152;
 	private SetLEDColor setLEDColor;
 	public MPArm(double angle, int tolerance) {
     	endpoint= angle;
-    	angleTolerance= tolerance;
-    	
+    	angleTolerance= tolerance; 	
     	crateMultiplier= 0;
     	
         // Use requires() here to declare subsystem dependencies
@@ -51,7 +50,7 @@ public class MPArm extends Command {
     protected void execute() {
     currentAngle=-(RobotMap.armMaster.getSensorCollection().getQuadraturePosition()/2048.0)*180;
    
-    //If distance is far away from object
+    //If the ultrasound is able to detect a nearby crate, set the value to high, else keep it low
     if(RobotMap.analog.getValue()>240) {
     	crateMultiplier = 0.75;
     

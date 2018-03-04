@@ -142,6 +142,7 @@ public class motionMagicDriveForward extends Command {
     System.out.println((((this.motionMagicEndPoint - RobotMap.rightDriveLead.getSelectedSensorPosition(0)) / (RobotConfig.gearRatio * RobotConfig.encoderTicsPerShaftRotation)) * RobotConfig.wheelCircum) + " Closed Loop error in inches Right");*/
 
     this.angleorientation.updatePID(RobotMap.navx.getAngle());
+    //TODO check if reversed for comp bot!!!
     if(this.motionMagicEndPoint > 0){
         cruiseVelocityLeft = (float) (this.initCruiseVelocityLeft+ angleorientation.getResult());
         cruiseVelocityRight = (float) (this.initCruiseVelocityRight - angleorientation.getResult());

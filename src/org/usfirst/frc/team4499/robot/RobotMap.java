@@ -41,6 +41,9 @@ public class RobotMap {
 	
 	public static int intakeLeftID = 9;
 	public static int intakeRightID = 10;
+	
+	public static int rampActuatorMotorID = 11;
+	
 	public static int armStartingPositionTicks=-722;
 	public static int maxArmPositionTicks=-2013;
 	
@@ -61,7 +64,7 @@ public class RobotMap {
 	public static TalonSRX intakeLeft = new TalonSRX(intakeLeftID);
 	public static TalonSRX intakeRight = new TalonSRX(intakeRightID);
 	
-	
+	//public static TalonSRX rampActuatorMotor = new TalonSRX(rampActuatorMotorID);
 	
 	public static AHRS navx = new AHRS(I2C.Port.kMXP);
 
@@ -72,10 +75,10 @@ public class RobotMap {
 	
 	public static DoubleSolenoid brake = new DoubleSolenoid(4,5);
 	public static DoubleSolenoid.Value releaseBrake = DoubleSolenoid.Value.kForward;
-	public static DoubleSolenoid.Value setBrake = DoubleSolenoid.Value.kReverse;//Different For comp Bot
+	public static DoubleSolenoid.Value setBrake = DoubleSolenoid.Value.kReverse;//TODO reverse For comp Bot
 	
 	public static DoubleSolenoid rightIntakePiston = new DoubleSolenoid(2,3);
-	public static DoubleSolenoid.Value openRightIntake = DoubleSolenoid.Value.kForward;//Different For comp
+	public static DoubleSolenoid.Value openRightIntake = DoubleSolenoid.Value.kForward;//TODO reverse For comp
 	public static DoubleSolenoid.Value closeRightIntake = DoubleSolenoid.Value.kReverse;
 	
 	public static DoubleSolenoid leftIntakePiston = new DoubleSolenoid(6,7);

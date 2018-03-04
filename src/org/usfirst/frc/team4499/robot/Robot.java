@@ -96,8 +96,8 @@ public class Robot extends TimedRobot {
 		RobotMap.brake.set(RobotMap.setBrake);
 		RobotMap.leftIntakePiston.set(RobotMap.closeLeftIntake);
     	RobotMap.rightIntakePiston.set(RobotMap.closeRightIntake);
-		UsbCamera camera1 = CameraServer.getInstance().startAutomaticCapture(0);
-	    UsbCamera camera2 = CameraServer.getInstance().startAutomaticCapture(1);
+		//UsbCamera camera1 = CameraServer.getInstance().startAutomaticCapture(0);
+	    //UsbCamera camera2 = CameraServer.getInstance().startAutomaticCapture(1);
 			//UsbCamera camera2 = CameraServer.getInstance().addCamera("Cam0",80);
 		
     	
@@ -109,6 +109,8 @@ public class Robot extends TimedRobot {
  //   	MjpegServer mjpegserver2 = new MjpegServer("serv_USBCam1",1182);
  //   	mjpegserver2.setSource(camera2);
     	
+     CameraServer.getInstance().startAutomaticCapture();
+    
     	
     	
  
@@ -151,6 +153,9 @@ public class Robot extends TimedRobot {
 
 	@Override
 	public void disabledPeriodic() {
+    	System.out.println(RobotMap.navx.getAngle() + "navx");
+    	System.out.println(RobotMap.navx.isConnected());
+
 		Scheduler.getInstance().run();
 	}
 
@@ -186,6 +191,7 @@ public class Robot extends TimedRobot {
         else if(OI.switchThree.get()) {
         	RobotConfig.robotStartPosition = 'R';
         }
+        //checks if provided fms data, if so starts the auto choosing class
         if(RobotConfig.fieldPositions.length()!=0) {    
         auto.start();
         }
@@ -211,7 +217,7 @@ public class Robot extends TimedRobot {
 	public void autonomousPeriodic() {
 		//Tries to get the field positions from the fms 5 times then runs a normal drive forward auto
 		if(fmsDataAttempts<=5) {
-			//RobotConfig.fieldPositions = DriverStation.getInstance().getGameSpecificMessage();
+			RobotConfig.fieldPositions = DriverStation.getInstance().getGameSpecificMessage();
 			if(RobotConfig.fieldPositions.length()!=0) {
 				auto.start();
 			}
@@ -231,7 +237,6 @@ public class Robot extends TimedRobot {
 		RobotMap.brake.set(RobotMap.setBrake);
 		RobotMap.leftIntakePiston.set(RobotMap.closeLeftIntake);
     	RobotMap.rightIntakePiston.set(RobotMap.closeRightIntake);
-
 
 
 		// This makes sure that the autonomous stops running when

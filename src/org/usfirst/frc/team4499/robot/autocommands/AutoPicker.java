@@ -31,6 +31,7 @@ public class AutoPicker extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	//Chooses correct auto based on digikey input and fms data, if an auto is chosen breaks the methods flow
     	if(RobotConfig.fieldPositions==null) {
     		System.out.println("NUll");
     	}
@@ -93,26 +94,6 @@ public class AutoPicker extends Command {
     		driveForward.start();
     		return;  		
     	}
-    /*	else if(fieldPos.isEmpty()) {
-    		doNothing.start();	
-    	return;
-    	}
-    	for(int i = 0; i<fieldPos.length()-1;i++) {
-    		if(fieldPos.charAt(i)!='R'||fieldPos.charAt(i)!='L') {
-    			doNothing.start();
-    			return;
-    		}
-    	}
-    	if(fieldPos.charAt(0)==RobotConfig.robotStartPosition) {
-    		basicAuto.start();
-    		return;
-    	}
-    	else {
-    		driveForward.start();
-    	}
-    	
-    	fieldPos = RobotConfig.fieldPositions;
-    	*/
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -122,7 +103,7 @@ public class AutoPicker extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return true;
+        return false;
     }
 
     // Called once after isFinished returns true

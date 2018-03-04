@@ -13,18 +13,25 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class CenterChooserAuto extends CommandGroup {
 
     public CenterChooserAuto(char dir) {
-    	
+    	//if the switch is on the right, drives forward and drops, if it is on the left, drives forward slightly turns to line up, and then 
+    	//drives forward to meet the switch
     	if(dir=='R'){
-    		addSequential(new motionMagicDriveForward(102, RobotMap.navx.getAngle(), 1100, 1500));
+    		addSequential(new motionMagicDriveForward(101, RobotMap.navx.getAngle(), 1100, 1500));
     	    addSequential(new OutTakeCrate(0.4,0.4));
     	}
     	else if(dir=='L'){
     		addSequential(new motionMagicDriveForward(3, RobotMap.navx.getAngle(), 1100, 1500));
     		addSequential(new Wait(0.1));
-    		addSequential(new navxTurn(37,0.75f));
-    		 addSequential(new Wait(0.1));
-    		addSequential(new motionMagicDriveForward(113, RobotMap.navx.getAngle(), 1100, 1500));
-            addSequential(new OutTakeCrate(0.2,0.5));
+    		addSequential(new navxTurn(38,0.75f));
+    		addSequential(new Wait(0.1));
+    		addSequential(new motionMagicDriveForward(119, RobotMap.navx.getAngle(), 1100, 1500));
+    		addSequential(new navxTurn(-38,0.75f));
+    		addSequential(new Wait(0.1));
+    		addSequential(new motionMagicDriveForward(9, RobotMap.navx.getAngle(), 1100, 1500));
+            addSequential(new OutTakeCrate(0.1,0.8));
+            
+            
+            
     	}
        
 

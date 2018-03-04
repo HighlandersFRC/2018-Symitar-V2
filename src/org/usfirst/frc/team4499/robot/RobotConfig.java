@@ -19,12 +19,12 @@ public class RobotConfig {
 	public static int driveMotorPeakCurrent = 60;//50;			//Amps
 	public static int driveMotorPeakCurrentDuration = 100;
 	//temporarily taken out until research can be done
-	/*public static int armMotorContinuousCurrent = 8;     //Amps
-	public static int armMotorPeakCurrent = 12;			//Amps
+	public static int armMotorContinuousCurrent = 16;     //Amps
+	public static int armMotorPeakCurrent = 23;			//Amps
 	public static int armMotorPeakCurrentDuration = 100;//Milliseconds
-	public static int grabberMotorContinuousCurrent = 6;     //Amps
-	public static int grabberMotorPeakCurrent = 10;			//Amps
-	public static int grabberMotorPeakCurrentDuration = 100;*/
+//	public static int grabberMotorContinuousCurrent = 6;     //Amps
+//	public static int grabberMotorPeakCurrent = 10;			//Amps
+//	public static int grabberMotorPeakCurrentDuration = 100;
 	public static boolean enableDriveCurrentLimit = true;
 	//public static boolean enableArmCurrentLimit = true;
 	//public static boolean enableGrabberCurrentLimit = true;
@@ -34,7 +34,7 @@ public class RobotConfig {
 	public static String fieldPositions="";
 	public static double driverDeadZone = 0.15;
 	
-	public static int timeOut = 4; 						//Milliseconds
+	public static int timeOut = 4;//Milliseconds
 	
 	//This will run when this object is created, and will handle configuring all sensors 
 	public RobotConfig() {
@@ -42,6 +42,7 @@ public class RobotConfig {
 		
 	}
 	public void setStartingConfig() {
+		//Defines robot start position based on digikey inputs
 	   if(OI.switchOne.get()) {
 	        RobotConfig.robotStartPosition = 'L';
 	   }
@@ -80,18 +81,18 @@ public class RobotConfig {
     		talon.enableCurrentLimit(RobotConfig.enableDriveCurrentLimit);
     	}
     	//temporarliy taken out until further research can be done
-    	/*for(TalonSRX talon:RobotMap.armMotors) {
-    		talon.configContinuousCurrentLimit(RobotConfig.armMotorContinuousCurrent, RobotConfig.timeOut);
-    		talon.configPeakCurrentLimit(RobotConfig.armMotorPeakCurrent, RobotConfig.timeOut);
-    		talon.configPeakCurrentDuration(RobotConfig.armMotorPeakCurrentDuration, RobotConfig.timeOut);
-    		talon.enableCurrentLimit(RobotConfig.enableArmCurrentLimit);
-    	}
-    	for(TalonSRX talon:RobotMap.armMotors) {
-    		talon.configContinuousCurrentLimit(RobotConfig.armMotorContinuousCurrent, RobotConfig.timeOut);
-    		talon.configPeakCurrentLimit(RobotConfig.armMotorPeakCurrent, RobotConfig.timeOut);
-    		talon.configPeakCurrentDuration(RobotConfig.armMotorPeakCurrentDuration, RobotConfig.timeOut);
-    		talon.enableCurrentLimit(RobotConfig.enableArmCurrentLimit);
-    	}*/
+//      for(TalonSRX talon:RobotMap.armMotors) {
+//    		talon.configContinuousCurrentLimit(RobotConfig.armMotorContinuousCurrent, RobotConfig.timeOut);
+//    		talon.configPeakCurrentLimit(RobotConfig.armMotorPeakCurrent, RobotConfig.timeOut);
+//    		talon.configPeakCurrentDuration(RobotConfig.armMotorPeakCurrentDuration, RobotConfig.timeOut);
+//    		talon.enableCurrentLimit(RobotConfig.enableArmCurrentLimit);
+//    	}
+//    	for(TalonSRX talon:RobotMap.armMotors) {
+//    		talon.configContinuousCurrentLimit(RobotConfig.armMotorContinuousCurrent, RobotConfig.timeOut);
+//    		talon.configPeakCurrentLimit(RobotConfig.armMotorPeakCurrent, RobotConfig.timeOut);
+//    		talon.configPeakCurrentDuration(RobotConfig.armMotorPeakCurrentDuration, RobotConfig.timeOut);
+//    		talon.enableCurrentLimit(RobotConfig.enableArmCurrentLimit);
+//    	}
     	RobotMap.leftDriveLead.configVoltageCompSaturation(RobotConfig.voltageControlMax, 10);
     	RobotMap.leftDriveLead.enableVoltageCompensation(false); 
     	RobotMap.leftDriveLead.configVoltageMeasurementFilter(32, 10);
