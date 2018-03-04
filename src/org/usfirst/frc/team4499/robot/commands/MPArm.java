@@ -25,7 +25,8 @@ public class MPArm extends Command {
 	private double startTime;
 	private double minPower=0.240;
 	private double cosMultiplier = 0.162;
-    public MPArm(double angle, int tolerance) {
+	private SetLEDColor setLEDColor;
+	public MPArm(double angle, int tolerance) {
     	endpoint= angle;
     	angleTolerance= tolerance;
     	

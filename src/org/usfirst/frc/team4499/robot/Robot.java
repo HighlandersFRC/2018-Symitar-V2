@@ -37,7 +37,7 @@ import org.usfirst.frc.team4499.robot.commands.TeleopDriving;
 import org.usfirst.frc.team4499.robot.commands.TeleopGrabber;
 import org.usfirst.frc.team4499.robot.subsystems.GrabberSubSystem;
 import org.usfirst.frc.team4499.robot.commands.MPArm;
-
+import org.usfirst.frc.team4499.robot.commands.SetLEDColor;
 
 import com.ctre.phoenix.CANifier;
 import com.ctre.phoenix.motorcontrol.ControlMode;
@@ -62,6 +62,7 @@ public class Robot extends TimedRobot {
 	public navxTurn turn;
 	public DoNothing nothing;
 	public AutoPicker auto;
+	public SetLEDColor setColor;
 	public static GrabberSubSystem grabberSub = new GrabberSubSystem();
 	public static double angleDif;
 	public static double startingAngle;
@@ -85,9 +86,13 @@ public class Robot extends TimedRobot {
 		m_oi = new OI();
 		m_chooser = new SendableChooser<>();
 		fmsDataAttempts=0;
-		RobotMap.canifier.setLEDOutput(0,CANifier.LEDChannel.LEDChannelA);
-		RobotMap.canifier.setLEDOutput(1,CANifier.LEDChannel.LEDChannelB);
-		RobotMap.canifier.setLEDOutput(0,CANifier.LEDChannel.LEDChannelC);
+		setColor = new SetLEDColor(1,0.125,0);
+		setColor.start();
+
+		
+//		RobotMap.canifier.setLEDOutput(0,CANifier.LEDChannel.LEDChannelA);
+//		RobotMap.canifier.setLEDOutput(1,CANifier.LEDChannel.LEDChannelB);
+//		RobotMap.canifier.setLEDOutput(0,CANifier.LEDChannel.LEDChannelC);
 		RobotMap.brake.set(RobotMap.setBrake);
 		RobotMap.leftIntakePiston.set(RobotMap.closeLeftIntake);
     	RobotMap.rightIntakePiston.set(RobotMap.closeRightIntake);
@@ -253,7 +258,6 @@ public class Robot extends TimedRobot {
 	 */
 	@Override
 	public void teleopPeriodic() {
-		
 		
 	
 		Scheduler.getInstance().run();
