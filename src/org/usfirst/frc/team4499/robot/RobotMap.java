@@ -98,7 +98,7 @@ public class RobotMap {
 	public static TalonSRX grabberMotors[] = {
 			RobotMap.intakeLeft,
 			RobotMap.intakeRight};
-	}
+	
 			
 	
 	public static CANifier canifier = new CANifier(0);
