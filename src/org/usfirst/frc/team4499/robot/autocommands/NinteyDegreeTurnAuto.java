@@ -12,14 +12,14 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class NinteyDegreeTurnAuto extends CommandGroup {
 
     public NinteyDegreeTurnAuto(char Dir) {
-    	addSequential(new motionMagicDriveForward(120, RobotMap.navx.getAngle(), 1100, 1500));
+    /*	addSequential(new motionMagicDriveForward(120, RobotMap.navx.getAngle(), 1100, 1500));
     	if(Dir =='L') {
         addSequential(new navxTurn(90.0 + Robot.angleDif,0.75f));
     	}
     	if(Dir == 'R') {
     	addSequential(new navxTurn(-90.0 - Robot.angleDif,0.75f));
     	}
-    	 addSequential(new OutTakeCrate(0.4,0.4));
+    	 addSequential(new OutTakeCrate(0.4,0.4));*/
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());

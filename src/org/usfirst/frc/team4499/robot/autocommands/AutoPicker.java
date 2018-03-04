@@ -7,6 +7,7 @@ import javax.naming.InsufficientResourcesException;
 
 import org.usfirst.frc.team4499.robot.OI;
 import org.usfirst.frc.team4499.robot.RobotConfig;
+import org.usfirst.frc.team4499.robot.commands.Wait;
 
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -14,64 +15,91 @@ import edu.wpi.first.wpilibj.command.Command;
  *
  */
 public class AutoPicker extends Command {
-	private String fieldPos;
+	private int autoAttempts = 0;
 	DoNothing doNothing= new DoNothing();
 	BasicAuto basicAuto = new BasicAuto();
     DriveForward driveForward = new DriveForward();
-   
-    NinteyDegreeTurnAuto ninteyDegreeTurnAuto = new NinteyDegreeTurnAuto('L');
+    Wait wait = new Wait(0.1);
+    NinteyDegreeTurnAuto ninteyDegreeTurnAuto;
     CenterChooserAuto centerChooser;
 
     public AutoPicker() {
-    	
+    	//This class is used to take values from the fms, and from the Digikey switch box, and to  chose autos based of that
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	if(RobotConfig.fieldPositions==null) {
+    		System.out.println("NUll");
+    	}
+    	
+    	for(int i = 0; i<RobotConfig.fieldPositions.length()-1;i++) {
+    		if(!(RobotConfig.fieldPositions.charAt(i)=='C'||RobotConfig.fieldPositions.charAt(i)=='L'||RobotConfig.fieldPositions.charAt(i)=='R')) {
+    			//driveForward.start
+    			System.out.println("driveforward");
+    			return;
+    		}
+    	}
     
-    	 if(OI.dialOne.get()) {
-    		driveForward.start();
+    	if(OI.dialOne.get()) {
+    		//driveForward.start();
+    		 System.out.println("driveForward");
     		return;
     	}
     	else if(OI.dialTwo.get()) {
     		if(RobotConfig.fieldPositions.charAt(0)== RobotConfig.robotStartPosition) {
-    			basicAuto.start();
+    			//basicAuto.start();
+    			System.out.println("basicAuto");
     		}
     		else {
-    			System.out.println("doingNothing");
-    			driveForward.start();
+    			System.out.println("drivingForward");
+    			//driveForward.start();
     		}
     		return;  		
     	}
     	else if(OI.dialThree.get()){
     		if(RobotConfig.fieldPositions.charAt(0)=='L'&&RobotConfig.robotStartPosition=='L'){
-    			ninteyDegreeTurnAuto.start();
+    			//ninteyDegreeTurnAuto = new NinteyDegreeTurnAuto('L');
+    			//ninteyDegreeTurnAuto.start();
+    			System.out.println("ninteyDegreeTurnAuto L");
+
+    			return;
     		}
     		else if(RobotConfig.fieldPositions.charAt(0)=='R'&&RobotConfig.robotStartPosition=='R'){
-    			ninteyDegreeTurnAuto.start();
+    			//ninteyDegreeTurnAuto = new NinteyDegreeTurnAuto('R');
+    			//ninteyDegreeTurnAuto.start();
+    			System.out.println("ninteyDegreeTurnAuto R");
+    			return;
     		}
     		else{    			
-    			System.out.println("doingNothing");
-
-    			driveForward.start();
+    			System.out.println("drivingForward");
+    			//driveForward.start();
+    			return;
     		}
     	}
     	else if(OI.dialFour.get()){
-    		if(RobotConfig.robotStartPosition =='C'){
+    		
     			if(RobotConfig.fieldPositions.charAt(0)=='L'){
-    				centerChooser = new CenterChooserAuto('L');
-                 	centerChooser.start();
+    				//centerChooser = new CenterChooserAuto('L');
+    				System.out.println("centerChooser L");
+                 	//centerChooser.start();
     			}
     			else if(RobotConfig.fieldPositions.charAt(0)=='R'){
-    				centerChooser = new CenterChooserAuto('R');
-    				centerChooser.start();
+    			//	centerChooser = new CenterChooserAuto('R');
+    			//	centerChooser.start();
+    				System.out.println("centerChooser R");
     			}
     			else{
-    				driveForward.start();
+    				//driveForward.start();
+    				System.out.println("DriveForward");
     			}
-    		}
+    		
+    	}
+    	else {
+    		//driveForward.start
+    		System.out.println("stratingDriveForward");
     	}
     /*	else if(fieldPos.isEmpty()) {
     		doNothing.start();	
@@ -102,7 +130,7 @@ public class AutoPicker extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return true;
     }
 
     // Called once after isFinished returns true

@@ -30,7 +30,7 @@ public class TeleopGrabber extends Command {
 GrabCrate GrabCrate = new GrabCrate();
 ShootCrate shootCrate = new ShootCrate();
 OutTakeCrate outTakeCrate = new OutTakeCrate(0.4,0.4);
-;
+
     public TeleopGrabber() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);

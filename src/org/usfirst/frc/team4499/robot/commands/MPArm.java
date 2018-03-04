@@ -23,6 +23,8 @@ public class MPArm extends Command {
 	private int angleTolerance;
 	private double crateMultiplier;
 	private double startTime;
+	private double minPower=0.240;
+	private double cosMultiplier = 0.162;
     public MPArm(double angle, int tolerance) {
     	endpoint= angle;
     	angleTolerance= tolerance;
@@ -57,19 +59,18 @@ public class MPArm extends Command {
     	crateMultiplier= 1.30;
     }
     if(startingAngle<endpoint) {
-    if(currentAngle + angleTolerance<endpoint) {
-    	RobotMap.armMaster.set(ControlMode.PercentOutput, -0.240  + crateMultiplier*(-0.162*Math.cos((-currentAngle*Math.PI)/180))); 	
-    }
-    else {
-
-    	run++;
-    	RobotMap.brake.set(RobotMap.setBrake);
-    	RobotMap.armMaster.set(ControlMode.PercentOutput, 0);
-    }
+    	if(currentAngle + angleTolerance<endpoint) {
+    		RobotMap.armMaster.set(ControlMode.PercentOutput, -minPower  + crateMultiplier*(-cosMultiplier*Math.cos((-currentAngle*Math.PI)/180))); 	
+    	}
+    	else {
+    		run++;
+    		RobotMap.brake.set(RobotMap.setBrake);
+    		RobotMap.armMaster.set(ControlMode.PercentOutput, 0);
+    	}
     }
     else if(startingAngle>endpoint) {
     	if(currentAngle-angleTolerance>endpoint) {
-        	RobotMap.armMaster.set(ControlMode.PercentOutput, +0.240  +crateMultiplier*(-0.162*Math.cos((-currentAngle*Math.PI)/180)));
+        	RobotMap.armMaster.set(ControlMode.PercentOutput, +minPower  +crateMultiplier*(-cosMultiplier*Math.cos((-currentAngle*Math.PI)/180)));
         }
         else {
          	run++;

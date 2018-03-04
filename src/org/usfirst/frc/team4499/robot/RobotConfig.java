@@ -15,10 +15,19 @@ public class RobotConfig {
 	public static double voltageControlMax = 11.0;
 	
 	
-	public static int driveMotorContinuousCurrent = 40;     //Amps
-	public static int driveMotorPeakCurrent = 60;			//Amps
-	public static int driveMotorPeakCurrentDuration = 100;  //Milliseconds
+	public static int driveMotorContinuousCurrent = 40;//25;     //Amps
+	public static int driveMotorPeakCurrent = 60;//50;			//Amps
+	public static int driveMotorPeakCurrentDuration = 100;
+	//temporarily taken out until research can be done
+	/*public static int armMotorContinuousCurrent = 8;     //Amps
+	public static int armMotorPeakCurrent = 12;			//Amps
+	public static int armMotorPeakCurrentDuration = 100;//Milliseconds
+	public static int grabberMotorContinuousCurrent = 6;     //Amps
+	public static int grabberMotorPeakCurrent = 10;			//Amps
+	public static int grabberMotorPeakCurrentDuration = 100;*/
 	public static boolean enableDriveCurrentLimit = true;
+	//public static boolean enableArmCurrentLimit = true;
+	//public static boolean enableGrabberCurrentLimit = true;
 	public static int armMaxEncoderTicks = -2014;
 	public static int armStartEncoderTicks = -722;
 	public static char robotStartPosition; //U = unnasigned
@@ -33,19 +42,18 @@ public class RobotConfig {
 		
 	}
 	public void setStartingConfig() {
-		 if(OI.switchOne.get()) {
-	        	RobotConfig.robotStartPosition = 'L';
-	        }
-	        else if(OI.switchTwo.get()) {
-	        	RobotConfig.robotStartPosition = 'C';
-	        }
-	        else if(OI.switchThree.get()) {
-	        	RobotConfig.robotStartPosition = 'R';
-	        }
-	        else {
-	        	RobotConfig.robotStartPosition = 'U';
-	        }
-		System.out.println("Initializing Talons");
+	   if(OI.switchOne.get()) {
+	        RobotConfig.robotStartPosition = 'L';
+	   }
+	   else if(OI.switchTwo.get()) {
+	        RobotConfig.robotStartPosition = 'C';
+	   }
+	   else if(OI.switchThree.get()) {
+	        RobotConfig.robotStartPosition = 'R';
+	   }
+	   else {
+	        RobotConfig.robotStartPosition = 'U';
+	   }
 		//Setup follower can talons
     	RobotMap.rightDriveFollowerOne.set(ControlMode.Follower, RobotMap.rightDriveLeadID);
     	RobotMap.rightDriveFollowerTwo.set(ControlMode.Follower, RobotMap.rightDriveLeadID);
@@ -71,6 +79,19 @@ public class RobotConfig {
     		talon.configPeakCurrentDuration(RobotConfig.driveMotorPeakCurrentDuration, RobotConfig.timeOut);
     		talon.enableCurrentLimit(RobotConfig.enableDriveCurrentLimit);
     	}
+    	//temporarliy taken out until further research can be done
+    	/*for(TalonSRX talon:RobotMap.armMotors) {
+    		talon.configContinuousCurrentLimit(RobotConfig.armMotorContinuousCurrent, RobotConfig.timeOut);
+    		talon.configPeakCurrentLimit(RobotConfig.armMotorPeakCurrent, RobotConfig.timeOut);
+    		talon.configPeakCurrentDuration(RobotConfig.armMotorPeakCurrentDuration, RobotConfig.timeOut);
+    		talon.enableCurrentLimit(RobotConfig.enableArmCurrentLimit);
+    	}
+    	for(TalonSRX talon:RobotMap.armMotors) {
+    		talon.configContinuousCurrentLimit(RobotConfig.armMotorContinuousCurrent, RobotConfig.timeOut);
+    		talon.configPeakCurrentLimit(RobotConfig.armMotorPeakCurrent, RobotConfig.timeOut);
+    		talon.configPeakCurrentDuration(RobotConfig.armMotorPeakCurrentDuration, RobotConfig.timeOut);
+    		talon.enableCurrentLimit(RobotConfig.enableArmCurrentLimit);
+    	}*/
     	RobotMap.leftDriveLead.configVoltageCompSaturation(RobotConfig.voltageControlMax, 10);
     	RobotMap.leftDriveLead.enableVoltageCompensation(false); 
     	RobotMap.leftDriveLead.configVoltageMeasurementFilter(32, 10);

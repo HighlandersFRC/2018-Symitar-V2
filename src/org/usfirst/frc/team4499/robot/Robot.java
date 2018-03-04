@@ -25,6 +25,8 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
+import org.opencv.core.Mat;
+import org.opencv.imgproc.Imgproc;
 import org.usfirst.frc.team4499.robot.autocommands.AutoPicker;
 import org.usfirst.frc.team4499.robot.autocommands.BasicAuto;
 import org.usfirst.frc.team4499.robot.autocommands.DoNothing;
@@ -63,6 +65,7 @@ public class Robot extends TimedRobot {
 	public static GrabberSubSystem grabberSub = new GrabberSubSystem();
 	public static double angleDif;
 	public static double startingAngle;
+	public static double fmsDataAttempts;
 	
 
 	/**
@@ -77,11 +80,11 @@ public class Robot extends TimedRobot {
 		arm = new TeleopArm();
 		driveForward = new DriveForward();
 		basicAuto = new BasicAuto();
-		turn = new navxTurn(90, 0.75f);
 		nothing = new DoNothing();
 		auto = new AutoPicker();
 		m_oi = new OI();
 		m_chooser = new SendableChooser<>();
+		fmsDataAttempts=0;
 		RobotMap.canifier.setLEDOutput(0,CANifier.LEDChannel.LEDChannelA);
 		RobotMap.canifier.setLEDOutput(1,CANifier.LEDChannel.LEDChannelB);
 		RobotMap.canifier.setLEDOutput(0,CANifier.LEDChannel.LEDChannelC);
@@ -90,34 +93,40 @@ public class Robot extends TimedRobot {
     	RobotMap.rightIntakePiston.set(RobotMap.closeRightIntake);
 		UsbCamera camera1 = CameraServer.getInstance().startAutomaticCapture(0);
 	    UsbCamera camera2 = CameraServer.getInstance().startAutomaticCapture(1);
-		//UsbCamera camera2 = CameraServer.getInstance().addCamera("Cam0",80);
+			//UsbCamera camera2 = CameraServer.getInstance().addCamera("Cam0",80);
 		
     	
-        //UsbCamera camera1 = new UsbCamera("USBCam 0",0);
-    	//MjpegServer mjpegserver1 = new MjpegServer("serv_USBCam0",1181);
-    	//mjpegserver1.setSource(camera1);
+//        UsbCamera camera1 = new UsbCamera("USBCam 0",0);
+//    	MjpegServer mjpegserver1 = new MjpegServer("serv_USBCam0",1180);
+//   	mjpegserver1.setSource(camera1);
     	
-    	//UsbCamera camera2 = new UsbCamera("USBCam 1",1);
-    	//MjpegServer mjpegserver2 = new MjpegServer("serv_USBCam1",1182);
-    	//mjpegserver2.setSource(camera2);
-    	
-    	
-		
-		
-    	
-    	
-    	//CvSink cvsink = new CvSink("CvSink_Cam0");
-    	//cvsink.setSource(camera1);
-    	//CvSource outputstream = new CvSource("blur",PixelFormat.kMJPEG,320,240,20);
-    	//MjpegServer mjpegserver2 = new MjpegServer("serv_Blur",1182);
-    	//mjpegserver2.setSource(outputstream);
-    	
-    
+ //   	UsbCamera camera2 = new UsbCamera("USBCam 1",1);
+ //   	MjpegServer mjpegserver2 = new MjpegServer("serv_USBCam1",1182);
+ //   	mjpegserver2.setSource(camera2);
     	
     	
     	
+ 
+//    	   new Thread(() -> {
+//             // while (!Thread.interrupted())
+//             // {
+//            	  UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
+//    		   	camera.setResolution(320, 240);    
+//    		   
+//    		   	UsbCamera camera2 = CameraServer.getInstance().startAutomaticCapture(1);
+//               	camera2.setResolution(320, 240); 
+//              //}
+//    	   }).start();
 
-		
+    	
+    	
+//    	//CvSink cvsink = new CvSink("CvSink_Cam0");
+//    	//cvsink.setSource(camera1);
+//    	//CvSource outputstream = new CvSource("blur",PixelFormat.kMJPEG,320,240,15);
+//    	//MjpegServer mjpegserver2 = new MjpegServer("serv_Blur",1182);
+//    	//mjpegserver2.setSource(outputstream);
+//    	
+    	
 	    //TODO change this to drive forward
 		m_chooser.addDefault("Default Auto", nothing);
 		// chooser.addObject("My Auto", new MyAutoCommand());
@@ -153,6 +162,7 @@ public class Robot extends TimedRobot {
 	 */
 	@Override
 	public void autonomousInit() {
+		fmsDataAttempts = 0;
 		RobotMap.brake.set(RobotMap.setBrake);
 		RobotMap.leftIntakePiston.set(RobotMap.closeLeftIntake);
     	RobotMap.rightIntakePiston.set(RobotMap.closeRightIntake);
@@ -161,7 +171,7 @@ public class Robot extends TimedRobot {
         
 		m_autonomousCommand = m_chooser.getSelected();
         config.autoConfig();
-
+        //making sure that you have a starting position and that the field position is good
         if(OI.switchOne.get()) {
         	RobotConfig.robotStartPosition = 'L';
         }
@@ -171,7 +181,14 @@ public class Robot extends TimedRobot {
         else if(OI.switchThree.get()) {
         	RobotConfig.robotStartPosition = 'R';
         }
+        if(RobotConfig.fieldPositions.length()!=0) {
+       
         auto.start();
+        }
+        else {
+        System.out.println("empty");
+        this.fmsDataAttempts = 1;
+        }
 		/*
 		 * String autoSelected = SmartDashboard.getString("Auto Selector",
 		 * "Default"); switch(autoSelected) { case "My Auto": autonomousCommand
@@ -189,9 +206,22 @@ public class Robot extends TimedRobot {
 	 */
 	@Override
 	public void autonomousPeriodic() {
-		System.out.println(RobotConfig.robotStartPosition+ "startposition");
-		System.out.println(RobotConfig.fieldPositions + "field");
-        angleDif=RobotMap.navx.getAngle()-startingAngle;
+		//Tries to get the field positions from the fms 5 times then runs a normal drive forward auto
+		if(fmsDataAttempts<=5) {
+			//RobotConfig.fieldPositions = DriverStation.getInstance().getGameSpecificMessage();
+			if(RobotConfig.fieldPositions.length()!=0) {
+				auto.start();
+			}
+			else {
+				fmsDataAttempts++;
+				
+			}
+			
+			
+		}
+		else {
+		}
+		angleDif=RobotMap.navx.getAngle()-startingAngle;
 		Scheduler.getInstance().run();
 	}
 

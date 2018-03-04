@@ -157,7 +157,6 @@ public class motionMagicDriveForward extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-     
     	 if(Math.abs(RobotMap.leftDriveLead.getMotorOutputPercent() )<=0.075 && Math.abs(RobotMap.rightDriveLead.getMotorOutputPercent()) <= 0.75&& Math.abs(Timer.getFPGATimestamp()-starttime)> 1) {
     		 	return true;
     	 }

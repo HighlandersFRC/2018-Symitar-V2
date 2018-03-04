@@ -85,11 +85,21 @@ public class RobotMap {
 
 	//Array of drive motors to simplify configuration
 	public static TalonSRX driveMotors[] = {
-			  RobotMap.leftDriveLead,
-			  RobotMap.rightDriveLead,
-			  RobotMap.leftDriveFollowerOne,
-			  RobotMap.leftDriveFollowerTwo,
-			  RobotMap.rightDriveFollowerOne,
-			  RobotMap.rightDriveFollowerTwo};
+			RobotMap.leftDriveLead,
+			RobotMap.rightDriveLead,
+			RobotMap.leftDriveFollowerOne,
+			RobotMap.leftDriveFollowerTwo,
+			RobotMap.rightDriveFollowerOne,
+			RobotMap.rightDriveFollowerTwo};
+		
+	public static TalonSRX armMotors[] = {
+			RobotMap.armMaster,
+			RobotMap.armFollower};
+	public static TalonSRX grabberMotors[] = {
+			RobotMap.intakeLeft,
+			RobotMap.intakeRight};
+	}
+			
+	
 	public static CANifier canifier = new CANifier(0);
 }
