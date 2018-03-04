@@ -186,13 +186,11 @@ public class Robot extends TimedRobot {
         else if(OI.switchThree.get()) {
         	RobotConfig.robotStartPosition = 'R';
         }
-        if(RobotConfig.fieldPositions.length()!=0) {
-       
+        if(RobotConfig.fieldPositions.length()!=0) {    
         auto.start();
         }
         else {
-        System.out.println("empty");
-        this.fmsDataAttempts = 1;
+        fmsDataAttempts = 1;
         }
 		/*
 		 * String autoSelected = SmartDashboard.getString("Auto Selector",
@@ -218,13 +216,11 @@ public class Robot extends TimedRobot {
 				auto.start();
 			}
 			else {
-				fmsDataAttempts++;
-				
-			}
-			
-			
+				fmsDataAttempts++;			
+			}			
 		}
 		else {
+			driveForward.start();
 		}
 		angleDif=RobotMap.navx.getAngle()-startingAngle;
 		Scheduler.getInstance().run();

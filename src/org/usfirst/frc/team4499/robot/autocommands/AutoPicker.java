@@ -37,69 +37,61 @@ public class AutoPicker extends Command {
     	
     	for(int i = 0; i<RobotConfig.fieldPositions.length()-1;i++) {
     		if(!(RobotConfig.fieldPositions.charAt(i)=='C'||RobotConfig.fieldPositions.charAt(i)=='L'||RobotConfig.fieldPositions.charAt(i)=='R')) {
-    			//driveForward.start
-    			System.out.println("driveforward");
+    			driveForward.start();
     			return;
     		}
     	}
     
     	if(OI.dialOne.get()) {
-    		//driveForward.start();
-    		 System.out.println("driveForward");
-    		return;
+    		 driveForward.start();
+    		 return;
     	}
     	else if(OI.dialTwo.get()) {
     		if(RobotConfig.fieldPositions.charAt(0)== RobotConfig.robotStartPosition) {
-    			//basicAuto.start();
-    			System.out.println("basicAuto");
+    			basicAuto.start();
+        		return;  		
     		}
     		else {
-    			System.out.println("drivingForward");
-    			//driveForward.start();
+    			driveForward.start();
+        		return;  		
     		}
-    		return;  		
     	}
     	else if(OI.dialThree.get()){
     		if(RobotConfig.fieldPositions.charAt(0)=='L'&&RobotConfig.robotStartPosition=='L'){
-    			//ninteyDegreeTurnAuto = new NinteyDegreeTurnAuto('L');
-    			//ninteyDegreeTurnAuto.start();
-    			System.out.println("ninteyDegreeTurnAuto L");
-
+    			ninteyDegreeTurnAuto = new NinteyDegreeTurnAuto('L');
+    			ninteyDegreeTurnAuto.start();
     			return;
     		}
     		else if(RobotConfig.fieldPositions.charAt(0)=='R'&&RobotConfig.robotStartPosition=='R'){
-    			//ninteyDegreeTurnAuto = new NinteyDegreeTurnAuto('R');
-    			//ninteyDegreeTurnAuto.start();
-    			System.out.println("ninteyDegreeTurnAuto R");
+    			ninteyDegreeTurnAuto = new NinteyDegreeTurnAuto('R');
+    			ninteyDegreeTurnAuto.start();
     			return;
     		}
     		else{    			
-    			System.out.println("drivingForward");
-    			//driveForward.start();
+    			driveForward.start();
     			return;
     		}
     	}
     	else if(OI.dialFour.get()){
     		
     			if(RobotConfig.fieldPositions.charAt(0)=='L'){
-    				//centerChooser = new CenterChooserAuto('L');
-    				System.out.println("centerChooser L");
-                 	//centerChooser.start();
+    				centerChooser = new CenterChooserAuto('L');
+                 	centerChooser.start();
+            		return;  		
     			}
     			else if(RobotConfig.fieldPositions.charAt(0)=='R'){
-    			//	centerChooser = new CenterChooserAuto('R');
-    			//	centerChooser.start();
-    				System.out.println("centerChooser R");
+    				centerChooser = new CenterChooserAuto('R');
+    				centerChooser.start();
+    	    		return;  		
     			}
     			else{
-    				//driveForward.start();
-    				System.out.println("DriveForward");
+    				driveForward.start();
     			}
     		
     	}
     	else {
-    		//driveForward.start
-    		System.out.println("stratingDriveForward");
+    		driveForward.start();
+    		return;  		
     	}
     /*	else if(fieldPos.isEmpty()) {
     		doNothing.start();	
