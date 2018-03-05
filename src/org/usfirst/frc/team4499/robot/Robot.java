@@ -109,7 +109,6 @@ public class Robot extends TimedRobot {
  //   	MjpegServer mjpegserver2 = new MjpegServer("serv_USBCam1",1182);
  //   	mjpegserver2.setSource(camera2);
     	
-     CameraServer.getInstance().startAutomaticCapture();
     
     	
     	
@@ -148,13 +147,14 @@ public class Robot extends TimedRobot {
 	 */
 	@Override
 	public void disabledInit() {
+	    CameraServer.getInstance().startAutomaticCapture();
+
 
 	}
 
 	@Override
 	public void disabledPeriodic() {
-    	System.out.println(RobotMap.navx.getAngle() + "navx");
-    	System.out.println(RobotMap.navx.isConnected());
+    	
 
 		Scheduler.getInstance().run();
 	}

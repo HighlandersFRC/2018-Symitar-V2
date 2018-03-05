@@ -11,7 +11,7 @@ public class DriveForward extends CommandGroup {
 
     public DriveForward() {
     	//basic drive forward to make sure our team gets the rp
-    	addSequential(new motionMagicDriveForward(101, RobotMap.navx.getAngle(), 1100, 1500));
+    	addSequential(new motionMagicDriveForward(101, RobotMap.navx.getAngle(), 1100, 1500,1,1));
 
         // Add Commands here:
         // e.g. addSequential(new Command1());

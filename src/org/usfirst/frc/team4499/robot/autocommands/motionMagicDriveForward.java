@@ -47,10 +47,14 @@ public class motionMagicDriveForward extends Command {
 	private double pGainLeft;
 	private double pGainRight;
 	private double endpoint;
+	private int leftReverse;
+	private int rightReverse;
+	
 
 	
-    public motionMagicDriveForward(double distance, double angle, double cruiseVelocity, int acceleration) {
-   
+    public motionMagicDriveForward(double distance, double angle, double cruiseVelocity, int acceleration, int leftRev, int rightRev) {
+    leftReverse = leftRev;
+    rightReverse = rightRev;
     cruiseVelocityLeft = cruiseVelocity;
     cruiseVelocityRight = cruiseVelocity;
     initCruiseVelocityLeft = cruiseVelocityLeft;
@@ -89,13 +93,18 @@ public class motionMagicDriveForward extends Command {
 	angleorientation = new PID(0, 0, 0);
     angleorientation.setContinuous(true);
     //comment this line to diable the navx
- 	angleorientation.setPID(10.0, 0.8, 0);
+    if(RobotMap.navx.getAngle()==0) {
+     	angleorientation.setPID(0, 0, 0);
+
+    }
+    else{
+    	angleorientation.setPID(10.0, 0.8, 0);
+    }
   	angleorientation.setSetPoint(RobotMap.navx.getAngle());
   	angleorientation.setMaxOutput(1500.0);
 	angleorientation.setMinOutput(-1500.0);
-    
-    RobotMap.leftDriveLead.set(com.ctre.phoenix.motorcontrol.ControlMode.MotionMagic,this.motionMagicEndPoint);		
-	RobotMap.rightDriveLead.set(com.ctre.phoenix.motorcontrol.ControlMode.MotionMagic,this.motionMagicEndPoint);	
+    RobotMap.leftDriveLead.set(com.ctre.phoenix.motorcontrol.ControlMode.MotionMagic,leftReverse *this.motionMagicEndPoint);		
+	RobotMap.rightDriveLead.set(com.ctre.phoenix.motorcontrol.ControlMode.MotionMagic,rightReverse *this.motionMagicEndPoint);	
 
 	
 	
