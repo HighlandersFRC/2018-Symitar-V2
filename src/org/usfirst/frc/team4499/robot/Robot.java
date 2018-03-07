@@ -88,7 +88,7 @@ public class Robot extends TimedRobot {
 		fmsDataAttempts=0;
 		setColor = new SetLEDColor(1,0.125,0);
 		setColor.start();
-
+		
 		
 //		RobotMap.canifier.setLEDOutput(0,CANifier.LEDChannel.LEDChannelA);
 //		RobotMap.canifier.setLEDOutput(1,CANifier.LEDChannel.LEDChannelB);
@@ -96,8 +96,8 @@ public class Robot extends TimedRobot {
 		RobotMap.brake.set(RobotMap.setBrake);
 		RobotMap.leftIntakePiston.set(RobotMap.closeLeftIntake);
     	RobotMap.rightIntakePiston.set(RobotMap.closeRightIntake);
-		//UsbCamera camera1 = CameraServer.getInstance().startAutomaticCapture(0);
-	    //UsbCamera camera2 = CameraServer.getInstance().startAutomaticCapture(1);
+		UsbCamera camera1 = CameraServer.getInstance().startAutomaticCapture(0);
+	    UsbCamera camera2 = CameraServer.getInstance().startAutomaticCapture(1);
 			//UsbCamera camera2 = CameraServer.getInstance().addCamera("Cam0",80);
 		
     	
@@ -147,7 +147,6 @@ public class Robot extends TimedRobot {
 	 */
 	@Override
 	public void disabledInit() {
-	    CameraServer.getInstance().startAutomaticCapture();
 
 
 	}

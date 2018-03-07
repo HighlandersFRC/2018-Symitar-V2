@@ -21,7 +21,6 @@ public class CenterChooserAuto extends CommandGroup {
     	}
     	else if(dir=='L'){
     		addSequential(new motionMagicDriveForward(3, RobotMap.navx.getAngle(), 1100, 1500,1,1));
-    		addSequential(new Wait(0.1));
     		if(RobotMap.navx.getAngle()==0) {
     			
     		}
@@ -38,7 +37,7 @@ public class CenterChooserAuto extends CommandGroup {
     		}
     		addSequential(new Wait(0.1));
     		addSequential(new motionMagicDriveForward(9, RobotMap.navx.getAngle(), 1100, 1500,1,1));
-            addSequential(new OutTakeCrate(0.1,0.8)); 
+            addSequential(new OutTakeCrate(0.4,0.4)); 
     	}
        
 
