@@ -88,7 +88,7 @@ public class Robot extends TimedRobot {
 		fmsDataAttempts=0;
 		setColor = new SetLEDColor(1,0.125,0);
 		setColor.start();
-		
+		System.out.println(RobotMap.navx.getAngle());
 		
 //		RobotMap.canifier.setLEDOutput(0,CANifier.LEDChannel.LEDChannelA);
 //		RobotMap.canifier.setLEDOutput(1,CANifier.LEDChannel.LEDChannelB);
@@ -153,7 +153,7 @@ public class Robot extends TimedRobot {
 
 	@Override
 	public void disabledPeriodic() {
-    	
+    	System.out.println(RobotMap.navx.getAngle());
 
 		Scheduler.getInstance().run();
 	}

@@ -26,19 +26,19 @@ public class TeleopArm extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	if(!mpArm.isRunning()) {
-    		if(OI.armForwardIntake.get()) {
+    		if(OI.armReverseIntake.get()) {
     			mpArm= new MPArm(-5, 0);
     			mpArm.start();
     		}
-    		if(OI.armReverseIntake.get()) {
+    		if(OI.armForwardIntake.get()) {
     			mpArm= new MPArm(182, 0);
     			mpArm.start();
     		}
-    		if(OI.armForwardShoot.get()) {
+    		if(OI.armReverseShoot.get()) {
     			mpArm= new MPArm(70, 10);
     			mpArm.start();
     		}
-    		if(OI.armReverseShoot.get()) {
+    		if(OI.armForwardShoot.get()) {
     			mpArm= new MPArm(110, 10);
     			mpArm.start();
     		}
