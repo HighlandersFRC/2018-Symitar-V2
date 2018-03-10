@@ -24,18 +24,25 @@ public class TeleopDriving extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	if(Math.abs(OI.joyStickOne.getRawAxis(1))>=RobotConfig.driverDeadZone) {
-    		RobotMap.leftDriveLead.set(ControlMode.PercentOutput, OI.joyStickOne.getRawAxis(1));
+    	double leftJoystick = OI.joyStickOne.getRawAxis(1);
+    	double rightJoystick = OI.joyStickOne.getRawAxis(5);
+    	if(Math.abs(OI.joyStickOne.getRawAxis(1))>0) {
+        	double leftPower = Math.pow(Math.abs(leftJoystick),2)*Math.abs(leftJoystick)/leftJoystick;
+        	
+    		RobotMap.leftDriveLead.set(ControlMode.PercentOutput, leftPower);
+    		
     	}
     	else {
     		RobotMap.leftDriveLead.set(ControlMode.PercentOutput, 0);
     	}
-    	if(Math.abs(OI.joyStickOne.getRawAxis(5))>=RobotConfig.driverDeadZone) {
-    	    RobotMap.rightDriveLead.set(ControlMode.PercentOutput, OI.joyStickOne.getRawAxis(5));
+    	if(Math.abs(OI.joyStickOne.getRawAxis(5))>0) {
+    		double rightPower = Math.pow(Math.abs(rightJoystick),2)*Math.abs(rightJoystick)/rightJoystick;
+    	    RobotMap.rightDriveLead.set(ControlMode.PercentOutput, rightPower);
     	}
     	else {
     		RobotMap.rightDriveLead.set(ControlMode.PercentOutput, 0); 
     	}
+    	
     	if(OI.shiftUp.get()) {
     		RobotMap.shifters.set(RobotMap.highGear);
     	}

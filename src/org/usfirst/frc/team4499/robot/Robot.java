@@ -9,6 +9,7 @@ package org.usfirst.frc.team4499.robot;
 
 import edu.wpi.cscore.CvSink;
 
+
 import edu.wpi.cscore.CvSource;
 import edu.wpi.cscore.MjpegServer;
 import edu.wpi.cscore.UsbCamera;
@@ -38,6 +39,7 @@ import org.usfirst.frc.team4499.robot.commands.TeleopGrabber;
 import org.usfirst.frc.team4499.robot.subsystems.GrabberSubSystem;
 import org.usfirst.frc.team4499.robot.commands.MPArm;
 import org.usfirst.frc.team4499.robot.commands.SetLEDColor;
+import org.usfirst.frc.team4499.robot.commands.Wait;
 
 import com.ctre.phoenix.CANifier;
 import com.ctre.phoenix.motorcontrol.ControlMode;
@@ -69,6 +71,7 @@ public class Robot extends TimedRobot {
 	public static double fmsDataAttempts;
 	private int run = 0;
 	
+	
 
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -87,52 +90,19 @@ public class Robot extends TimedRobot {
 		m_oi = new OI();
 		m_chooser = new SendableChooser<>();
 		fmsDataAttempts=0;
-		setColor = new SetLEDColor(1,0.125,0);
-		setColor.start();
-		System.out.println(RobotMap.navx.getAngle());
+		//setColor = new SetLEDColor(1,0.125,0);
+		//setColor.start();
+		//System.out.println(RobotMap.navx.getAngle());
 		
 //		RobotMap.canifier.setLEDOutput(0,CANifier.LEDChannel.LEDChannelA);
 //		RobotMap.canifier.setLEDOutput(1,CANifier.LEDChannel.LEDChannelB);
 //		RobotMap.canifier.setLEDOutput(0,CANifier.LEDChannel.LEDChannelC);
 		RobotMap.brake.set(RobotMap.setBrake);
+		
 		RobotMap.leftIntakePiston.set(RobotMap.closeLeftIntake);
     	RobotMap.rightIntakePiston.set(RobotMap.closeRightIntake);
 		UsbCamera camera1 = CameraServer.getInstance().startAutomaticCapture(0);
-	    UsbCamera camera2 = CameraServer.getInstance().startAutomaticCapture(1);
-			//UsbCamera camera2 = CameraServer.getInstance().addCamera("Cam0",80);
-		
-    	
-//        UsbCamera camera1 = new UsbCamera("USBCam 0",0);
-//    	MjpegServer mjpegserver1 = new MjpegServer("serv_USBCam0",1180);
-//   	mjpegserver1.setSource(camera1);
-    	
- //   	UsbCamera camera2 = new UsbCamera("USBCam 1",1);
- //   	MjpegServer mjpegserver2 = new MjpegServer("serv_USBCam1",1182);
- //   	mjpegserver2.setSource(camera2);
-    	
-    
-    	
-    	
- 
-//    	   new Thread(() -> {
-//             // while (!Thread.interrupted())
-//             // {
-//            	  UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
-//    		   	camera.setResolution(320, 240);    
-//    		   
-//    		   	UsbCamera camera2 = CameraServer.getInstance().startAutomaticCapture(1);
-//               	camera2.setResolution(320, 240); 
-//              //}
-//    	   }).start();
-
-    	
-    	
-//    	//CvSink cvsink = new CvSink("CvSink_Cam0");
-//    	//cvsink.setSource(camera1);
-//    	//CvSource outputstream = new CvSource("blur",PixelFormat.kMJPEG,320,240,15);
-//    	//MjpegServer mjpegserver2 = new MjpegServer("serv_Blur",1182);
-//    	//mjpegserver2.setSource(outputstream);
-//    	
+	   // UsbCamera camera2 = CameraServer.getInstance().startAutomaticCapture(1);
     	
 	    //TODO change this to drive forward
 		m_chooser.addDefault("Default Auto", nothing);
@@ -154,7 +124,8 @@ public class Robot extends TimedRobot {
 
 	@Override
 	public void disabledPeriodic() {
-		
+		Wait wait = new Wait(0.005);
+		wait.start();
 		Scheduler.getInstance().run();
 	}
 

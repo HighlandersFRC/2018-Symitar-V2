@@ -42,6 +42,7 @@ public class TeleopArm extends Command {
     			mpArm= new MPArm(110, 10);
     			mpArm.start();
     		}
+    	
     		if(Math.abs(OI.joyStickTwo.getRawAxis(5))>0.15) {
         		RobotMap.brake.set(RobotMap.releaseBrake);
         		RobotMap.armMaster.set(ControlMode.PercentOutput, 0.20*OI.joyStickTwo.getRawAxis(5));
