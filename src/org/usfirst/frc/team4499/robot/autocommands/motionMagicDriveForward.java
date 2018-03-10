@@ -94,7 +94,7 @@ public class motionMagicDriveForward extends Command {
     angleorientation.setContinuous(true);
     //comment this line to diable the navx
    
-    angleorientation.setPID(10.0, 0.8, 0);
+   // angleorientation.setPID(10.0, 0.8, 0);
     
   	angleorientation.setSetPoint(RobotMap.navx.getAngle());
   	angleorientation.setMaxOutput(1500.0);
