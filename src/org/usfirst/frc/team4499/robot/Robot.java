@@ -67,6 +67,7 @@ public class Robot extends TimedRobot {
 	public static double angleDif;
 	public static double startingAngle;
 	public static double fmsDataAttempts;
+	private int run = 0;
 	
 
 	/**
@@ -153,8 +154,7 @@ public class Robot extends TimedRobot {
 
 	@Override
 	public void disabledPeriodic() {
-    	System.out.println(RobotMap.navx.getAngle());
-
+		
 		Scheduler.getInstance().run();
 	}
 
@@ -227,6 +227,8 @@ public class Robot extends TimedRobot {
 		else {
 			driveForward.start();
 		}
+		
+
 		angleDif=RobotMap.navx.getAngle()-startingAngle;
 		Scheduler.getInstance().run();
 	}
@@ -259,7 +261,6 @@ public class Robot extends TimedRobot {
 	@Override
 	public void teleopPeriodic() {
 		
-	
 		Scheduler.getInstance().run();
 	}
 

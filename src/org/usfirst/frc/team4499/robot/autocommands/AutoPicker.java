@@ -32,9 +32,7 @@ public class AutoPicker extends Command {
     // Called just before this Command runs the first time
     protected void initialize() {
     	//Chooses correct auto based on digikey input and fms data, if an auto is chosen breaks the methods flow
-    	if(RobotConfig.fieldPositions==null) {
-    		System.out.println("NUll");
-    	}
+    	
     	
     	for(int i = 0; i<RobotConfig.fieldPositions.length()-1;i++) {
     		if(!(RobotConfig.fieldPositions.charAt(i)=='C'||RobotConfig.fieldPositions.charAt(i)=='L'||RobotConfig.fieldPositions.charAt(i)=='R')) {
