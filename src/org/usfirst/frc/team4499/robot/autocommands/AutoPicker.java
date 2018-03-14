@@ -57,12 +57,12 @@ public class AutoPicker extends Command {
     	}
     	else if(OI.dialThree.get()){
     		if(RobotConfig.fieldPositions.charAt(0)=='L'&&RobotConfig.robotStartPosition=='L'){
-    			ninteyDegreeTurnAuto = new NinteyDegreeTurnAuto('L');
+    			ninteyDegreeTurnAuto = new NinteyDegreeTurnAuto('L',RobotConfig.robotStartPosition);
     			ninteyDegreeTurnAuto.start();
     			return;
     		}
     		else if(RobotConfig.fieldPositions.charAt(0)=='R'&&RobotConfig.robotStartPosition=='R'){
-    			ninteyDegreeTurnAuto = new NinteyDegreeTurnAuto('R');
+    			ninteyDegreeTurnAuto = new NinteyDegreeTurnAuto('R',RobotConfig.robotStartPosition);
     			ninteyDegreeTurnAuto.start();
     			return;
     		}

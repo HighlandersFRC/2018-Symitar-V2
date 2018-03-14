@@ -3,6 +3,7 @@ package org.usfirst.frc.team4499.robot.autocommands;
 import org.usfirst.frc.team4499.robot.Robot;
 import org.usfirst.frc.team4499.robot.RobotMap;
 import org.usfirst.frc.team4499.robot.commands.OutTakeCrate;
+import org.usfirst.frc.team4499.robot.commands.SetPiston;
 import org.usfirst.frc.team4499.robot.commands.Wait;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
@@ -16,8 +17,11 @@ public class CenterChooserAuto extends CommandGroup {
     	//if the switch is on the right, drives forward and drops, if it is on the left, drives forward slightly turns to line up, and then 
     	//drives forward to meet the switch
     	if(dir=='R'){
-    		addSequential(new motionMagicDriveForward(101, RobotMap.navx.getAngle(), 1100, 1500,1,1));
+    		addSequential(new motionMagicDriveForward(105, RobotMap.navx.getAngle(), 1100, 1500,1,1));
     	    addSequential(new OutTakeCrate(0.4,0.4));
+    	    addSequential(new Wait(1));
+    	    addSequential(new SetPiston(RobotMap.leftIntakePiston, RobotMap.openLeftIntake));
+    	    addSequential(new SetPiston(RobotMap.rightIntakePiston, RobotMap.openRightIntake));
     	}
     	else if(dir=='L'){
     		addSequential(new motionMagicDriveForward(6, RobotMap.navx.getAngle(), 1100, 1500,1,1));   		
@@ -26,8 +30,11 @@ public class CenterChooserAuto extends CommandGroup {
     		addSequential(new motionMagicDriveForward(119, RobotMap.navx.getAngle(), 1100, 1500,1,1));	
     		addSequential(new navxTurn(30,0.75f));
     		addSequential(new Wait(0.1));
-    		addSequential(new motionMagicDriveForward(9, RobotMap.navx.getAngle(), 1100, 1500,1,1));
+    		addSequential(new motionMagicDriveForward(14, RobotMap.navx.getAngle(), 1100, 1500,1,1));
             addSequential(new OutTakeCrate(0.4,0.4)); 
+            addSequential(new Wait(1));
+            addSequential(new SetPiston(RobotMap.leftIntakePiston, RobotMap.openLeftIntake));
+            addSequential(new SetPiston(RobotMap.rightIntakePiston, RobotMap.openRightIntake));
     	}
        
 

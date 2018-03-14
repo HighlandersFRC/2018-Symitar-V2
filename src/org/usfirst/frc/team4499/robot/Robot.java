@@ -20,7 +20,7 @@ import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.TimedRobot;
-
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
@@ -90,8 +90,8 @@ public class Robot extends TimedRobot {
 		m_oi = new OI();
 		m_chooser = new SendableChooser<>();
 		fmsDataAttempts=0;
-		//setColor = new SetLEDColor(1,0.125,0);
-		//setColor.start();
+		setColor = new SetLEDColor(1,1,1);
+		setColor.start();
 		//System.out.println(RobotMap.navx.getAngle());
 		
 //		RobotMap.canifier.setLEDOutput(0,CANifier.LEDChannel.LEDChannelA);
@@ -101,7 +101,7 @@ public class Robot extends TimedRobot {
 		
 		RobotMap.leftIntakePiston.set(RobotMap.closeLeftIntake);
     	RobotMap.rightIntakePiston.set(RobotMap.closeRightIntake);
-		UsbCamera camera1 = CameraServer.getInstance().startAutomaticCapture(0);
+		//UsbCamera camera1 = CameraServer.getInstance().startAutomaticCapture(0);
 	   // UsbCamera camera2 = CameraServer.getInstance().startAutomaticCapture(1);
     	
 	    //TODO change this to drive forward
@@ -124,8 +124,10 @@ public class Robot extends TimedRobot {
 
 	@Override
 	public void disabledPeriodic() {
-		Wait wait = new Wait(0.005);
-		wait.start();
+//		Wait wait = new Wait(0.005);
+//		wait.start();
+
+		Timer.delay(0.005);
 		Scheduler.getInstance().run();
 	}
 

@@ -84,7 +84,7 @@ public class RobotMap {
 	public static DoubleSolenoid leftIntakePiston = new DoubleSolenoid(6,7);
 	public static DoubleSolenoid.Value openLeftIntake = DoubleSolenoid.Value.kReverse;
 	public static DoubleSolenoid.Value closeLeftIntake = DoubleSolenoid.Value.kForward;
-
+	
 
 	//Array of drive motors to simplify configuration
 	public static TalonSRX driveMotors[] = {

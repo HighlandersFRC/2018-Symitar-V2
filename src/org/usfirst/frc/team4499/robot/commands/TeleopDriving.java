@@ -12,7 +12,7 @@ import edu.wpi.first.wpilibj.command.Command;
  *
  */
 public class TeleopDriving extends Command {
-
+	public boolean highGear = false;
     public TeleopDriving() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
@@ -26,6 +26,12 @@ public class TeleopDriving extends Command {
     protected void execute() {
     	double leftJoystick = OI.joyStickOne.getRawAxis(1);
     	double rightJoystick = OI.joyStickOne.getRawAxis(5);
+    	
+    	if(highGear) {
+    		leftJoystick *= 0.9;
+    		rightJoystick *= 0.9;
+    	}
+    	
     	if(Math.abs(OI.joyStickOne.getRawAxis(1))>0) {
         	double leftPower = Math.pow(Math.abs(leftJoystick),2)*Math.abs(leftJoystick)/leftJoystick;
         	
@@ -40,13 +46,16 @@ public class TeleopDriving extends Command {
     	    RobotMap.rightDriveLead.set(ControlMode.PercentOutput, rightPower);
     	}
     	else {
+    		
     		RobotMap.rightDriveLead.set(ControlMode.PercentOutput, 0); 
     	}
     	
     	if(OI.shiftUp.get()) {
+    		highGear = true;
     		RobotMap.shifters.set(RobotMap.highGear);
     	}
     	else if(OI.shiftDown.get()) {
+    		highGear = false;
     		RobotMap.shifters.set(RobotMap.lowGear);
     	}
     	
