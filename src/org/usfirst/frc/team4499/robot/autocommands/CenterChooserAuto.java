@@ -26,12 +26,10 @@ public class CenterChooserAuto extends CommandGroup {
     	    addSequential(new SetPiston(RobotMap.rightIntakePiston, RobotMap.openRightIntake));
     	}
     	else if(dir=='L'){
-    		//addSequential(new motionMagicDriveForward(6, RobotMap.navx.getAngle(), 1100, 1500,1,1)); 
-    		//addSequential(new motionMagicDriveForwardHighGear(20,RobotMap.navx.getAngle(), 3050, 5000, 1,1));
+    		
     		addSequential(new SetPiston(RobotMap.shifters, RobotMap.lowGear));
     		addSequential(new SlipTurn(41,0.75f,0.4));//negative for the comp bot
     		addSequential(new Wait(0.1));
-    		//addSequential(new motionMagicDriveForward(119, RobotMap.navx.getAngle(), 1100, 1500,1,1));	
     		addSequential(new motionMagicDriveForwardHighGear(100,RobotMap.navx.getAngle(), 3050, 5000, 1,1));
     		addSequential(new Wait(0.1));
     		addSequential(new SetPiston(RobotMap.shifters, RobotMap.lowGear));
