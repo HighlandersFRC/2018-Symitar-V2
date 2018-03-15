@@ -74,16 +74,16 @@ public class RobotMap {
 	public static DoubleSolenoid.Value highGear = DoubleSolenoid.Value.kReverse;
 	
 	public static DoubleSolenoid brake = new DoubleSolenoid(4,5);
-	public static DoubleSolenoid.Value releaseBrake = DoubleSolenoid.Value.kReverse;
-	public static DoubleSolenoid.Value setBrake = DoubleSolenoid.Value.kForward;//TODO reverse For comp Bot
+	public static DoubleSolenoid.Value releaseBrake = DoubleSolenoid.Value.kForward;//TODO On comp botDoubleSolenoid.Value.kReverse;
+	public static DoubleSolenoid.Value setBrake = DoubleSolenoid.Value.kReverse;//TODO On Comp BotDoubleSolenoid.Value.kForward;
 	
 	public static DoubleSolenoid rightIntakePiston = new DoubleSolenoid(2,3);
-	public static DoubleSolenoid.Value openRightIntake = DoubleSolenoid.Value.kForward;//TODO reverse For comp
+	public static DoubleSolenoid.Value openRightIntake = DoubleSolenoid.Value.kForward;
 	public static DoubleSolenoid.Value closeRightIntake = DoubleSolenoid.Value.kReverse;
 	
 	public static DoubleSolenoid leftIntakePiston = new DoubleSolenoid(6,7);
-	public static DoubleSolenoid.Value openLeftIntake = DoubleSolenoid.Value.kReverse;
-	public static DoubleSolenoid.Value closeLeftIntake = DoubleSolenoid.Value.kForward;
+	public static DoubleSolenoid.Value openLeftIntake = DoubleSolenoid.Value.kForward;//TODO On comp botDoubleSolenoid.Value.kReverse;
+	public static DoubleSolenoid.Value closeLeftIntake = DoubleSolenoid.Value.kReverse;//TODO On Comp BotDoubleSolenoid.Value.kForward;
 	
 
 	//Array of drive motors to simplify configuration

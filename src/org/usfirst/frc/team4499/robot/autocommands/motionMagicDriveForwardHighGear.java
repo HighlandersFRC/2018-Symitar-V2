@@ -27,7 +27,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 /**
  *
  */
-public class motionMagicDriveForward extends Command {
+public class motionMagicDriveForwardHighGear extends Command {
 	private PID angleorientation;
 	private float nativeUnitsperCycleLeft;
 	private float nativeUnitsPerCycleRight;
@@ -52,8 +52,9 @@ public class motionMagicDriveForward extends Command {
 	
 
 	
-    public motionMagicDriveForward(double distance, double angle, double cruiseVelocity, int acceleration) {
-    
+    public motionMagicDriveForwardHighGear(double distance, double angle, double cruiseVelocity, int acceleration, int leftRev, int rightRev) {
+    leftReverse = leftRev;
+    rightReverse = rightRev;
     cruiseVelocityLeft = cruiseVelocity;
     cruiseVelocityRight = cruiseVelocity;
     initCruiseVelocityLeft = cruiseVelocityLeft;
@@ -66,8 +67,8 @@ public class motionMagicDriveForward extends Command {
     //then, do ([PercentOutput] *1023)/Native units per 100ms;
     //find this on https://github.com/CrossTheRoadElec/Phoenix-Documentation/blob/master/README.md
    
-    fGainLeft =0.132404f;// 0.122404f;
-    fGainRight = fGainLeft -0.0185f;//-0.001f;
+    fGainLeft =0.03777114f;// 0.122404f;
+    fGainRight = fGainLeft -0.00185f;//-0.001f;
     pGainLeft = 0;
     pGainRight= 0;
         
@@ -84,7 +85,7 @@ public class motionMagicDriveForward extends Command {
     RobotMap.rightDriveLead.setSelectedSensorPosition(0, 0, 0);
     this.motionMagicEndPoint= ((-endpoint/RobotConfig.wheelCircum)*RobotConfig.encoderTicsPerWheelRotation);
     
-    RobotMap.shifters.set(RobotMap.lowGear);
+    RobotMap.shifters.set(RobotMap.highGear);
 
     starttime = Timer.getFPGATimestamp();
   
@@ -95,7 +96,7 @@ public class motionMagicDriveForward extends Command {
    
     angleorientation.setPID(10.0, 0.8, 0);
     
-  	angleorientation.setSetPoint(RobotMap.navx.getAngle() + desiredAngle);
+  	angleorientation.setSetPoint(RobotMap.navx.getAngle());
   	angleorientation.setMaxOutput(1500.0);
 	angleorientation.setMinOutput(-1500.0);
     RobotMap.leftDriveLead.set(com.ctre.phoenix.motorcontrol.ControlMode.MotionMagic,this.motionMagicEndPoint);		
@@ -144,7 +145,9 @@ public class motionMagicDriveForward extends Command {
     System.out.println(RobotMap.rightDriveLead.getSelectedSensorPosition(0) - this.motionMagicEndPoint + " Right Closed Loop Error in ticks");
     System.out.println((((this.motionMagicEndPoint - RobotMap.leftDriveLead.getSelectedSensorPosition(0)) / (RobotConfig.gearRatio * RobotConfig.encoderTicsPerShaftRotation)) * RobotConfig.wheelCircum) + " Closed Loop error in inches Left");
     System.out.println((((this.motionMagicEndPoint - RobotMap.rightDriveLead.getSelectedSensorPosition(0)) / (RobotConfig.gearRatio * RobotConfig.encoderTicsPerShaftRotation)) * RobotConfig.wheelCircum) + " Closed Loop error in inches Right");*/
-   
+    	 System.out.println((RobotMap.leftDriveLead.getSelectedSensorVelocity(0)*600)/4096 + "left Velocity");
+    	    System.out.println((RobotMap.rightDriveLead.getSelectedSensorVelocity(0)*600)/4096 + "Right Velocity");
+
     this.angleorientation.updatePID(RobotMap.navx.getAngle());
     //TODO check if reversed for comp bot!!!
     if(this.motionMagicEndPoint > 0){

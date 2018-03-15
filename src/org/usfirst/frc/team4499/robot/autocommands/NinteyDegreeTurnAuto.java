@@ -14,11 +14,11 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class NinteyDegreeTurnAuto extends CommandGroup {
 
     public NinteyDegreeTurnAuto(char FDir, char RDir) {
-    	addSequential(new motionMagicDriveForward(150, RobotMap.navx.getAngle(), 1100, 1500,1,1));
+    	addSequential(new motionMagicDriveForward(150, RobotMap.navx.getAngle(), 1100, 1500));
     	if(RDir == 'L' && FDir == 'L') {	
         addSequential(new navxTurn(70.0 + Robot.angleDif,0.75f));
         addSequential(new Wait(0.1));
-    	addSequential(new motionMagicDriveForward(25, RobotMap.navx.getAngle(), 1100, 1500,1,1));
+    	addSequential(new motionMagicDriveForward(25, RobotMap.navx.getAngle(), 1100, 1500));
     	addSequential(new OutTakeCrate(0.4,0.4));
     	addSequential(new Wait(1));
         addSequential(new SetPiston(RobotMap.leftIntakePiston, RobotMap.openLeftIntake));
@@ -27,7 +27,7 @@ public class NinteyDegreeTurnAuto extends CommandGroup {
     	else if(RDir == 'R' && FDir == 'R')
     	addSequential(new navxTurn(-90.0 + Robot.angleDif,0.75f));
     	addSequential(new Wait(0.1));
-    	addSequential(new motionMagicDriveForward(25, RobotMap.navx.getAngle(), 1100, 1500,1,1));
+    	addSequential(new motionMagicDriveForward(25, RobotMap.navx.getAngle(), 1100, 1500));
     	addSequential(new OutTakeCrate(0.4,0.4));
     	addSequential(new Wait(1));
         addSequential(new SetPiston(RobotMap.leftIntakePiston, RobotMap.openLeftIntake));

@@ -67,12 +67,12 @@ public class RobotConfig {
     	RobotMap.rightDriveFollowerTwo.setInverted(true);
     	
     	//TODO This particular motor runs backwards. If hardware changes this will need to be changed also.
-    	RobotMap.leftDriveLead.setInverted(true);//runs backwards for comp, change to false for practice
-    	RobotMap.leftDriveFollowerTwo.setInverted(false);//Runs backwards for Practice bot, change to false for comp
+    	RobotMap.leftDriveLead.setInverted(false);//runs backwards for comp, change to false for practice
+    	RobotMap.leftDriveFollowerTwo.setInverted(true);//Runs backwards for Practice bot, change to false for comp
     	RobotMap.leftDriveFollowerOne.setInverted(false);
     	
-    	RobotMap.intakeLeft.setInverted(true);//false on practice
-    	RobotMap.intakeRight.setInverted(true);//false on practice
+    	RobotMap.intakeLeft.setInverted(false);//true on Comp
+    	RobotMap.intakeRight.setInverted(false);//true on Comp 
     	
     	//Setup and Enable current limiting for all drive motors
     	for(TalonSRX talon:RobotMap.driveMotors) {

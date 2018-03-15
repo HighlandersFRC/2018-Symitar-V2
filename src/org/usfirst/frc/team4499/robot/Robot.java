@@ -56,6 +56,7 @@ public class Robot extends TimedRobot {
 	public RobotConfig config;
 	public TeleopDriving drive;
     public TeleopGrabber grabber;
+    
 	public Command m_autonomousCommand;
 	public SendableChooser<Command> m_chooser;
 	public TeleopArm arm;
@@ -124,9 +125,6 @@ public class Robot extends TimedRobot {
 
 	@Override
 	public void disabledPeriodic() {
-//		Wait wait = new Wait(0.005);
-//		wait.start();
-
 		Timer.delay(0.005);
 		Scheduler.getInstance().run();
 	}
@@ -145,6 +143,7 @@ public class Robot extends TimedRobot {
 	@Override
 	public void autonomousInit() {
 		fmsDataAttempts = 0;
+		run=0;
 		RobotMap.brake.set(RobotMap.setBrake);
 		RobotMap.leftIntakePiston.set(RobotMap.closeLeftIntake);
     	RobotMap.rightIntakePiston.set(RobotMap.closeRightIntake);
@@ -198,7 +197,11 @@ public class Robot extends TimedRobot {
 			}			
 		}
 		else {
+			if(run<=0) {
 			driveForward.start();
+			run++;
+			}
+			
 		}
 		
 
