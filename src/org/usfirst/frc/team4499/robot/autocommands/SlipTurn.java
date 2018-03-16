@@ -12,6 +12,8 @@ import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc.team4499.robot.tools.PID;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
+
 
 /**
  *
@@ -51,10 +53,22 @@ public class SlipTurn extends Command {
 
     // Csalled repeatedly when this Command is scheduled to run
     protected void execute() {
+    	if(RobotMap.analog.getValue()>240) {
+    	    
+	    	RobotMap.intakeLeft.set(ControlMode.PercentOutput, 0);
+	    	RobotMap.intakeRight.set(ControlMode.PercentOutput, 0);
+	    
+	    }
+	    else {
+	    	
+	    	RobotMap.intakeLeft.set(ControlMode.PercentOutput, -0.2);
+	    	RobotMap.intakeRight.set(ControlMode.PercentOutput, -0.2);
+
+	    }
     	
     	orientation.updatePID(RobotMap.navx.getAngle());
-    	RobotMap.leftDriveLead.set(com.ctre.phoenix.motorcontrol.ControlMode.PercentOutput,-forwardSpeed+orientation.getResult());//Reversed For Comp Bot
-    	RobotMap.rightDriveLead.set(com.ctre.phoenix.motorcontrol.ControlMode.PercentOutput,-forwardSpeed-orientation.getResult());
+    	RobotMap.leftDriveLead.set(com.ctre.phoenix.motorcontrol.ControlMode.PercentOutput,-forwardSpeed-orientation.getResult());
+    	RobotMap.rightDriveLead.set(com.ctre.phoenix.motorcontrol.ControlMode.PercentOutput,-forwardSpeed+orientation.getResult());
    }
 
 

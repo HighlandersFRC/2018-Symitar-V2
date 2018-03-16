@@ -26,26 +26,31 @@ public class TeleopArm extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	if(!mpArm.isRunning()) {
-    		if(OI.armReverseIntake.get()) {
+    		//TODO for the comp bot if(OI.armReverseIntake.get()) {
+    		if(OI.armForwardIntake.get()) {
     			mpArm= new MPArm(-5, 0);
     			mpArm.start();
-    		}
-    		if(OI.armForwardIntake.get()) {
+    		} 		
+    		//TODO for the comp bot if(OI.armForwardIntake.get()) {
+    		if(OI.armReverseIntake.get()) {
     			mpArm= new MPArm(177, 0);
     			mpArm.start();
     		}
-    		if(OI.armReverseShoot.get()) {
+    	
+    		//TODO for the comp bot if(OI.armReverseShoot.get()) {
+    		if(OI.armForwardShoot.get()) {
     			mpArm= new MPArm(60, 5);
     			mpArm.start();
     		}
-    		if(OI.armForwardShoot.get()) {
+    		//TODO for the comp bot if(OI.armForwardShoot.get()) {
+    		if(OI.armReverseShoot.get()) {
     			mpArm= new MPArm(120, 5);
     			mpArm.start();
     		}
     	
     		if(Math.abs(OI.joyStickTwo.getRawAxis(5))>0.15) {
         		RobotMap.brake.set(RobotMap.releaseBrake);
-        		RobotMap.armMaster.set(ControlMode.PercentOutput, 0.20*OI.joyStickTwo.getRawAxis(5));
+        		RobotMap.armMaster.set(ControlMode.PercentOutput, 0.30*OI.joyStickTwo.getRawAxis(5));
         	    mpArm.currentAngle=-(RobotMap.armMaster.getSensorCollection().getQuadraturePosition()/2048.0)*180;
         	}
     		else{

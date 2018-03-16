@@ -32,6 +32,7 @@ import org.usfirst.frc.team4499.robot.autocommands.AutoPicker;
 import org.usfirst.frc.team4499.robot.autocommands.BasicAuto;
 import org.usfirst.frc.team4499.robot.autocommands.DoNothing;
 import org.usfirst.frc.team4499.robot.autocommands.DriveForward;
+import org.usfirst.frc.team4499.robot.autocommands.SwitchAttemptToGrabCrate;
 import org.usfirst.frc.team4499.robot.autocommands.navxTurn;
 import org.usfirst.frc.team4499.robot.commands.TeleopArm;
 import org.usfirst.frc.team4499.robot.commands.TeleopDriving;
@@ -93,6 +94,7 @@ public class Robot extends TimedRobot {
 		fmsDataAttempts=0;
 		setColor = new SetLEDColor(1,1,1);
 		setColor.start();
+		
 		//System.out.println(RobotMap.navx.getAngle());
 		
 //		RobotMap.canifier.setLEDOutput(0,CANifier.LEDChannel.LEDChannelA);
@@ -236,7 +238,7 @@ public class Robot extends TimedRobot {
 	 */
 	@Override
 	public void teleopPeriodic() {
-		
+		SmartDashboard.getBoolean("isnavxConnected", RobotMap.navx.isConnected());
 		Scheduler.getInstance().run();
 	}
 

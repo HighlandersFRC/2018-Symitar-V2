@@ -68,7 +68,7 @@ public class motionMagicDriveForwardHighGear extends Command {
     //find this on https://github.com/CrossTheRoadElec/Phoenix-Documentation/blob/master/README.md
    
     fGainLeft =0.03777114f;// 0.122404f;
-    fGainRight = fGainLeft -0.00185f;//-0.001f;
+    fGainRight = fGainLeft -0.00285f;//-0.001f;
     pGainLeft = 0;
     pGainRight= 0;
         
@@ -145,8 +145,6 @@ public class motionMagicDriveForwardHighGear extends Command {
     System.out.println(RobotMap.rightDriveLead.getSelectedSensorPosition(0) - this.motionMagicEndPoint + " Right Closed Loop Error in ticks");
     System.out.println((((this.motionMagicEndPoint - RobotMap.leftDriveLead.getSelectedSensorPosition(0)) / (RobotConfig.gearRatio * RobotConfig.encoderTicsPerShaftRotation)) * RobotConfig.wheelCircum) + " Closed Loop error in inches Left");
     System.out.println((((this.motionMagicEndPoint - RobotMap.rightDriveLead.getSelectedSensorPosition(0)) / (RobotConfig.gearRatio * RobotConfig.encoderTicsPerShaftRotation)) * RobotConfig.wheelCircum) + " Closed Loop error in inches Right");*/
-    	 System.out.println((RobotMap.leftDriveLead.getSelectedSensorVelocity(0)*600)/4096 + "left Velocity");
-    	    System.out.println((RobotMap.rightDriveLead.getSelectedSensorVelocity(0)*600)/4096 + "Right Velocity");
 
     this.angleorientation.updatePID(RobotMap.navx.getAngle());
     //TODO check if reversed for comp bot!!!

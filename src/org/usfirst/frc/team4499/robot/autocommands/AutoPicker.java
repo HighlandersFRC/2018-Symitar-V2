@@ -22,6 +22,7 @@ public class AutoPicker extends Command {
     Wait wait = new Wait(0.1);
     NinteyDegreeTurnAuto ninteyDegreeTurnAuto;
     CenterChooserAuto centerChooser;
+    MultiCubeAutoExchange threeCube;
 
     public AutoPicker() {
     	//This class is used to take values from the fms, and from the Digikey switch box, and to  chose autos based of that
@@ -86,6 +87,11 @@ public class AutoPicker extends Command {
     			else{
     				driveForward.start();
     			}
+    		
+    	}
+    	else if(OI.dialFive.get()) {
+    		threeCube = new MultiCubeAutoExchange(RobotConfig.fieldPositions.charAt(0));
+    		threeCube.start();
     		
     	}
     	else {
