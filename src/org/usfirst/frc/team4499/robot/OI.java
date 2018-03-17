@@ -37,6 +37,8 @@ public class OI {
 	public static JoystickButton dialThree = new JoystickButton(dial,3);
 	public static JoystickButton dialFour = new JoystickButton(dial,4);
 	public static JoystickButton dialFive = new JoystickButton(dial,5);
+	
+	
 	public static JoystickButton switchOne = new JoystickButton(dial, 6);
 	public static JoystickButton switchTwo = new JoystickButton(dial, 7);
 	public static JoystickButton switchThree = new JoystickButton(dial, 8);

@@ -18,7 +18,7 @@ public class CenterChooserAuto extends CommandGroup {
     	//drives forward to meet the switch
     	if(dir=='R'){
     	//	addSequential(new motionMagicDriveForward(101, RobotMap.navx.getAngle(), 1100, 1500,1,1));
-    		addSequential(new motionMagicDriveForwardHighGear(102,RobotMap.navx.getAngle(), 3050, 5000, 1,1));
+    		addSequential(new motionMagicDriveForwardHighGear(104,RobotMap.navx.getAngle(), 3050, 5000, 1,1));
     	    addSequential(new Wait(0.35));
     	    addSequential(new OutTakeCrate(0.5,0.5));
     	   
