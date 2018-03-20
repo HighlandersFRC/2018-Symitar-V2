@@ -34,6 +34,8 @@ public class RobotConfig {
 	public static String fieldPositions="";
 	public static double driverDeadZone = 0.15;
 	
+	public static int ultraSoundFailValue = 240;
+	
 	public static int timeOut = 4;//Milliseconds
 	
 	//This will run when this object is created, and will handle configuring all sensors 

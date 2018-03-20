@@ -1,6 +1,7 @@
 package org.usfirst.frc.team4499.robot.autocommands;
 
 import org.usfirst.frc.team4499.robot.RobotMap;
+import org.usfirst.frc.team4499.robot.commands.SetLEDColor;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 
@@ -13,6 +14,8 @@ import edu.wpi.first.wpilibj.command.Command;
 public class SwitchAttemptToGrabCrate extends Command {
 	public double findTime;
 	public boolean found = false;
+	public SetLEDColor setColor;
+	public double startTime;
 
     public SwitchAttemptToGrabCrate() {
         // Use requires() here to declare subsystem dependencies
@@ -21,6 +24,7 @@ public class SwitchAttemptToGrabCrate extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	startTime = Timer.getFPGATimestamp();
     	RobotMap.shifters.set(RobotMap.lowGear);
     	RobotMap.leftDriveLead.set(ControlMode.PercentOutput, -0.34);
     	RobotMap.rightDriveLead.set(ControlMode.PercentOutput, -0.3);//TODO shouldn't be different on comp
@@ -37,6 +41,8 @@ public class SwitchAttemptToGrabCrate extends Command {
     		found = true;
     		RobotMap.leftIntakePiston.set(RobotMap.closeLeftIntake);
         	RobotMap.rightIntakePiston.set(RobotMap.closeLeftIntake);
+        	setColor = new SetLEDColor(1,1,0);
+        	setColor.start();
     	}
     	 
     	
@@ -44,7 +50,7 @@ public class SwitchAttemptToGrabCrate extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	if(found&&Math.abs(Timer.getFPGATimestamp()- findTime)>0.5) {
+    	if(found&&Math.abs(Timer.getFPGATimestamp()- findTime)>0.25 && Math.abs(Timer.getFPGATimestamp()-startTime)>2.5) {
     		return true;
     	}
     	

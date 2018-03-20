@@ -52,7 +52,7 @@ public class navxTurn extends Command {
     protected void execute() {
     	
     	orientation.updatePID(RobotMap.navx.getAngle());
-    	RobotMap.leftDriveLead.set(com.ctre.phoenix.motorcontrol.ControlMode.PercentOutput,orientation.getResult());//Reversed For Comp Bot
+    	RobotMap.leftDriveLead.set(com.ctre.phoenix.motorcontrol.ControlMode.PercentOutput,orientation.getResult());
     	RobotMap.rightDriveLead.set(com.ctre.phoenix.motorcontrol.ControlMode.PercentOutput,-orientation.getResult());
    }
 

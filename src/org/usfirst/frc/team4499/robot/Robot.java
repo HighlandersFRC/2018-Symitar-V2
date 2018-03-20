@@ -38,6 +38,7 @@ import org.usfirst.frc.team4499.robot.commands.TeleopArm;
 import org.usfirst.frc.team4499.robot.commands.TeleopDriving;
 import org.usfirst.frc.team4499.robot.commands.TeleopGrabber;
 import org.usfirst.frc.team4499.robot.subsystems.GrabberSubSystem;
+import org.usfirst.frc.team4499.robot.commands.ConstantColor;
 import org.usfirst.frc.team4499.robot.commands.MPArm;
 import org.usfirst.frc.team4499.robot.commands.SetLEDColor;
 import org.usfirst.frc.team4499.robot.commands.Wait;
@@ -71,6 +72,7 @@ public class Robot extends TimedRobot {
 	public static double angleDif;
 	public static double startingAngle;
 	public static double fmsDataAttempts;
+	public ConstantColor constantColor =  new ConstantColor();
 	private int run = 0;
 	
 	
@@ -121,7 +123,8 @@ public class Robot extends TimedRobot {
 	 */
 	@Override
 	public void disabledInit() {
-
+		setColor = new SetLEDColor(0,1,0);
+		
 
 	}
 
@@ -151,7 +154,8 @@ public class Robot extends TimedRobot {
     	RobotMap.rightIntakePiston.set(RobotMap.closeRightIntake);
         startingAngle = RobotMap.navx.getAngle();
         RobotConfig.fieldPositions = DriverStation.getInstance().getGameSpecificMessage();
-        
+		setColor = new SetLEDColor(0,0,1);
+
 		m_autonomousCommand = m_chooser.getSelected();
         config.autoConfig();
         //making sure that you have a starting position and that the field position is good
@@ -216,6 +220,8 @@ public class Robot extends TimedRobot {
 		RobotMap.brake.set(RobotMap.setBrake);
 		RobotMap.leftIntakePiston.set(RobotMap.closeLeftIntake);
     	RobotMap.rightIntakePiston.set(RobotMap.closeRightIntake);
+    	constantColor.start();
+		setColor = new SetLEDColor(1,0,0);
 
 
 		// This makes sure that the autonomous stops running when
@@ -238,7 +244,6 @@ public class Robot extends TimedRobot {
 	 */
 	@Override
 	public void teleopPeriodic() {
-		System.out.println(RobotMap.analog.getValue());
 		SmartDashboard.getBoolean("isnavxConnected", RobotMap.navx.isConnected());
 		Scheduler.getInstance().run();
 	}

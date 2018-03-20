@@ -4,6 +4,7 @@ import org.usfirst.frc.team4499.robot.RobotMap;
 import org.usfirst.frc.team4499.robot.commands.MPArm;
 import org.usfirst.frc.team4499.robot.commands.OutTakeCrate;
 import org.usfirst.frc.team4499.robot.commands.SetPiston;
+import org.usfirst.frc.team4499.robot.commands.Wait;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
@@ -21,7 +22,6 @@ public class MultiCubeAutoSwitch extends CommandGroup {
     		addSequential(new motionMagicDriveForwardHighGear(-20,RobotMap.navx.getAngle(),3050,5000,1,1));
     		//addSequential(new SlipTurn(70,0.75f,-0.6));
     		addSequential(new SetPiston(RobotMap.shifters,RobotMap.lowGear));
-
     		addSequential(new SlipTurn(50,0.75f,-0.6));
     		addSequential(new SlipTurn(-40,0.75f,-0.6));
     		addSequential(new SetPiston(RobotMap.rightIntakePiston, RobotMap.closeRightIntake));   		
@@ -31,18 +31,42 @@ public class MultiCubeAutoSwitch extends CommandGroup {
     		addSequential(new SetPiston(RobotMap.leftIntakePiston, RobotMap.openLeftIntake));
     		addSequential(new SwitchAttemptToGrabCrate());	
     		addSequential(new SlipTurn(50,0.75f,-0.6));
-    		addParallel(new MPArm(70,10));
-    		addSequential(new motionMagicDriveForwardHighGear(30,RobotMap.navx.getAngle(),3050,5000,1,1));
-    		addSequential(new SlipTurn(-40,0.75f,0.6));
+    		addParallel(new MPArm(60,10));
+    		addSequential(new motionMagicDriveForwardHighGear(37,RobotMap.navx.getAngle(),3050,5000,1,1));
+    		addSequential(new SlipTurn(-35,0.75f,0.6));
     		addSequential(new motionMagicDriveForwardHighGear(10,RobotMap.navx.getAngle(),3050,5000,1,1));
-            addSequential(new OutTakeCrate(0.4,0.4)); 
+            addSequential(new OutTakeCrate(0.4,0.4));
+    	}
+    	else if(Dir =='L') {
+    		addParallel(new SetPiston(RobotMap.shifters,RobotMap.lowGear));
+    		addSequential(new motionMagicDriveForwardHighGear(-24,RobotMap.navx.getAngle(),3050,5000,1,1));
+    		addParallel(new SetPiston(RobotMap.shifters,RobotMap.lowGear));
+    		addSequential(new SlipTurn(-40,0.75f,-0.6));
+    		addSequential(new motionMagicDriveForwardHighGear(-20,RobotMap.navx.getAngle(),3050,5000,1,1));
+    		addParallel(new SetPiston(RobotMap.shifters,RobotMap.lowGear));
+    		addSequential(new SlipTurn(42,0.75f,-0.6));
+    		addSequential(new SetPiston(RobotMap.rightIntakePiston, RobotMap.closeRightIntake));   		
+    		addSequential(new SetPiston(RobotMap.leftIntakePiston, RobotMap.closeLeftIntake));
+    		addParallel(new MPArm(0,0));
+    		addSequential(new SwitchAttemptToGrabCrate());
+    		addParallel(new SetPiston(RobotMap.shifters,RobotMap.highGear));
+    		addParallel(new MPArm(60,0));
+    		addSequential(new SlipTurn(-42,0.75f,-0.3));
+    		addSequential(new motionMagicDriveForwardHighGear(50,RobotMap.navx.getAngle(),3050,5000,1,1));
+    		addSequential(new Wait(0.1));
+    		addParallel(new SetPiston(RobotMap.shifters,RobotMap.lowGear));
+    		addSequential(new SlipTurn(40,0.75f,0.5));
+    		addSequential(new motionMagicDriveForwardHighGear(40,RobotMap.navx.getAngle(),3050,5000,1,1));
+            addSequential(new OutTakeCrate(0.4,0.4));
+
+
 
     		
 
-    		
 
 
     	}
+    	
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());
