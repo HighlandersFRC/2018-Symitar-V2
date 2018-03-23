@@ -55,7 +55,7 @@ public class MultiCubeAutoSwitch extends CommandGroup {
     		addSequential(new motionMagicDriveForwardHighGear(50,RobotMap.navx.getAngle(),3050,5000,1,1));
     		addSequential(new Wait(0.1));
     		addParallel(new SetPiston(RobotMap.shifters,RobotMap.lowGear));
-    		addSequential(new SlipTurn(40,0.75f,0.5));
+    		addSequential(new SlipTurn(40.0,0.75f,0.5));
     		addSequential(new motionMagicDriveForwardHighGear(40,RobotMap.navx.getAngle(),3050,5000,1,1));
             addSequential(new OutTakeCrate(0.4,0.4));
 

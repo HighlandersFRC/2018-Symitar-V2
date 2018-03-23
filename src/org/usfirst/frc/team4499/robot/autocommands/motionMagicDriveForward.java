@@ -66,8 +66,8 @@ public class motionMagicDriveForward extends Command {
     //then, do ([PercentOutput] *1023)/Native units per 100ms;
     //find this on https://github.com/CrossTheRoadElec/Phoenix-Documentation/blob/master/README.md
    
-    fGainLeft =0.132404f;// 0.122404f;
-    fGainRight = fGainLeft -0.0185f;//-0.001f;
+    fGainLeft = 0.122404f;//0.132404f;
+    fGainRight = fGainLeft-0.001f;// -0.0185f;
     pGainLeft = 0;
     pGainRight= 0;
         
@@ -134,6 +134,7 @@ public class motionMagicDriveForward extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+
     /*System.out.println(Timer.getFPGATimestamp()-starttime + " time ");
     System.out.println((int)-RobotMap.rightDriveLead.getSelectedSensorPosition(0)+ " ticksRight " + (RobotMap.rightDriveLead.getSelectedSensorPosition(0)
     		/(RobotConfig.gearRatio * RobotConfig.encoderTicsPerShaftRotation)) * RobotConfig.wheelCircum + " in Right");

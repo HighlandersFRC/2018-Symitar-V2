@@ -15,7 +15,7 @@ public class DriveForward extends CommandGroup {
     	//addSequential(new motionMagicDriveForward(101,0, 1100, 1500));
 		//negative for the comp bot
 
-    	addSequential(new motionMagicDriveForwardHighGear(105,RobotMap.navx.getAngle(), 3050, 5000, 1,1));
+    	addSequential(new motionMagicDriveForwardHighGear(1001,RobotMap.navx.getAngle(), 3050, 5000, 1,1));
     	//addSequential(new SwitchAttemptToGrabCrate());
     	System.out.println("hi");
         // Add Commands here:

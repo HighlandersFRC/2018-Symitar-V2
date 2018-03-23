@@ -68,7 +68,7 @@ public class motionMagicDriveForwardHighGear extends Command {
     //find this on https://github.com/CrossTheRoadElec/Phoenix-Documentation/blob/master/README.md
    
     fGainLeft =0.03777114f;// 0.122404f;
-    fGainRight = fGainLeft -0.00285f;//-0.001f;
+    fGainRight = fGainLeft;//-0.001f;-0.00285f
     pGainLeft = 0;
     pGainRight= 0;
         
@@ -94,7 +94,7 @@ public class motionMagicDriveForwardHighGear extends Command {
     angleorientation.setContinuous(true);
     //comment this line to diable the navx
    
-    angleorientation.setPID(10.0, 0.8, 0);
+   // angleorientation.setPID(10.0, 0.8, 0);
     
   	angleorientation.setSetPoint(RobotMap.navx.getAngle());
   	angleorientation.setMaxOutput(1500.0);
@@ -135,6 +135,8 @@ public class motionMagicDriveForwardHighGear extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	System.out.println((RobotMap.leftDriveLead.getSelectedSensorVelocity(0)*600)/4096 + "left");
+        System.out.println((RobotMap.rightDriveLead.getSelectedSensorVelocity(0)*600)/4096 + "right");
     /*System.out.println(Timer.getFPGATimestamp()-starttime + " time ");
     System.out.println((int)-RobotMap.rightDriveLead.getSelectedSensorPosition(0)+ " ticksRight " + (RobotMap.rightDriveLead.getSelectedSensorPosition(0)
     		/(RobotConfig.gearRatio * RobotConfig.encoderTicsPerShaftRotation)) * RobotConfig.wheelCircum + " in Right");
@@ -145,6 +147,7 @@ public class motionMagicDriveForwardHighGear extends Command {
     System.out.println(RobotMap.rightDriveLead.getSelectedSensorPosition(0) - this.motionMagicEndPoint + " Right Closed Loop Error in ticks");
     System.out.println((((this.motionMagicEndPoint - RobotMap.leftDriveLead.getSelectedSensorPosition(0)) / (RobotConfig.gearRatio * RobotConfig.encoderTicsPerShaftRotation)) * RobotConfig.wheelCircum) + " Closed Loop error in inches Left");
     System.out.println((((this.motionMagicEndPoint - RobotMap.rightDriveLead.getSelectedSensorPosition(0)) / (RobotConfig.gearRatio * RobotConfig.encoderTicsPerShaftRotation)) * RobotConfig.wheelCircum) + " Closed Loop error in inches Right");*/
+    
 
     this.angleorientation.updatePID(RobotMap.navx.getAngle());
     //TODO check if reversed for comp bot!!!

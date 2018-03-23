@@ -26,7 +26,7 @@ public class SwitchAttemptToGrabCrate extends Command {
     protected void initialize() {
     	startTime = Timer.getFPGATimestamp();
     	RobotMap.shifters.set(RobotMap.lowGear);
-    	RobotMap.leftDriveLead.set(ControlMode.PercentOutput, -0.34);
+    	RobotMap.leftDriveLead.set(ControlMode.PercentOutput, -0.3);
     	RobotMap.rightDriveLead.set(ControlMode.PercentOutput, -0.3);//TODO shouldn't be different on comp
     	RobotMap.intakeLeft.set(ControlMode.PercentOutput, -0.3);
     	RobotMap.intakeRight.set(ControlMode.PercentOutput, -0.3);
@@ -72,5 +72,6 @@ public class SwitchAttemptToGrabCrate extends Command {
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+    	this.end();
     }
 }

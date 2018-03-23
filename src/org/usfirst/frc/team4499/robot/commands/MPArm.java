@@ -23,8 +23,8 @@ public class MPArm extends Command {
 	private int angleTolerance;
 	private double crateMultiplier;
 	private double startTime;
-	private double minPower=0.370;//for comp bot0.280;
-	private double cosMultiplier =0.152; //for comp bot0.122;
+	private double minPower= 0.280;//for comp bot 0.280; for the practice bot0.370
+	private double cosMultiplier =0.122; //for comp bot0.122; for the practice bot 0.152;
 	private SetLEDColor setLEDColor;
 	public MPArm(double angle, int tolerance) {
     	endpoint= angle;
@@ -44,12 +44,7 @@ public class MPArm extends Command {
     	if(RobotMap.armMaster.getSensorCollection().isRevLimitSwitchClosed()) {
 	    	RobotMap.armMaster.getSensorCollection().setQuadraturePosition(RobotConfig.armMaxEncoderTicks, RobotConfig.timeOut);
     	}
-    	if(startingAngle > 90 && endpoint < 90) {
-    		endpoint = endpoint + 20;
-    	}
-    	else if(startingAngle < 90 && endpoint > 90 ) {
-    		endpoint = endpoint -20;
-    	}
+    
     }
 
     // Called repeatedly when this Command is scheduled to run

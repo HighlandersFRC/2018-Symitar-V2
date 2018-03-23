@@ -26,25 +26,25 @@ public class TeleopArm extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	if(!mpArm.isRunning()) {
-    		//TODO for the comp bot if(OI.armReverseIntake.get()) {
-    		if(OI.armForwardIntake.get()) {
-    			mpArm= new MPArm(-5, 0);
+    		 if(OI.armReverseIntake.get()) {
+    		//if(OI.armForwardIntake.get()) {
+    			mpArm= new MPArm(0, 0);
     			mpArm.start();
     		} 		
-    		//TODO for the comp bot if(OI.armForwardIntake.get()) {
-    		if(OI.armReverseIntake.get()) {
-    			mpArm= new MPArm(177, 0);
+    	  if(OI.armForwardIntake.get()) {
+    		//if(OI.armReverseIntake.get()) {
+    			mpArm= new MPArm(180, 0);
     			mpArm.start();
     		}
     	
-    		//TODO for the comp bot if(OI.armReverseShoot.get()) {
-    		if(OI.armForwardShoot.get()) {
-    			mpArm= new MPArm(60, 5);
+    		 if(OI.armReverseShoot.get()) {
+    		//if(OI.armForwardShoot.get()) {
+    			mpArm= new MPArm(60, 0);
     			mpArm.start();
     		}
-    		//TODO for the comp bot if(OI.armForwardShoot.get()) {
-    		if(OI.armReverseShoot.get()) {
-    			mpArm= new MPArm(120, 5);
+    	 if(OI.armForwardShoot.get()) {
+    		//if(OI.armReverseShoot.get()) {
+    			mpArm= new MPArm(120, 0);
     			mpArm.start();
     		}
     	

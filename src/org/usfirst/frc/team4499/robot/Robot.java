@@ -97,7 +97,7 @@ public class Robot extends TimedRobot {
 		setColor = new SetLEDColor(1,1,1);
 		setColor.start();
 		
-		//System.out.println(RobotMap.navx.getAngle());
+		//System.out.ln(RobotMap.navx.getAngle());
 		
 //		RobotMap.canifier.setLEDOutput(0,CANifier.LEDChannel.LEDChannelA);
 //		RobotMap.canifier.setLEDOutput(1,CANifier.LEDChannel.LEDChannelB);
