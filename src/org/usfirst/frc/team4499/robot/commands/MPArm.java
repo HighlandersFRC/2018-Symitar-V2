@@ -49,6 +49,14 @@ public class MPArm extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+   
+    if(RobotMap.armMaster.getSensorCollection().isRevLimitSwitchClosed()) {
+	    	RobotMap.armMaster.getSensorCollection().setQuadraturePosition(RobotConfig.armMaxEncoderTicks, RobotConfig.timeOut);
+    }
+
+    if(RobotMap.armMaster.getSensorCollection().isFwdLimitSwitchClosed()) {
+	    	RobotMap.armMaster.getSensorCollection().setQuadraturePosition(0, RobotConfig.timeOut);
+    }
     currentAngle=-(RobotMap.armMaster.getSensorCollection().getQuadraturePosition()/2048.0)*180;
    
     //If the ultrasound is able to detect a nearby crate, set the value to high, else keep it low

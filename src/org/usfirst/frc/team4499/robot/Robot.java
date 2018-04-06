@@ -221,7 +221,7 @@ public class Robot extends TimedRobot {
 		RobotMap.leftIntakePiston.set(RobotMap.closeLeftIntake);
     	RobotMap.rightIntakePiston.set(RobotMap.closeRightIntake);
     	constantColor.start();
-		setColor = new SetLEDColor(1,0,0);
+		setColor = new SetLEDColor(0,0,1);
 
 
 		// This makes sure that the autonomous stops running when
@@ -244,6 +244,8 @@ public class Robot extends TimedRobot {
 	 */
 	@Override
 	public void teleopPeriodic() {
+		
+		//System.out.println(RobotMap.navx.getAngle());
 		SmartDashboard.getBoolean("isnavxConnected", RobotMap.navx.isConnected());
 		Scheduler.getInstance().run();
 	}

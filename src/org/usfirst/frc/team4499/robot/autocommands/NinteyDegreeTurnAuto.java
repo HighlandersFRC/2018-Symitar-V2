@@ -14,24 +14,27 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class NinteyDegreeTurnAuto extends CommandGroup {
 
     public NinteyDegreeTurnAuto(char FDir, char RDir) {
-    	addSequential(new motionMagicDriveForward(150, RobotMap.navx.getAngle(), 1100, 1500));
+    	addSequential(new motionMagicDriveForwardHighGear(110, RobotMap.navx.getAngle(), 3050 ,5000,1,1));
+
     	if(RDir == 'L' && FDir == 'L') {	
-        addSequential(new navxTurn(70.0 + Robot.angleDif,0.75f));
+		addSequential(new SlipTurn(50,0.75f,0.35));//negative for the comp bot
+
         addSequential(new Wait(0.1));
-    	addSequential(new motionMagicDriveForward(25, RobotMap.navx.getAngle(), 1100, 1500));
+        addSequential(new motionMagicDriveForwardHighGear(10, RobotMap.navx.getAngle(), 3050 ,5000,1,1));
+    	addParallel(new motionMagicDriveForwardHighGear(20, RobotMap.navx.getAngle(), 3050 ,5000,1,1));
     	addSequential(new OutTakeCrate(0.4,0.4));
-    	addSequential(new Wait(1));
-        addSequential(new SetPiston(RobotMap.leftIntakePiston, RobotMap.openLeftIntake));
-        addSequential(new SetPiston(RobotMap.rightIntakePiston, RobotMap.openRightIntake));
+
+    	addSequential(new OutTakeCrate(0.4,0.4));
+    
     	}
     	else if(RDir == 'R' && FDir == 'R')
-    	addSequential(new navxTurn(-90.0 + Robot.angleDif,0.75f));
+    		addSequential(new SlipTurn(-60,0.75f,0.35));//negative for the comp bot
+
     	addSequential(new Wait(0.1));
-    	addSequential(new motionMagicDriveForward(25, RobotMap.navx.getAngle(), 1100, 1500));
+    	addSequential(new motionMagicDriveForwardHighGear(10, RobotMap.navx.getAngle(), 3050 ,5000,1,1));
+    	addParallel(new motionMagicDriveForwardHighGear(20, RobotMap.navx.getAngle(), 3050 ,5000,1,1));
     	addSequential(new OutTakeCrate(0.4,0.4));
-    	addSequential(new Wait(1));
-        addSequential(new SetPiston(RobotMap.leftIntakePiston, RobotMap.openLeftIntake));
-        addSequential(new SetPiston(RobotMap.rightIntakePiston, RobotMap.openRightIntake));
+    
     	}
    
     	

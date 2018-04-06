@@ -16,7 +16,8 @@ public class BasicAuto extends CommandGroup {
     public BasicAuto() {
     //drive forward 102 inches and drop a crate
 	//addSequential(new motionMagicDriveForward(105, RobotMap.navx.getAngle(), 1100, 1500,1,1));
-	addSequential(new motionMagicDriveForwardHighGear(104,RobotMap.navx.getAngle(), 3050, 5000, 1,1));
+
+	addSequential(new motionMagicDriveForwardHighGear(110,RobotMap.navx.getAngle(), 3050, 5000, 1,1));
     addSequential(new Wait(0.25));
     addSequential(new OutTakeCrate(0.3,0.3));
     addSequential(new Wait(1));

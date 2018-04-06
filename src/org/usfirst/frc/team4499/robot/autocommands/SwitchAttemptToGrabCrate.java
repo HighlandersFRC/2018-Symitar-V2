@@ -16,8 +16,10 @@ public class SwitchAttemptToGrabCrate extends Command {
 	public boolean found = false;
 	public SetLEDColor setColor;
 	public double startTime;
+	private double runtime;
 
-    public SwitchAttemptToGrabCrate() {
+    public SwitchAttemptToGrabCrate(double endtime) {
+    	runtime = endtime;
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     }
@@ -28,9 +30,10 @@ public class SwitchAttemptToGrabCrate extends Command {
     	RobotMap.shifters.set(RobotMap.lowGear);
     	RobotMap.leftDriveLead.set(ControlMode.PercentOutput, -0.3);
     	RobotMap.rightDriveLead.set(ControlMode.PercentOutput, -0.3);//TODO shouldn't be different on comp
-    	RobotMap.intakeLeft.set(ControlMode.PercentOutput, -0.3);
-    	RobotMap.intakeRight.set(ControlMode.PercentOutput, -0.3);
-
+    	RobotMap.intakeLeft.set(ControlMode.PercentOutput, -0.5);
+    	RobotMap.intakeRight.set(ControlMode.PercentOutput, -0.5);
+    	RobotMap.leftIntakePiston.set(RobotMap.openLeftIntake);
+    	RobotMap.rightIntakePiston.set(RobotMap.openRightIntake);
 
     }
 
@@ -40,9 +43,13 @@ public class SwitchAttemptToGrabCrate extends Command {
     		findTime = Timer.getFPGATimestamp();
     		found = true;
     		RobotMap.leftIntakePiston.set(RobotMap.closeLeftIntake);
-        	RobotMap.rightIntakePiston.set(RobotMap.closeLeftIntake);
+        	RobotMap.rightIntakePiston.set(RobotMap.closeRightIntake);
         	setColor = new SetLEDColor(1,1,0);
         	setColor.start();
+    	}
+    	else {
+    		RobotMap.leftIntakePiston.set(RobotMap.openLeftIntake);
+        	RobotMap.rightIntakePiston.set(RobotMap.openRightIntake);
     	}
     	 
     	
@@ -50,7 +57,7 @@ public class SwitchAttemptToGrabCrate extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	if(found&&Math.abs(Timer.getFPGATimestamp()- findTime)>0.25 && Math.abs(Timer.getFPGATimestamp()-startTime)>2.5) {
+    	if(found&&Math.abs(Timer.getFPGATimestamp()- findTime)>0.0 && Math.abs(Timer.getFPGATimestamp()-startTime)>runtime) {
     		return true;
     	}
     	
@@ -64,7 +71,7 @@ public class SwitchAttemptToGrabCrate extends Command {
     	RobotMap.intakeLeft.set(ControlMode.PercentOutput, 0);
     	RobotMap.intakeRight.set(ControlMode.PercentOutput, 0);
     	RobotMap.leftIntakePiston.set(RobotMap.closeLeftIntake);
-    	RobotMap.rightIntakePiston.set(RobotMap.closeLeftIntake);
+    	RobotMap.rightIntakePiston.set(RobotMap.closeRightIntake);
 
     	
     }

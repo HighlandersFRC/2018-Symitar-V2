@@ -23,11 +23,11 @@ public class ConstantColor extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	if(RobotMap.analog.getValue()<RobotConfig.ultraSoundFailValue) {
-    		setColor = new SetLEDColor(1,1,0);
+    		setColor = new SetLEDColor(0,1,1);
         	setColor.start();
     	}
     	else {
-    		setColor = new SetLEDColor(1,0,0);
+    		setColor = new SetLEDColor(0,0,1);
     	}
     }
 

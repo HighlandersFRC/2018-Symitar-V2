@@ -28,13 +28,13 @@ public class RobotConfig {
 	public static boolean enableDriveCurrentLimit = true;
 	//public static boolean enableArmCurrentLimit = true;
 	//public static boolean enableGrabberCurrentLimit = true;
-	public static int armMaxEncoderTicks = -2014;
+	public static int armMaxEncoderTicks = -2100;
 	public static int armStartEncoderTicks = -722;
 	public static char robotStartPosition; //U = unnasigned
 	public static String fieldPositions="";
 	public static double driverDeadZone = 0.15;
 	
-	public static int ultraSoundFailValue = 240;
+	public static int ultraSoundFailValue = 245;
 	
 	public static int timeOut = 4;//Milliseconds
 	
@@ -69,9 +69,9 @@ public class RobotConfig {
     	RobotMap.rightDriveFollowerTwo.setInverted(true);
     	
     	//TODO This particular motor runs backwards. If hardware changes this will need to be changed also.
-    	RobotMap.leftDriveLead.setInverted(true);//runs backwards for comp, change to false for practice
+    	RobotMap.leftDriveLead.setInverted(false);//runs backwards for comp, change to false for practice
     	RobotMap.leftDriveFollowerTwo.setInverted(false);//Runs backwards for Practice bot, change to false for comp
-    	RobotMap.leftDriveFollowerOne.setInverted(false);//true on comp
+    	RobotMap.leftDriveFollowerOne.setInverted(true);//true on comp
     	
     	RobotMap.intakeLeft.setInverted(true);//true on Comp
     	RobotMap.intakeRight.setInverted(true);//true on Comp 

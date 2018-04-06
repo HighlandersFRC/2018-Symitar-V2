@@ -30,7 +30,7 @@ public class MultiCubeAutoExchange extends CommandGroup {
     		addSequential(new MPArm(0,0));
     		addSequential(new SetPiston(RobotMap.rightIntakePiston, RobotMap.openRightIntake));   		
     		addSequential(new SetPiston(RobotMap.leftIntakePiston, RobotMap.openLeftIntake));
-    		addSequential(new SwitchAttemptToGrabCrate());	
+    		addSequential(new SwitchAttemptToGrabCrate(2.0));	
     		addSequential(new SetPiston(RobotMap.shifters, RobotMap.lowGear));   		
     		addSequential(new SlipTurn(35,0.75f,-0.1));
     		addSequential(new motionMagicDriveForwardHighGear(-68,RobotMap.navx.getAngle(),3050,5000,1,1));

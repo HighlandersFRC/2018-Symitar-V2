@@ -1,5 +1,5 @@
 /*----------------------------------------------------------------------------*/
-/* Copyright (c) 2017-2018 FIRST. All Rights Reserved.                        */
+/* Copyright (c) 2017-2018 FIRST. All Rights Reserved.                        
 /* Open Source Software - may be modified and shared by FRC teams. The code   */
 /* must be accompanied by the FIRST BSD license file in the root directory of */
 /* the project.                                                               */
@@ -8,6 +8,7 @@
 package org.usfirst.frc.team4499.robot;
 
 import com.ctre.phoenix.CANifier;
+
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 import com.kauailabs.navx.frc.AHRS;
@@ -28,11 +29,11 @@ import edu.wpi.first.wpilibj.PowerDistributionPanel;
 public class RobotMap {
 	//Name all Talon ID's for Easy Acess
 	public static int rightDriveLeadID = 2;
-	public static int leftDriveLeadID = 6;
+	public static int leftDriveLeadID = 7;
 	
 	public static int rightDriveFollowerOneID = 1; 
 	public static int rightDriveFollowerTwoID = 3;
-	public static int leftDriveFollowerOneID = 7;
+	public static int leftDriveFollowerOneID = 6;
 	public static int leftDriveFollowerTwoID = 8;
 	
 	public static int armMasterID = 5;
