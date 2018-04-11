@@ -60,13 +60,13 @@ public class MPArm extends Command {
     currentAngle=-(RobotMap.armMaster.getSensorCollection().getQuadraturePosition()/2048.0)*180;
    
     //If the ultrasound is able to detect a nearby crate, set the value to high, else keep it low
-    if(RobotMap.analog.getValue()>240) {
+    if(RobotMap.analog.getValue()>245) {
     	crateMultiplier = 0.75;
     	
     
     }
     else {
-    	crateMultiplier= 1.30;
+    	crateMultiplier= 1.40;//1.30 on comp?
     
 
     }

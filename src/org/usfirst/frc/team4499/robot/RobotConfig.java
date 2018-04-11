@@ -1,8 +1,10 @@
 package org.usfirst.frc.team4499.robot;
 
 import com.ctre.phoenix.ParamEnum;
+
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+
 
 public class RobotConfig {
 	//This is a place to put all sorts of constants that will be used in other places of the robot configuration
@@ -28,7 +30,7 @@ public class RobotConfig {
 	public static boolean enableDriveCurrentLimit = true;
 	//public static boolean enableArmCurrentLimit = true;
 	//public static boolean enableGrabberCurrentLimit = true;
-	public static int armMaxEncoderTicks = -2100;
+	public static int armMaxEncoderTicks = -2014;
 	public static int armStartEncoderTicks = -722;
 	public static char robotStartPosition; //U = unnasigned
 	public static String fieldPositions="";
@@ -69,12 +71,14 @@ public class RobotConfig {
     	RobotMap.rightDriveFollowerTwo.setInverted(true);
     	
     	//TODO This particular motor runs backwards. If hardware changes this will need to be changed also.
-    	RobotMap.leftDriveLead.setInverted(false);//runs backwards for comp, change to false for practice
-    	RobotMap.leftDriveFollowerTwo.setInverted(false);//Runs backwards for Practice bot, change to false for comp
-    	RobotMap.leftDriveFollowerOne.setInverted(true);//true on comp
+    	RobotMap.leftDriveLead.setInverted(false);// On comp     	RobotMap.leftDriveLead.setInverted(false);//runs backwards for comp, change to false for practice
+
+    	RobotMap.leftDriveFollowerTwo.setInverted(true);//On comp RobotMap.leftDriveFollowerTwo.setInverted(false);
+
+    	RobotMap.leftDriveFollowerOne.setInverted(false);//On comp RobotMap.leftDriveFollowerOne.setInverted(true);
     	
-    	RobotMap.intakeLeft.setInverted(true);//true on Comp
-    	RobotMap.intakeRight.setInverted(true);//true on Comp 
+    	RobotMap.intakeLeft.setInverted(false);//true on Comp
+    	RobotMap.intakeRight.setInverted(false);//true on Comp 
     	
     	//Setup and Enable current limiting for all drive motors
     	for(TalonSRX talon:RobotMap.driveMotors) {
@@ -134,8 +138,8 @@ public class RobotConfig {
 	public void teleopConfig() {
 		RobotMap.leftDriveLead.enableVoltageCompensation(false);
 		RobotMap.rightDriveLead.enableVoltageCompensation(false);
-		RobotMap.rightDriveLead.configOpenloopRamp(0.5, 0);
-    	RobotMap.leftDriveLead.configOpenloopRamp(0.5, 0);
+		RobotMap.rightDriveLead.configOpenloopRamp(0.0, 0);
+    	RobotMap.leftDriveLead.configOpenloopRamp(0.0, 0);
 		
 	}
 }

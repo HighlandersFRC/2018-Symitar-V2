@@ -28,7 +28,7 @@ public class SwitchAttemptToGrabCrate extends Command {
     protected void initialize() {
     	startTime = Timer.getFPGATimestamp();
     	RobotMap.shifters.set(RobotMap.lowGear);
-    	RobotMap.leftDriveLead.set(ControlMode.PercentOutput, -0.3);
+    	RobotMap.leftDriveLead.set(ControlMode.PercentOutput, -0.34);
     	RobotMap.rightDriveLead.set(ControlMode.PercentOutput, -0.3);//TODO shouldn't be different on comp
     	RobotMap.intakeLeft.set(ControlMode.PercentOutput, -0.5);
     	RobotMap.intakeRight.set(ControlMode.PercentOutput, -0.5);

@@ -9,6 +9,7 @@ package org.usfirst.frc.team4499.robot;
 
 import com.ctre.phoenix.CANifier;
 
+
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 import com.kauailabs.navx.frc.AHRS;
@@ -18,7 +19,6 @@ import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.I2C;
-import edu.wpi.first.wpilibj.PowerDistributionPanel;
 
 /**
  * The RobotMap is a mapping from the ports sensors and actuators are wired into
@@ -27,13 +27,14 @@ import edu.wpi.first.wpilibj.PowerDistributionPanel;
  * floating around.
  */
 public class RobotMap {
+	
 	//Name all Talon ID's for Easy Acess
 	public static int rightDriveLeadID = 2;
-	public static int leftDriveLeadID = 7;
+	public static int leftDriveLeadID = 6;//on comp 7
 	
 	public static int rightDriveFollowerOneID = 1; 
 	public static int rightDriveFollowerTwoID = 3;
-	public static int leftDriveFollowerOneID = 6;
+	public static int leftDriveFollowerOneID = 7;//on comp 6
 	public static int leftDriveFollowerTwoID = 8;
 	
 	public static int armMasterID = 5;
@@ -75,16 +76,16 @@ public class RobotMap {
 	public static DoubleSolenoid.Value highGear = DoubleSolenoid.Value.kReverse;
 	
 	public static DoubleSolenoid brake = new DoubleSolenoid(4,5);
-	public static DoubleSolenoid.Value releaseBrake = DoubleSolenoid.Value.kReverse;//TODO On comp botDoubleSolenoid.Value.kReverse;
-	public static DoubleSolenoid.Value setBrake = DoubleSolenoid.Value.kForward;//TODO On Comp BotDoubleSolenoid.Value.kForward;
+	public static DoubleSolenoid.Value releaseBrake = DoubleSolenoid.Value.kForward;//TODO On comp botDoubleSolenoid.Value.kReverse;
+	public static DoubleSolenoid.Value setBrake = DoubleSolenoid.Value.kReverse;//TODO On Comp BotDoubleSolenoid.Value.kForward;
 	
 	public static DoubleSolenoid rightIntakePiston = new DoubleSolenoid(2,3);
 	public static DoubleSolenoid.Value openRightIntake = DoubleSolenoid.Value.kForward;
 	public static DoubleSolenoid.Value closeRightIntake = DoubleSolenoid.Value.kReverse;
 	
 	public static DoubleSolenoid leftIntakePiston = new DoubleSolenoid(6,7);
-	public static DoubleSolenoid.Value openLeftIntake = DoubleSolenoid.Value.kReverse;//TODO On comp botDoubleSolenoid.Value.kReverse;
-	public static DoubleSolenoid.Value closeLeftIntake = DoubleSolenoid.Value.kForward;//TODO On Comp BotDoubleSolenoid.Value.kForward;
+	public static DoubleSolenoid.Value openLeftIntake = DoubleSolenoid.Value.kForward;//TODO On comp botDoubleSolenoid.Value.kReverse;
+	public static DoubleSolenoid.Value closeLeftIntake = DoubleSolenoid.Value.kReverse;//TODO On Comp BotDoubleSolenoid.Value.kForward;
 	
 
 	//Array of drive motors to simplify configuration
