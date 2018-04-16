@@ -72,12 +72,7 @@ public class TeleopDriving extends Command {
     		else {
     			RobotMap.rightDriveLead.set(ControlMode.PercentOutput, 0);
 
-    		}
-    		
-    		
-    		
-    		
-    		
+    		}	
     	}
     	
 

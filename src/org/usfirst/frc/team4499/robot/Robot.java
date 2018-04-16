@@ -244,7 +244,10 @@ public class Robot extends TimedRobot {
 	 */
 	@Override
 	public void teleopPeriodic() {
-		SmartDashboard.getBoolean("isnavxConnected", RobotMap.navx.isConnected());
+		/*SmartDashboard.putBoolean("is navx Connected", RobotMap.navx.isConnected());
+		SmartDashboard.putNumber("ultrasound value", RobotMap.analog.getValue());
+		SmartDashboard.putData(RobotMap.analog.getValue());*/
+
 		Scheduler.getInstance().run();
 	}
 
