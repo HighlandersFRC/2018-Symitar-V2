@@ -57,7 +57,7 @@ public class SwitchAttemptToGrabCrate extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	if(found&&Math.abs(Timer.getFPGATimestamp()- findTime)>0.0 && Math.abs(Timer.getFPGATimestamp()-startTime)>runtime) {
+    	if(found&&Math.abs(Timer.getFPGATimestamp()- findTime)>0.0 || Math.abs(Timer.getFPGATimestamp()-startTime)>runtime) {
     		return true;
     	}
     	
