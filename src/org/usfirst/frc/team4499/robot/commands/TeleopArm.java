@@ -39,12 +39,12 @@ public class TeleopArm extends Command {
     	
     		 if(OI.armReverseShoot.get()) {
     		//if(OI.armForwardShoot.get()) {
-    			mpArm= new MPArm(60, 10);
+    			mpArm= new MPArm(60, 15);
     			mpArm.start();
     		}
     	 if(OI.armForwardShoot.get()) {
     		//if(OI.armReverseShoot.get()) {
-    			mpArm= new MPArm(120, 10);
+    			mpArm= new MPArm(120, 15);
     			mpArm.start();
     		}
     	
