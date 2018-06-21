@@ -2,6 +2,7 @@ package org.usfirst.frc.team4499.robot;
 
 import com.ctre.phoenix.ParamEnum;
 import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 public class RobotConfig {
@@ -130,12 +131,40 @@ public class RobotConfig {
 		RobotMap.rightDriveLead.enableVoltageCompensation(true);
 		RobotMap.rightDriveLead.configOpenloopRamp(0, 0);
     	RobotMap.leftDriveLead.configOpenloopRamp(0, 0);
+    	this.setAllMotorsBreak();
 	}
 	public void teleopConfig() {
 		RobotMap.leftDriveLead.enableVoltageCompensation(false);
 		RobotMap.rightDriveLead.enableVoltageCompensation(false);
 		RobotMap.rightDriveLead.configOpenloopRamp(0.5, 0);
     	RobotMap.leftDriveLead.configOpenloopRamp(0.5, 0);
+    	this.setAllMotorsBreak();
+    
 		
 	}
+	public void disabledConfig() {
+		this.setDriveMotorsCoast();
+	}
+	public void setAllMotorsBreak() {
+		RobotMap.leftDriveLead.setNeutralMode(NeutralMode.Brake);
+		RobotMap.rightDriveLead.setNeutralMode(NeutralMode.Brake);
+		RobotMap.leftDriveFollowerOne.setNeutralMode(NeutralMode.Brake);
+		RobotMap.rightDriveFollowerOne.setNeutralMode(NeutralMode.Brake);
+		RobotMap.leftDriveFollowerTwo.setNeutralMode(NeutralMode.Brake);
+		RobotMap.rightDriveFollowerTwo.setNeutralMode(NeutralMode.Brake);
+		RobotMap.armMaster.setNeutralMode(NeutralMode.Brake);
+		RobotMap.armFollower.setNeutralMode(NeutralMode.Brake);
+		RobotMap.intakeLeft.setNeutralMode(NeutralMode.Brake);
+		RobotMap.intakeRight.setNeutralMode(NeutralMode.Brake);
+	}
+	public void setDriveMotorsCoast() {
+		RobotMap.leftDriveLead.setNeutralMode(NeutralMode.Coast);
+		RobotMap.rightDriveLead.setNeutralMode(NeutralMode.Coast);
+		RobotMap.leftDriveFollowerOne.setNeutralMode(NeutralMode.Coast);
+		RobotMap.rightDriveFollowerOne.setNeutralMode(NeutralMode.Coast);
+		RobotMap.leftDriveFollowerTwo.setNeutralMode(NeutralMode.Coast);
+		RobotMap.rightDriveFollowerTwo.setNeutralMode(NeutralMode.Coast);
+	
+	}
+	
 }

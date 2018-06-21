@@ -124,6 +124,7 @@ public class Robot extends TimedRobot {
 	@Override
 	public void disabledInit() {
 		setColor = new SetLEDColor(0,1,0);
+		config.disabledConfig();
 		
 
 	}
