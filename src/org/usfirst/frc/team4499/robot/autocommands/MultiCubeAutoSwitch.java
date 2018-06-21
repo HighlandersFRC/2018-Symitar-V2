@@ -22,8 +22,8 @@ public class MultiCubeAutoSwitch extends CommandGroup {
     		addSequential(new motionMagicDriveForwardHighGear(-20,RobotMap.navx.getAngle(),3050,5000,1,1));
     		//addSequential(new SlipTurn(70,0.75f,-0.6));
     		addSequential(new SetPiston(RobotMap.shifters,RobotMap.lowGear));
-    		addSequential(new SlipTurn(65,0.75f,-0.8));
-    		addSequential(new SlipTurn(-60,0.75f,-0.8));
+    		addSequential(new SlipTurn(65,0.75f,-0.7));
+    		addSequential(new SlipTurn(-60,0.75f,-0.7));
     		addSequential(new SetPiston(RobotMap.rightIntakePiston, RobotMap.closeRightIntake));   		
     		addSequential(new SetPiston(RobotMap.leftIntakePiston, RobotMap.closeLeftIntake));
     		addSequential(new MPArm(175,0));
@@ -43,7 +43,7 @@ public class MultiCubeAutoSwitch extends CommandGroup {
     		addSequential(new motionMagicDriveForwardHighGear(-30,RobotMap.navx.getAngle(),3050,5000,1,1));
     		addParallel(new SetPiston(RobotMap.shifters,RobotMap.lowGear));
     		addSequential(new SlipTurn(-64,0.75f,-0.4));
-    		addSequential(new motionMagicDriveForwardHighGear(-51,RobotMap.navx.getAngle(),3050,5000,1,1));
+    		addSequential(new motionMagicDriveForwardHighGear(-65,RobotMap.navx.getAngle(),3050,5000,1,1));
     		addParallel(new SetPiston(RobotMap.shifters,RobotMap.lowGear));
     		addSequential(new SlipTurn(66,0.75f,-0.4));
     		addSequential(new SetPiston(RobotMap.rightIntakePiston, RobotMap.closeRightIntake));   		
