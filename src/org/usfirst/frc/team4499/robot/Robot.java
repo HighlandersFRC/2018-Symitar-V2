@@ -245,8 +245,7 @@ public class Robot extends TimedRobot {
 	 */
 	@Override
 	public void teleopPeriodic() {
-		
-		//System.out.println(RobotMap.navx.getAngle());
+		//this is just to make sure that changes can be pushed.
 		SmartDashboard.getBoolean("isnavxConnected", RobotMap.navx.isConnected());
 		Scheduler.getInstance().run();
 	}
