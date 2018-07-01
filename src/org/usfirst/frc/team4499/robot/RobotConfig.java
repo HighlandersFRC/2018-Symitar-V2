@@ -12,11 +12,10 @@ public class RobotConfig {
     public static double encoderTicsPerWheelRotation = gearRatio * encoderTicsPerShaftRotation ;
     public static double wheelDiam = 6.0;
     public static double wheelCircum = Math.PI * wheelDiam;
-    
+    public static double openLoopRampRate = 0.095;
 	public static double voltageControlMax = 11.0;
-	
-	
-	public static int driveMotorContinuousCurrent = 40;//25;     //Amps
+	public static int driveMotorContinuousCurrentHighGear = 16;
+	public static int driveMotorContinuousCurrentLowGear = 40;//25;     //Amps
 	public static int driveMotorPeakCurrent = 60;//50;			//Amps
 	public static int driveMotorPeakCurrentDuration = 100;
 	//temporarily taken out until research can be done
@@ -79,7 +78,7 @@ public class RobotConfig {
     	
     	//Setup and Enable current limiting for all drive motors
     	for(TalonSRX talon:RobotMap.driveMotors) {
-    		talon.configContinuousCurrentLimit(RobotConfig.driveMotorContinuousCurrent, RobotConfig.timeOut);
+    		talon.configContinuousCurrentLimit(RobotConfig.driveMotorContinuousCurrentLowGear, RobotConfig.timeOut);
     		talon.configPeakCurrentLimit(RobotConfig.driveMotorPeakCurrent, RobotConfig.timeOut);
     		talon.configPeakCurrentDuration(RobotConfig.driveMotorPeakCurrentDuration, RobotConfig.timeOut);
     		talon.enableCurrentLimit(RobotConfig.enableDriveCurrentLimit);
@@ -131,19 +130,26 @@ public class RobotConfig {
 		RobotMap.rightDriveLead.enableVoltageCompensation(true);
 		RobotMap.rightDriveLead.configOpenloopRamp(0, 0);
     	RobotMap.leftDriveLead.configOpenloopRamp(0, 0);
+    	for(TalonSRX talon:RobotMap.driveMotors) {
+    		talon.configContinuousCurrentLimit(RobotConfig.driveMotorContinuousCurrentLowGear, RobotConfig.timeOut);
+    	}
     	this.setAllMotorsBreak();
 	}
 	public void teleopConfig() {
 		RobotMap.leftDriveLead.enableVoltageCompensation(false);
 		RobotMap.rightDriveLead.enableVoltageCompensation(false);
-		RobotMap.rightDriveLead.configOpenloopRamp(0.5, 0);
-    	RobotMap.leftDriveLead.configOpenloopRamp(0.5, 0);
+		RobotMap.rightDriveLead.configOpenloopRamp(openLoopRampRate, 0);
+    	RobotMap.leftDriveLead.configOpenloopRamp(openLoopRampRate, 0);
+    	RobotMap.rightDriveFollowerOne.configOpenloopRamp(openLoopRampRate, 0);
+    	RobotMap.leftDriveFollowerOne.configOpenloopRamp(openLoopRampRate, 0);
+    	RobotMap.rightDriveFollowerTwo.configOpenloopRamp(openLoopRampRate, 0);
+    	RobotMap.leftDriveFollowerTwo.configOpenloopRamp(openLoopRampRate, 0);
+    	for(TalonSRX talon:RobotMap.driveMotors) {
+    		talon.configContinuousCurrentLimit(RobotConfig.driveMotorContinuousCurrentHighGear, RobotConfig.timeOut);
+    	}
     	this.setAllMotorsBreak();
-    
-		
 	}
 	public void disabledConfig() {
-		this.setDriveMotorsCoast();
 	}
 	public void setAllMotorsBreak() {
 		RobotMap.leftDriveLead.setNeutralMode(NeutralMode.Brake);
@@ -156,15 +162,6 @@ public class RobotConfig {
 		RobotMap.armFollower.setNeutralMode(NeutralMode.Brake);
 		RobotMap.intakeLeft.setNeutralMode(NeutralMode.Brake);
 		RobotMap.intakeRight.setNeutralMode(NeutralMode.Brake);
-	}
-	public void setDriveMotorsCoast() {
-		RobotMap.leftDriveLead.setNeutralMode(NeutralMode.Coast);
-		RobotMap.rightDriveLead.setNeutralMode(NeutralMode.Coast);
-		RobotMap.leftDriveFollowerOne.setNeutralMode(NeutralMode.Coast);
-		RobotMap.rightDriveFollowerOne.setNeutralMode(NeutralMode.Coast);
-		RobotMap.leftDriveFollowerTwo.setNeutralMode(NeutralMode.Coast);
-		RobotMap.rightDriveFollowerTwo.setNeutralMode(NeutralMode.Coast);
-	
 	}
 	
 }

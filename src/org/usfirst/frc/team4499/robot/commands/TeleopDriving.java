@@ -5,6 +5,7 @@ import org.usfirst.frc.team4499.robot.RobotConfig;
 import org.usfirst.frc.team4499.robot.RobotMap;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -77,10 +78,16 @@ public class TeleopDriving extends Command {
     	if(OI.shiftUp.get()) {
     		highGear = true;
     		RobotMap.shifters.set(RobotMap.highGear);
+    		for(TalonSRX talon:RobotMap.driveMotors) {
+    	    	talon.configContinuousCurrentLimit(RobotConfig.driveMotorContinuousCurrentHighGear, RobotConfig.timeOut);
+    	    }
     	}
     	else if(OI.shiftDown.get()) {
     		highGear = false;
     		RobotMap.shifters.set(RobotMap.lowGear);
+    		for(TalonSRX talon:RobotMap.driveMotors) {
+    	    	talon.configContinuousCurrentLimit(RobotConfig.driveMotorContinuousCurrentLowGear, RobotConfig.timeOut);
+    	    }
     	}
     	
     	
