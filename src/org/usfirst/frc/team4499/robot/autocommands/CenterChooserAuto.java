@@ -32,10 +32,10 @@ public class CenterChooserAuto extends CommandGroup {
     		addSequential(new SetPiston(RobotMap.shifters, RobotMap.lowGear));
     		addSequential(new SlipTurn(-48,0.75f,0.4));//negative for the comp bot
     		addSequential(new Wait(0.1));
-    		addSequential(new motionMagicDriveForwardHighGear(105,RobotMap.navx.getAngle(), 3050, 5000, 1,1));
+    		addSequential(new motionMagicDriveForwardHighGear(90,RobotMap.navx.getAngle(), 3050, 5000, 1,1));
     		addSequential(new Wait(0.1));
     		
-    		addSequential(new SlipTurn(44,0.75f, 0.3));//positive for the comp bot
+    		addSequential(new SlipTurn(44,0.75f, 0.35));//positive for the comp bot
     		addSequential(new Wait(0.1));
     		//addSequential(new motionMagicDriveForwardHighGear(35, RobotMap.navx.getAngle(), 1100, 1500,1,1));
             addSequential(new OutTakeCrate(0.4,0.4)); 

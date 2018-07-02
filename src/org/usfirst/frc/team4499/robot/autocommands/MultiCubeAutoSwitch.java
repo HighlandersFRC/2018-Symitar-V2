@@ -29,7 +29,7 @@ public class MultiCubeAutoSwitch extends CommandGroup {
     		addSequential(new MPArm(175,0));
     		addSequential(new SetPiston(RobotMap.rightIntakePiston, RobotMap.openRightIntake));   		
     		addSequential(new SetPiston(RobotMap.leftIntakePiston, RobotMap.openLeftIntake));
-    		addSequential(new SwitchAttemptToGrabCrate(2.5));	
+    		addSequential(new SwitchAttemptToGrabCrate(1.25));	
     		addSequential(new SlipTurn(50,0.75f,-0.6));
     		addParallel(new MPArm(120,10));
     		addSequential(new motionMagicDriveForwardHighGear(37,RobotMap.navx.getAngle(),3050,5000,1,1));
@@ -42,10 +42,10 @@ public class MultiCubeAutoSwitch extends CommandGroup {
     		//addParallel(new SetPiston(RobotMap.shifters,RobotMap.lowGear));
     		addSequential(new motionMagicDriveForwardHighGear(-30,RobotMap.navx.getAngle(),3050,5000,1,1));
     		addParallel(new SetPiston(RobotMap.shifters,RobotMap.lowGear));
-    		addSequential(new SlipTurn(-64,0.75f,-0.4));
-    		addSequential(new motionMagicDriveForwardHighGear(-65,RobotMap.navx.getAngle(),3050,5000,1,1));
+    		addSequential(new SlipTurn(-62,0.75f,-0.45));
+    		addSequential(new motionMagicDriveForwardHighGear(-41,RobotMap.navx.getAngle(),3050,5000,1,1));
     		addParallel(new SetPiston(RobotMap.shifters,RobotMap.lowGear));
-    		addSequential(new SlipTurn(66,0.75f,-0.4));
+    		addSequential(new SlipTurn(66,0.75f,-0.45));
     		addSequential(new SetPiston(RobotMap.rightIntakePiston, RobotMap.closeRightIntake));   		
     		addSequential(new SetPiston(RobotMap.leftIntakePiston, RobotMap.closeLeftIntake));
     		addSequential(new MPArm(175,0));
@@ -54,10 +54,10 @@ public class MultiCubeAutoSwitch extends CommandGroup {
     		addParallel(new MPArm(130,0));
     		addSequential(new SlipTurn(-42,0.75f,-0.3));
     		
-    		addSequential(new motionMagicDriveForwardHighGear(68,RobotMap.navx.getAngle(),3050,5000,1,1));
+    		addSequential(new motionMagicDriveForwardHighGear(34,RobotMap.navx.getAngle(),3050,5000,1,1));
     		addSequential(new Wait(0.1));
     		
-    		addSequential(new SlipTurn(30.0,0.75f,0.2));
+    		addSequential(new SlipTurn(30.0,0.75f,0.4));
     		addSequential(new motionMagicDriveForwardHighGear(40,RobotMap.navx.getAngle(),3050,5000,1,1));
             addSequential(new OutTakeCrate(0.45,0.45));
 
