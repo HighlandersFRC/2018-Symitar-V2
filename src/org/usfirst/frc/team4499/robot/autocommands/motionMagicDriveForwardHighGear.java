@@ -50,6 +50,9 @@ public class motionMagicDriveForwardHighGear extends Command {
 	private int leftReverse;
 	private int rightReverse;
 	
+	private double timeOut;
+	private boolean timeOutEnabled;
+	private double startTime;
 
 	
     public motionMagicDriveForwardHighGear(double distance, double angle, double cruiseVelocity, int acceleration, int leftRev, int rightRev) {
@@ -73,10 +76,40 @@ public class motionMagicDriveForwardHighGear extends Command {
     pGainRight= 0;
         
     desiredAngle = angle;
+    timeOutEnabled = false;
     
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    }
+    }public motionMagicDriveForwardHighGear(double distance, double angle, double cruiseVelocity,
+    		int acceleration, int leftRev, int rightRev,double timeOut) {
+        leftReverse = leftRev;
+        rightReverse = rightRev;
+        cruiseVelocityLeft = cruiseVelocity;
+        cruiseVelocityRight = cruiseVelocity;
+        initCruiseVelocityLeft = cruiseVelocityLeft;
+        initCruiseVelocityRight = cruiseVelocityRight;
+        AccelerationLeft= acceleration;
+        AccelerationRight= acceleration;
+        
+       endpoint = distance;
+        //to find the fvalue, use Self test to find the Percent Output
+        //then, do ([PercentOutput] *1023)/Native units per 100ms;
+        //find this on https://github.com/CrossTheRoadElec/Phoenix-Documentation/blob/master/README.md
+       
+        fGainLeft =0.03977114f;// 0.122404f;
+        fGainRight = fGainLeft-0.0030f;//-0.00285f
+        pGainLeft = 0;
+        pGainRight= 0;
+            
+        desiredAngle = angle;
+        timeOutEnabled = true;
+        this.timeOut = timeOut;
+        startTime = Timer.getFPGATimestamp();
+            // Use requires() here to declare subsystem dependencies
+            // eg. requires(chassis);
+        }
+    
+    
 
     // Called just before this Command runs the first time
     protected void initialize() {
