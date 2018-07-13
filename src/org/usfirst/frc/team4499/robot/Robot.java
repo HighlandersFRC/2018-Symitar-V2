@@ -233,6 +233,7 @@ public class Robot extends TimedRobot {
 			m_autonomousCommand.cancel();
 		}
 		
+		
 		config.teleopConfig();
 		drive.start();
 		grabber.start();
@@ -246,6 +247,7 @@ public class Robot extends TimedRobot {
 	@Override
 	public void teleopPeriodic() {
 		//this is just to make sure that changes can be pushed.
+		//System.out.println(RobotMap.analog.getValue());
 		SmartDashboard.getBoolean("isnavxConnected", RobotMap.navx.isConnected());
 		Scheduler.getInstance().run();
 	}

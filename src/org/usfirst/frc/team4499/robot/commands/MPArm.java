@@ -23,7 +23,7 @@ public class MPArm extends Command {
 	private int angleTolerance;
 	private double crateMultiplier;
 	private double startTime;
-	private double minPower= 0.280;//for comp bot 0.280; for the practice bot0.370
+	private double minPower= 0.30;//for comp bot 0.280; for the practice bot0.370
 	private double cosMultiplier =0.122; //for comp bot0.122; for the practice bot 0.152;
 	private SetLEDColor setLEDColor;
 	public MPArm(double angle, int tolerance) {

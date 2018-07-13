@@ -41,15 +41,20 @@ public class MultiCubeAutoSwitch extends CommandGroup {
     	else if(Dir =='L') {
     		//addParallel(new SetPiston(RobotMap.shifters,RobotMap.lowGear));
     		addSequential(new motionMagicDriveForwardHighGear(-30,RobotMap.navx.getAngle(),3050,5000,1,1));
+    		
     		addParallel(new SetPiston(RobotMap.shifters,RobotMap.lowGear));
     		addSequential(new SlipTurn(-62,0.75f,-0.45));
-    		addSequential(new motionMagicDriveForwardHighGear(-41,RobotMap.navx.getAngle(),3050,5000,1,1));
+    		
+    		//addParallel(new MPArm(140,0));
+    		addSequential(new motionMagicDriveForwardHighGear(-40,RobotMap.navx.getAngle(),3050,5000,1,1));
     		addParallel(new SetPiston(RobotMap.shifters,RobotMap.lowGear));
+    		//addSequential(new motionMagicDriveForwardHighGear(-1,RobotMap.navx.getAngle(),3050,5000,1,1));
+
     		addSequential(new SlipTurn(66,0.75f,-0.45));
     		addSequential(new SetPiston(RobotMap.rightIntakePiston, RobotMap.closeRightIntake));   		
     		addSequential(new SetPiston(RobotMap.leftIntakePiston, RobotMap.closeLeftIntake));
     		addSequential(new MPArm(175,0));
-    		addSequential(new SwitchAttemptToGrabCrate(0.6));
+    		addSequential(new SwitchAttemptToGrabCrate(1.25));
     		addParallel(new SetPiston(RobotMap.shifters,RobotMap.highGear));
     		addParallel(new MPArm(130,0));
     		addSequential(new SlipTurn(-42,0.75f,-0.3));
@@ -59,7 +64,13 @@ public class MultiCubeAutoSwitch extends CommandGroup {
     		
     		addSequential(new SlipTurn(30.0,0.75f,0.4));
     		addSequential(new motionMagicDriveForwardHighGear(40,RobotMap.navx.getAngle(),3050,5000,1,1));
+    		addSequential(new MPArm(150,0));
+            
+            
             addSequential(new OutTakeCrate(0.45,0.45));
+            
+            //addSequential(new motionMagicDriveForwardHighGear(-1,RobotMap.navx.getAngle(),3050,5000,1,1));
+            
 
 
 
