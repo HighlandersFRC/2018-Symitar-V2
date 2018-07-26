@@ -71,7 +71,7 @@ public class RobotConfig {
     	//TODO This particular motor runs backwards. If hardware changes this will need to be changed also.
     	RobotMap.leftDriveLead.setInverted(false);//runs backwards for comp, change to false for practice
     	RobotMap.leftDriveFollowerTwo.setInverted(false);//Runs backwards for Practice bot, change to false for comp
-    	RobotMap.leftDriveFollowerOne.setInverted(true);//true on comp
+    	RobotMap.leftDriveFollowerOne.setInverted(false);
     	
     	RobotMap.intakeLeft.setInverted(true);//true on Comp
     	RobotMap.intakeRight.setInverted(true);//true on Comp 
