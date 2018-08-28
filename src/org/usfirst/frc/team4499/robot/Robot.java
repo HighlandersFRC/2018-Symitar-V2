@@ -10,6 +10,7 @@ package org.usfirst.frc.team4499.robot;
 import edu.wpi.cscore.CvSink;
 
 
+
 import edu.wpi.cscore.CvSource;
 import edu.wpi.cscore.MjpegServer;
 import edu.wpi.cscore.UsbCamera;
@@ -38,6 +39,7 @@ import org.usfirst.frc.team4499.robot.commands.TeleopArm;
 import org.usfirst.frc.team4499.robot.commands.TeleopDriving;
 import org.usfirst.frc.team4499.robot.commands.TeleopGrabber;
 import org.usfirst.frc.team4499.robot.subsystems.GrabberSubSystem;
+import org.usfirst.frc.team4499.robot.commands.ArcadeDrive;
 import org.usfirst.frc.team4499.robot.commands.ConstantColor;
 import org.usfirst.frc.team4499.robot.commands.MPArm;
 import org.usfirst.frc.team4499.robot.commands.SetLEDColor;
@@ -72,6 +74,7 @@ public class Robot extends TimedRobot {
 	public static double angleDif;
 	public static double startingAngle;
 	public static double fmsDataAttempts;
+	private ArcadeDrive arcade;
 	public ConstantColor constantColor =  new ConstantColor();
 	private int run = 0;
 	
@@ -85,6 +88,7 @@ public class Robot extends TimedRobot {
 	public void robotInit() {
 		config = new RobotConfig();
 		drive = new TeleopDriving();
+		arcade = new ArcadeDrive();
 		grabber = new TeleopGrabber();
 		arm = new TeleopArm();
 		driveForward = new DriveForward();
@@ -235,7 +239,8 @@ public class Robot extends TimedRobot {
 		
 		
 		config.teleopConfig();
-		drive.start();
+		//drive.start();
+		arcade.start();
 		grabber.start();
 		arm.start();
 
