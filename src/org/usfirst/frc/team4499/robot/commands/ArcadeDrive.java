@@ -38,7 +38,7 @@ public class ArcadeDrive extends Command {
   protected void execute() {
 	ratio = Math.abs(throttel);
     throttel = OI.joyStickOne.getRawAxis(1);
-    
+    System.out.println(RobotMap.shifters.get());
     System.out.println(sensitivity);
     if(Math.abs(OI.joyStickOne.getRawAxis(4))>deadZone) {
     	
@@ -62,17 +62,19 @@ public class ArcadeDrive extends Command {
     	RobotMap.leftDriveLead.set(ControlMode.PercentOutput, throttel-turn);
         RobotMap.rightDriveLead.set(ControlMode.PercentOutput, throttel +turn);
     }
-    if(OI.shiftUp.get()) {
+    if(RobotMap.shifters.get() == RobotMap.highGear) {
       RobotMap.shifters.set(RobotMap.highGear);
       for(TalonSRX talon:RobotMap.driveMotors) {
           talon.configContinuousCurrentLimit(RobotConfig.driveMotorContinuousCurrentHighGear, RobotConfig.timeOut);
-          sensitivity =0.75;
+  		  talon.configPeakCurrentLimit(RobotConfig.driveMotorPeakCurrentHighGear, RobotConfig.timeOut);
+          sensitivity =1.75;
         }
     }
-    else if(OI.shiftDown.get()) {
+    else if(RobotMap.shifters.get() == RobotMap.lowGear) {
       RobotMap.shifters.set(RobotMap.lowGear);
       for(TalonSRX talon:RobotMap.driveMotors) {
           talon.configContinuousCurrentLimit(RobotConfig.driveMotorContinuousCurrentLowGear, RobotConfig.timeOut);
+  		  talon.configPeakCurrentLimit(RobotConfig.driveMotorPeakCurrentLowGear, RobotConfig.timeOut);
           sensitivity =1.25;
         }
     }

@@ -15,8 +15,9 @@ public class RobotConfig {
     public static double openLoopRampRate = 0.095;
 	public static double voltageControlMax = 11.0;
 	public static int driveMotorContinuousCurrentHighGear = 16;
-	public static int driveMotorContinuousCurrentLowGear = 40;//25;     //Amps
-	public static int driveMotorPeakCurrent = 60;//50;			//Amps
+	public static int driveMotorContinuousCurrentLowGear = 40;//25;//Amps
+	public static int driveMotorPeakCurrentLowGear = 60;//50;Amps;
+	public static int driveMotorPeakCurrentHighGear = 25;//50;//Amps
 	public static int driveMotorPeakCurrentDuration = 100;
 	//temporarily taken out until research can be done
 	public static int armMotorContinuousCurrent = 16;     //Amps
@@ -79,7 +80,7 @@ public class RobotConfig {
     	//Setup and Enable current limiting for all drive motors
     	for(TalonSRX talon:RobotMap.driveMotors) {
     		talon.configContinuousCurrentLimit(RobotConfig.driveMotorContinuousCurrentLowGear, RobotConfig.timeOut);
-    		talon.configPeakCurrentLimit(RobotConfig.driveMotorPeakCurrent, RobotConfig.timeOut);
+    		talon.configPeakCurrentLimit(RobotConfig.driveMotorPeakCurrentLowGear, RobotConfig.timeOut);
     		talon.configPeakCurrentDuration(RobotConfig.driveMotorPeakCurrentDuration, RobotConfig.timeOut);
     		talon.enableCurrentLimit(RobotConfig.enableDriveCurrentLimit);
     	}
@@ -136,6 +137,7 @@ public class RobotConfig {
     	this.setAllMotorsBreak();
 	}
 	public void teleopConfig() {
+		RobotMap.shifters.set(RobotMap.highGear);
 		RobotMap.leftDriveLead.enableVoltageCompensation(false);
 		RobotMap.rightDriveLead.enableVoltageCompensation(false);
 		RobotMap.rightDriveLead.configOpenloopRamp(openLoopRampRate, 0);
