@@ -74,19 +74,31 @@ public class TeleopDriving extends Command {
     		else {
     			RobotMap.rightDriveLead.set(ControlMode.PercentOutput, 0);
 
-    		}	
+    		}
     	if(OI.shiftUp.get()) {
-    		highGear = true;
     		RobotMap.shifters.set(RobotMap.highGear);
-    		for(TalonSRX talon:RobotMap.driveMotors) {
-    	    	talon.configContinuousCurrentLimit(RobotConfig.driveMotorContinuousCurrentHighGear, RobotConfig.timeOut);
-    	    }
     	}
     	else if(OI.shiftDown.get()) {
-    		highGear = false;
     		RobotMap.shifters.set(RobotMap.lowGear);
+    	}
+    	if(RobotMap.shifters.get()==RobotMap.highGear) {
+    		highGear = true;
+    		System.out.println(RobotConfig.driveMotorPeakCurrentHighGear);
     		for(TalonSRX talon:RobotMap.driveMotors) {
-    	    	talon.configContinuousCurrentLimit(RobotConfig.driveMotorContinuousCurrentLowGear, RobotConfig.timeOut);
+    	    	talon.configContinuousCurrentLimit(RobotConfig.driveMotorContinuousCurrentHighGear, RobotConfig.timeOut);
+    	    	talon.configPeakCurrentLimit(RobotConfig.driveMotorPeakCurrentHighGear, 0);  
+    	    	talon.configPeakCurrentDuration(RobotConfig.driveMotorPeakCurrentDurationHighGear);
+    	    	talon.enableCurrentLimit(true);
+    	    	}
+    	}
+    	else if(RobotMap.shifters.get()== RobotMap.lowGear) {
+    		highGear = false;
+    		System.out.println(RobotConfig.driveMotorPeakCurrentLowGear);
+    		for(TalonSRX talon:RobotMap.driveMotors) {
+    			talon.configContinuousCurrentLimit(RobotConfig.driveMotorContinuousCurrentLowGear, RobotConfig.timeOut);
+    	    	talon.configPeakCurrentLimit(RobotConfig.driveMotorPeakCurrentLowGear, 0);  
+    	    	talon.configPeakCurrentDuration(RobotConfig.driveMotorPeakCurrentDurationLowGear);
+    	    	talon.enableCurrentLimit(true);
     	    }
     	}
     	

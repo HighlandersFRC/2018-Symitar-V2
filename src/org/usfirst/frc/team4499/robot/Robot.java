@@ -127,7 +127,7 @@ public class Robot extends TimedRobot {
 	 */
 	@Override
 	public void disabledInit() {
-		setColor = new SetLEDColor(0,1,0);
+		setColor = new SetLEDColor(1,1,1);
 		config.disabledConfig();
 		
 
@@ -135,6 +135,7 @@ public class Robot extends TimedRobot {
 
 	@Override
 	public void disabledPeriodic() {
+
 		Timer.delay(0.005);
 		Scheduler.getInstance().run();
 	}
@@ -239,8 +240,8 @@ public class Robot extends TimedRobot {
 		
 		
 		config.teleopConfig();
-		drive.start();
-		//arcade.start();
+		//drive.start();
+		arcade.start();
 		grabber.start();
 		arm.start();
 
@@ -252,7 +253,6 @@ public class Robot extends TimedRobot {
 	@Override
 	public void teleopPeriodic() {
 		//this is just to make sure that changes can be pushed.
-		//System.out.println(RobotMap.analog.getValue());
 		SmartDashboard.getBoolean("isnavxConnected", RobotMap.navx.isConnected());
 		Scheduler.getInstance().run();
 	}

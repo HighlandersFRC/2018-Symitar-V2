@@ -17,8 +17,9 @@ public class RobotConfig {
 	public static int driveMotorContinuousCurrentHighGear = 16;
 	public static int driveMotorContinuousCurrentLowGear = 40;//25;//Amps
 	public static int driveMotorPeakCurrentLowGear = 60;//50;Amps;
-	public static int driveMotorPeakCurrentHighGear = 25;//50;//Amps
-	public static int driveMotorPeakCurrentDuration = 100;
+	public static int driveMotorPeakCurrentHighGear = 16;//50;//Amps
+	public static int driveMotorPeakCurrentDurationLowGear = 100;
+	public static int driveMotorPeakCurrentDurationHighGear = 0;
 	//temporarily taken out until research can be done
 	public static int armMotorContinuousCurrent = 16;     //Amps
 	public static int armMotorPeakCurrent = 23;			//Amps
@@ -81,7 +82,7 @@ public class RobotConfig {
     	for(TalonSRX talon:RobotMap.driveMotors) {
     		talon.configContinuousCurrentLimit(RobotConfig.driveMotorContinuousCurrentLowGear, RobotConfig.timeOut);
     		talon.configPeakCurrentLimit(RobotConfig.driveMotorPeakCurrentLowGear, RobotConfig.timeOut);
-    		talon.configPeakCurrentDuration(RobotConfig.driveMotorPeakCurrentDuration, RobotConfig.timeOut);
+    		talon.configPeakCurrentDuration(RobotConfig.driveMotorPeakCurrentDurationLowGear, RobotConfig.timeOut);
     		talon.enableCurrentLimit(RobotConfig.enableDriveCurrentLimit);
     	}
     	//temporarliy taken out until further research can be done

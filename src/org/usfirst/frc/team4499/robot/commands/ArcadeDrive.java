@@ -38,8 +38,7 @@ public class ArcadeDrive extends Command {
   protected void execute() {
 	ratio = Math.abs(throttel);
     throttel = OI.joyStickOne.getRawAxis(1);
-    System.out.println(RobotMap.shifters.get());
-    System.out.println(sensitivity);
+   
     if(Math.abs(OI.joyStickOne.getRawAxis(4))>deadZone) {
     	
         turn = OI.joyStickOne.getRawAxis(4);
@@ -62,23 +61,37 @@ public class ArcadeDrive extends Command {
     	RobotMap.leftDriveLead.set(ControlMode.PercentOutput, throttel-turn);
         RobotMap.rightDriveLead.set(ControlMode.PercentOutput, throttel +turn);
     }
-    if(RobotMap.shifters.get() == RobotMap.highGear) {
-      RobotMap.shifters.set(RobotMap.highGear);
-      for(TalonSRX talon:RobotMap.driveMotors) {
-          talon.configContinuousCurrentLimit(RobotConfig.driveMotorContinuousCurrentHighGear, RobotConfig.timeOut);
-  		  talon.configPeakCurrentLimit(RobotConfig.driveMotorPeakCurrentHighGear, RobotConfig.timeOut);
-          sensitivity =1.75;
-        }
-    }
-    else if(RobotMap.shifters.get() == RobotMap.lowGear) {
-      RobotMap.shifters.set(RobotMap.lowGear);
-      for(TalonSRX talon:RobotMap.driveMotors) {
-          talon.configContinuousCurrentLimit(RobotConfig.driveMotorContinuousCurrentLowGear, RobotConfig.timeOut);
-  		  talon.configPeakCurrentLimit(RobotConfig.driveMotorPeakCurrentLowGear, RobotConfig.timeOut);
-          sensitivity =1.25;
-        }
-    }
-  }
+   
+    if(OI.shiftUp.get()) {
+  		RobotMap.shifters.set(RobotMap.highGear);
+  	}
+  	else if(OI.shiftDown.get()) {
+  		RobotMap.shifters.set(RobotMap.lowGear);
+  	}
+  	if(RobotMap.shifters.get()==RobotMap.highGear) {
+  		for(TalonSRX talon:RobotMap.driveMotors) {
+  	    	talon.configContinuousCurrentLimit(RobotConfig.driveMotorContinuousCurrentHighGear, RobotConfig.timeOut);
+  	    	talon.configPeakCurrentLimit(RobotConfig.driveMotorPeakCurrentHighGear, 0);  
+  	    	talon.configPeakCurrentDuration(RobotConfig.driveMotorPeakCurrentDurationHighGear);
+  	    	talon.enableCurrentLimit(true);
+  	    	}
+        sensitivity =1.75;
+
+  	}
+  	else if(RobotMap.shifters.get()== RobotMap.lowGear) {
+  		for(TalonSRX talon:RobotMap.driveMotors) {
+  			
+  			talon.configContinuousCurrentLimit(RobotConfig.driveMotorContinuousCurrentLowGear, RobotConfig.timeOut);
+  	    	talon.configPeakCurrentLimit(RobotConfig.driveMotorPeakCurrentLowGear, 0);  
+  	    	talon.configPeakCurrentDuration(RobotConfig.driveMotorPeakCurrentDurationLowGear);
+  	    	talon.enableCurrentLimit(true);
+
+  	    }
+        sensitivity =1.25;
+
+  	}
+   }
+  
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
